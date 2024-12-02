@@ -17,12 +17,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'login_count',
+        'birth_date',
+        'hour_filter',
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,5 +48,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function businesses()
+    {
+        return $this->belongsToMany(Business::class, 'user_business')
+            ->withPivot('function')
+            ->withTimestamps();
+    }
+
+    public function vacancy()
+    {
+        return $this->belongsToMany(Vacancy::class, 'user_jobs')
+            ->withPivot('application_stage')
+            ->withTimestamps();
+    }
+
+    public function certificates()
+    {
+        return $this->belongsToMany(Certificate::class, 'user_certificates')
+            ->withTimestamps();
+    }
+
+    public function swipes()
+    {
+        return $this->hasMany(UserSwipe::class);
     }
 }
