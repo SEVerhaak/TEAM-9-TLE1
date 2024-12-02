@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('job_certificates', function (Blueprint $table) {
+        Schema::create('vacancy_certificates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained()->onDelete('cascade'); // Links to jobs
+            $table->foreignId('vacancy_id')->constrained()->onDelete('cascade'); // Links to jobs
             $table->foreignId('certificate_id')->constrained()->onDelete('cascade'); // Links to certificates
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_certificates');
+        Schema::dropIfExists('vacancy_certificates');
     }
 };

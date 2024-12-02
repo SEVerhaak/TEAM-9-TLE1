@@ -25,14 +25,14 @@ class Vacancy extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_jobs')
+        return $this->belongsToMany(User::class, 'user_vacancies')
             ->withPivot('application_stage')
             ->withTimestamps();
     }
 
     public function certificates()
     {
-        return $this->belongsToMany(Certificate::class, 'job_certificates')
+        return $this->belongsToMany(Certificate::class, 'vacancy_certificates')
             ->withTimestamps();
     }
 

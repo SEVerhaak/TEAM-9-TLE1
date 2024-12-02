@@ -22,7 +22,7 @@ class Certificate extends Model
 
     public function vacancy()
     {
-        return $this->belongsToMany(Vacancy::class, 'job_certificates')
+        return $this->belongsToMany(Vacancy::class, 'vacancy_certificates')
             ->withTimestamps();
     }
 }

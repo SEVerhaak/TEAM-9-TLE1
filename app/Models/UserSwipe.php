@@ -11,7 +11,7 @@ class UserSwipe extends Model
 
     protected $fillable = [
         'user_id',
-        'job_id',
+        'vacancy_id',
         'swipe',
     ];
 

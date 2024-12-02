@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function vacancy()
     {
-        return $this->belongsToMany(Vacancy::class, 'user_jobs')
+        return $this->belongsToMany(Vacancy::class, 'user_vacancies')
             ->withPivot('application_stage')
             ->withTimestamps();
     }
