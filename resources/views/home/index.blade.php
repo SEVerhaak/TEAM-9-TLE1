@@ -16,7 +16,7 @@
     <img class="top-image" src="../images/main_image.png">
 
     <x-main-button-with-logo>
-        <h3>Geïnteresseerd? Meld je aan! </h3>
+        <h3>Geïnteresseerd? <a href="{{ route('open_vacancies.index') }}"> Meld je aan!</a> </h3>
     </x-main-button-with-logo>
 
     <div class="how-it-works-container">
