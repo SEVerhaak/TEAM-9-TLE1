@@ -29,7 +29,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        border-radius: 60px 60px 0 0;
+        border-radius: 30px 30px 0 0;
         background-color: white;
         max-height: 25vw;
         min-height: 25vw;
@@ -54,7 +54,7 @@
 
     .selected {
         background-color: rgba(214, 154, 186, 0.33);
-        border-radius: 30px;
+        border-radius: 15px;
         color: #B20060;
     }
 
@@ -63,7 +63,7 @@
     }
 
     .menu-text {
-        font-size: xxx-large;
+        font-size: larger;
         margin: 0;
         font-weight: normal;
     }
