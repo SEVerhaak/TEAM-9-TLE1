@@ -16,7 +16,7 @@
 
         color: black;
         text-align: center;
-        padding-top: 7vh;
+        padding-top: 0vh;
     }
     h1 {
         margin-left: 1vh;
@@ -124,7 +124,11 @@
 
 
 
-    <x-info-and-buttons></x-info-and-buttons>
+    <x-info-and-buttons>
+        Persoonlijke informatie wordt
+        <br>
+        niet gedeeld met de werkgevers!
+    </x-info-and-buttons>
 
 </div>
 

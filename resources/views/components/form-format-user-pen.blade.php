@@ -6,10 +6,7 @@
         height: 5vh;
         border: black solid;
         border-radius: 40px;
-
-
         box-shadow: 0px 4px 60px 2px rgba(0, 0, 0, 0.1); /* The '2px' is the spread radius */
-
 
     }
 
@@ -19,8 +16,6 @@
         padding-left: 8vh; /* Add padding to the left to make space for the icon */
         border: none;
         border-radius: inherit;
-
-
 
         font-size: 3rem;
         /*padding-right: 10px; !* Optional: Adds some space on the right *!*/
@@ -40,7 +35,7 @@
 
 <div class="form-input1">
     <!-- Envelope Icon placed inside the form -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="58.967" height="52.131" viewBox="0 0 28.967 22.131">
+    <svg xmlns="http://www.w3.org/2000/svg" width="58.967" height="53.177" viewBox="0 0 28.967 23.177">
         <defs>
             <style>
                 .cls-1 {
@@ -48,8 +43,9 @@
                 }
             </style>
         </defs>
-        <path id="Icon_fa-solid-envelope" data-name="Icon fa-solid-envelope" class="cls-1" d="M2.716,4.5A2.742,2.742,0,0,0,0,7.266,2.785,2.785,0,0,0,1.086,9.479L13.4,18.885a1.789,1.789,0,0,0,2.173,0L27.88,9.479a2.785,2.785,0,0,0,1.086-2.213A2.742,2.742,0,0,0,26.251,4.5H2.716ZM0,10.955V22.942a3.658,3.658,0,0,0,3.621,3.688H25.346a3.658,3.658,0,0,0,3.621-3.688V10.955L16.656,20.36a3.562,3.562,0,0,1-4.345,0Z" transform="translate(0 -4.5)"/>
+        <path id="Icon_fa-solid-user-pen" data-name="Icon fa-solid-user-pen" class="cls-1" d="M10.14,11.588A5.794,5.794,0,1,0,4.346,5.794,5.794,5.794,0,0,0,10.14,11.588ZM8.071,13.761A8.07,8.07,0,0,0,0,21.833a1.345,1.345,0,0,0,1.344,1.344H14.612a2.2,2.2,0,0,1-.063-1.258l.679-2.721a2.874,2.874,0,0,1,.76-1.344l1.824-1.824A8.043,8.043,0,0,0,12.2,13.761ZM27.785,10.67a1.814,1.814,0,0,0-2.562,0L23.892,12l3.214,3.214,1.331-1.331a1.814,1.814,0,0,0,0-2.562ZM17.016,18.877a1.434,1.434,0,0,0-.38.674l-.679,2.721a.724.724,0,0,0,.878.878l2.721-.679a1.456,1.456,0,0,0,.674-.38l5.849-5.853-3.214-3.214Z"/>
     </svg>
+
     <article>
         <!-- filler-->
 

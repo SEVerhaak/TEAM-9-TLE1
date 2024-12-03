@@ -111,9 +111,7 @@
     </div>
     <div>
         <h2>
-            Persoonlijke informatie wordt
-            <br>
-            niet gedeeld met de werkgevers!
+            {{ $slot }}
         </h2>
     </div>
 
