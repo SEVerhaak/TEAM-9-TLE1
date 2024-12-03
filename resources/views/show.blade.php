@@ -1,3 +1,10 @@
+{{--Message die je krijgt als je een probleem hebt bij het aanmelden voor een vacature (bijv: niet ingelogd)--}}
+@if (session('message'))
+    <div>
+        <h1>{{ session('message') }}</h1>
+    </div>
+@endif
+
 <div style="background: #9ca3af; margin-bottom: 2vw">
     {{-- Vacancy banner of banner van het bedrijf????!?!? --}}
     <img src="{{$vacancy->image}}" alt="Job image of {{$vacancy->name}}">
@@ -21,5 +28,10 @@
         @endforeach
     </div>
 
-    <a href="{{route('open_vacancies.show', $vacancy->id)}}">Apply</a>
+    <form action="{{ route('open_vacancies.vacancyApplicationHandler', $vacancy->id) }}" method="POST">
+        @csrf
+        <button type="submit">
+            {{ $userApplyStatus }}
+        </button>
+    </form>
 </div>
