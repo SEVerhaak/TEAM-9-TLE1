@@ -7,6 +7,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// JUNO CSS TEST PAGE
+Route::get('/junotest', function () {
+    return view('/login/login-step-1');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
