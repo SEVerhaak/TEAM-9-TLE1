@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserVacancy;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VacancyController extends Controller
 {
@@ -36,16 +38,12 @@ class VacancyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
     {
-        $vacancy = Vacancy::findOrFail($id);
-        return view('show', compact('vacancy'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
     {
         //
     }
@@ -53,7 +51,6 @@ class VacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +58,6 @@ class VacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
     {
         //
     }
