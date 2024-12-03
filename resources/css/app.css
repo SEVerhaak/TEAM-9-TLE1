@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: Radikal;
+    /*noinspection CssUnknownTarget*/
+    src: url('../public/fonts/RadikalTrial-Regular.ttc');
+}
