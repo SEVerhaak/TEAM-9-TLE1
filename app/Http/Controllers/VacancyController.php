@@ -38,7 +38,7 @@ class VacancyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vacancy $vacancy)
+    public function show(string $id)
     {
         $vacancy = Vacancy::findOrFail($id);
         return view('show', compact('vacancy'));
