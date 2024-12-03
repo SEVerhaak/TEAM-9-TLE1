@@ -38,12 +38,15 @@ class VacancyController extends Controller
     /**
      * Display the specified resource.
      */
+    public function show(Vacancy $vacancy)
     {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+    public function edit(Vacancy $vacancy)
     {
         //
     }
@@ -51,6 +54,7 @@ class VacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    public function update(Request $request, Vacancy $vacancy)
     {
         //
     }
@@ -58,7 +62,14 @@ class VacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy(Vacancy $vacancy)
     {
         //
+    }
+    public function dashboard() {
+        $userId = Auth::id();
+
+        $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        return view('dashboard', compact('vacancies'));
     }
 }
