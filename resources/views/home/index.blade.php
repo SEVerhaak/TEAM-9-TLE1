@@ -43,11 +43,10 @@
     </div>
 </section>
 
-<!-- bottom nav menu
 <x-template>
 
 </x-template>
--->
+
 </body>
 </html>
 

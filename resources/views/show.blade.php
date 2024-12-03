@@ -1,3 +1,4 @@
+<x-template></x-template>
 <div style="background: #9ca3af; margin-bottom: 2vw">
     {{-- Vacancy banner of banner van het bedrijf????!?!? --}}
     <img src="{{$vacancy->image}}" alt="Job image of {{$vacancy->name}}">
@@ -23,3 +24,5 @@
 
     <a href="{{route('open_vacancies.show', $vacancy->id)}}">Apply</a>
 </div>
+
+

@@ -1,3 +1,4 @@
+<x-template></x-template>
 <h1>Openstaande Vacatures</h1>
 
 {{-- Search filter formulier. WERKT NU NOG NIET OMDAT ER GEEN USER STORY VOOR WAS!--}}
