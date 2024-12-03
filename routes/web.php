@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
-    return view('login.login-step-1');
+    return view('login.login-step-2');
 });
 
 Route::get('/dashboard', function () {
