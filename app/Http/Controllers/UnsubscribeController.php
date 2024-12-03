@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserVacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\error;
 
 class UnsubscribeController extends Controller
 {
@@ -73,10 +74,17 @@ class UnsubscribeController extends Controller
         $userId = Auth::id();
 
         //Eloquent query + delete
-        $userVacancy = UserVacancy::where('user_id', $userId)
-            ->where('vacancy_id', $vacancy)
-            ->delete();
 
+        if(!isset($vacancy)) {
+            error('Vacancy not found');
+
+
+        } else {
+            $userVacancy = UserVacancy::where('user_id', $userId)
+                ->where('vacancy_id', $vacancy)
+                ->delete();
+
+        }
 
         // FOR TEST PLEASE REMOVE $userID and Make it 20 or 25 (see database table)
         // ALSO IN unsubscribe.blade.php change $vacancy to 21 if $userID is 20 and // 25 if $userID is 25
