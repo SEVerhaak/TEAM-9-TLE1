@@ -5,7 +5,7 @@ use App\Http\Controllers\UnsubscribeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::resource('unsubscribes', UnsubscribeController::class);
