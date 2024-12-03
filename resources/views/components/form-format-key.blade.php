@@ -4,8 +4,9 @@
         position: relative;
         width: 80vw;
         height: 5vh;
-        border: black solid;
+        border: darkred solid;
         border-radius: 40px;
+        margin-bottom: 1vh;
     }
 
     .form-input1 input {
