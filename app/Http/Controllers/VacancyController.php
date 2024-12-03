@@ -40,7 +40,8 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
-        //
+        $vacancy = Vacancy::findOrFail($id);
+        return view('show', compact('vacancy'));
     }
 
     /**

@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @foreach($vacancies as $vacancy)
-                        @dump($vacancies)
                         <div>
                            <p> {{$vacancy}}</p>
                             <p> {{$vacancy->vacancy->name}}</p>
