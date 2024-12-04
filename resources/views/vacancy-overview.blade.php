@@ -2,8 +2,9 @@
 
 </x-template>
 <div class="title">
-    <h1>Hoe wilt U zoeken naar Uw </h1>
-    <h1 class="ondertitel">nieuwe droombaan?</h1>
+    <div class="innertitle">
+        <h5>Hoe wilt U zoeken naar Uw nieuwe droombaan?</h5>
+    </div>
 </div>
 
 <div class="alles">
@@ -14,34 +15,39 @@
 </div>
 
 <div class="alles alt">
+    <h1 class="tekstAlles">Vacatures voor jou</h1>
     <div>
         <x-poppetje class="icon"></x-poppetje>
     </div>
-    <h1 class="tekstAlles">Vacatures voor jou</h1>
+
 
 </div>
 
 
-<div>
+<div class="aanmeldingen">
     <a href="" style="flex-grow: 1;">Ga naar mijn aanmeldingen</a>
 </div>
 
 <style>
+
+    h1 {
+        font-size: 2rem;
+    }
+    h5 {
+        text-align: center;
+    }
+
     .title {
         display: flex;
+        font-weight: bolder;
+    }
+
+    .innertitle {
         justify-content: center;
-        font-size: 2rem;
         flex-direction: column;
-        margin-left: 4.1rem;
-        margin-top: 2rem;
-        margin-bottom: 0;
 
     }
 
-    .ondertitel {
-        margin-left: 5rem;
-        margin-top: -2rem;
-    }
 
     .alles {
         background-color: #b4085c;
@@ -54,14 +60,14 @@
         cursor: pointer;
         display: flex;
         justify-content: center;
-        align-items: center;  /* Centers content vertically */
+        align-items: center;
         margin: 0 auto;
-        padding-bottom: 3rem;
-        padding-top: 3rem;
-        padding-right: 2rem;
-        padding-left: 2rem;
-        flex-direction: row;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
         margin-bottom: 1rem;
+        flex-direction: row;
     }
 
     .alt {
@@ -75,8 +81,13 @@
         text-align: left;
     }
 
-
-
-
+    .aanmeldingen{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: large;
+        margin-top: 3rem;
+        color: #b4085c;
+    }
 
 </style>

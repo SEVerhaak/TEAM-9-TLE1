@@ -29,6 +29,10 @@ Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
+Route::get('/koen', function () {
+    return view('vacancy-overview');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 97.753 68.427">
+<svg xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" viewBox="0 0 97.753 68.427">
     <defs>
         <style>
             .cls-1 {
