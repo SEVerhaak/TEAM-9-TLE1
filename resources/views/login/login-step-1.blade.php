@@ -92,6 +92,10 @@
     /*}*/
 </style>
 
+<x-template>
+
+</x-template>
+
 <div class="header-div">
     <h1 class="header-text">Registratie werkzoekende <br>
     Stap 1 van 3</h1>
@@ -129,9 +133,20 @@
         <br>
         niet gedeeld met de werkgevers!
     </x-info-and-buttons>
+    <div class="buttons">
+        <div>
+            <button class="transparent-button">Terug</button>
+        </div>
+        <div>
+
+        </div>
+        <div>
+            <form method="GET" action="{{ route('register.step2') }}">
+                <button type="submit" class="transparent-button-2">Volgende stap</button>
+            </form>
+        </div>
+    </div>
 
 </div>
 
-<x-template>
 
-</x-template>

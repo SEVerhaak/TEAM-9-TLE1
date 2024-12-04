@@ -17,16 +17,26 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function step1(): View
     {
-        return view('auth.register');
+        return view('login.login-step-1');
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Display the view for Step 2 of registration.
      */
+    public function step2(): View
+    {
+        return view('login.login-step-2');
+    }
+
+    /**
+     * Display the view for Step 3 of registration.
+     */
+    public function step3(): View
+    {
+        return view('login.login-step-3');
+    }
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

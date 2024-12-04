@@ -16,9 +16,11 @@
     <!-- main image -->
     <img class="top-image" src="../images/main_image.png">
 
-    <x-main-button-with-logo>
-        <h3 class="button-title">Geïnteresseerd? Meld je aan! </h3>
-    </x-main-button-with-logo>
+    <a href="{{ route('register.step1') }}">
+        <x-main-button-with-logo>
+            <h3 class="button-title">Geïnteresseerd? Meld je aan!</h3>
+        </x-main-button-with-logo>
+    </a>
 
     <div class="how-it-works-container">
         <div class="question-mark">?</div>

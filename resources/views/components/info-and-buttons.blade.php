@@ -117,14 +117,4 @@
 
 </div>
 
-<div class="buttons">
-    <div>
-        <button class="transparent-button">Terug</button>
-    </div>
-    <div>
 
-    </div>
-    <div>
-        <button class="transparent-button-2">Volgende stap</button>
-    </div>
-</div>
