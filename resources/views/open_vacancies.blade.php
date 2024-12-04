@@ -1,3 +1,4 @@
+<x-template></x-template>
 {{--Message die je krijgt als je voor een vacature hebt aangemeld of uitgeschreven--}}
 @if (session('message'))
     <div>
