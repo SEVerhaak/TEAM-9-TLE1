@@ -8,18 +8,20 @@
     <title>Document</title>
 </head>
 <body>
+<div class="wrapper">
 <!-- section 1 -->
 <section class="section-1">
     <!-- title -->
-    <h1>Werken voor wie <br> Wil Werken</h1>
+    <h1 class="title">Werken Voor Wie <br> Wil Werken</h1>
     <!-- main image -->
     <img class="top-image" src="../images/main_image.png">
 
     <x-main-button-with-logo>
-        <h3>Geïnteresseerd? <a href="{{ route('open_vacancies.index') }}"> Meld je aan!</a> </h3>
+        <h3 class="button-title">Geïnteresseerd? <a href="{{ route('open_vacancies.index') }}"> Meld je aan!</a></h3>
     </x-main-button-with-logo>
 
     <div class="how-it-works-container">
+        <div class="question-mark">?</div>
         <h2>Hoe werkt het?</h2>
         <p>
             Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil en kan werken, kan zo aan de slag.
@@ -43,10 +45,11 @@
     </div>
 </section>
 
+<!-- bottom nav menu
 <x-template>
 
 </x-template>
-
+-->
 </body>
 </html>
 

@@ -18,6 +18,7 @@
         color: white;
         border: none;
         border-radius: 15px 0 15px 15px;
+        margin: 8vw 0;
     }
 
 </style>
