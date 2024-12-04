@@ -236,7 +236,7 @@
 
     body {
         font-family: "Radikal Trial", sans-serif;
-
+        margin-top: 3rem;
     }
 
     .alt-colours {
