@@ -1,3 +1,4 @@
+<x-template></x-template>
 {{--Message die je krijgt als je een probleem hebt bij het aanmelden voor een vacature (bijv: niet ingelogd)--}}
 @if (session('message'))
     <div>
