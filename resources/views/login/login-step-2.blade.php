@@ -1,3 +1,6 @@
+<x-template>
+
+</x-template>
 <style>
     h1 {
         font-size: 3rem;
@@ -27,48 +30,46 @@
         align-items: center;
     }
 
+    .wrapper div {
+
+    }
+
     .transparent-button {
         margin-top: 0vh;
     }
     .transparent-button-2 {
         margin-top: 2vh;
     }
-
 </style>
-
-<x-template>
-
-</x-template>
 
 <div class="header-div">
     <h1 class="header-text">Registratie werkzoekende <br>
-    Stap 1 van 3</h1>
+    Stap 2 van 3</h1>
 </div>
 
 <div class="wrapper">
-
-    <form method="POST" action="{{ route('register.step1') }}">
+    <form method="POST" action="{{ route('register.step2') }}">
         @csrf <!-- Include CSRF token for security -->
     <div>
-        <h1>E-mail</h1>
-        <x-form-format>
-            <input type="text" name="email" placeholder="example@email.com" class="form-input">
-        </x-form-format>
+        <h1>Voornaam</h1>
+        <x-form-format-user-pen>
+            <input type="text" name="first_name" placeholder="Jane or John" class="form-input">
+        </x-form-format-user-pen>
 
     </div>
     <div>
-        <h1>Wachtwoord</h1>
-        <x-form-format-key>
-            <input type="password" name="password" placeholder="Voer je wachtwoord in" class="form-input">
-        </x-form-format-key>
+        <h1>Achternaam</h1>
+        <x-form-format-user-pen>
+            <input type="text" name="last_name" placeholder="Doe" class="form-input">
+        </x-form-format-user-pen>
 
     </div>
 
     <div>
-        <h1>Herhaal wachtwoord</h1>
-        <x-form-format-key>
-            <input type="password" placeholder="Herhaal je wachtwoord" class="form-input">
-        </x-form-format-key>
+        <h1>Geboortedatum</h1>
+        <x-form-format-calender>
+            <input type="date" name="birth_date" placeholder="01-01-1990" class="form-input">
+        </x-form-format-calender>
 
     </div>
 
@@ -81,7 +82,7 @@
     </x-info-and-buttons>
     <div class="buttons">
         <div>
-            <form method="GET" action="{{ route('home') }}">
+            <form method="GET" action="{{ route('register.step1') }}">
                 <button class="transparent-button">Terug</button>
             </form>
         </div>
@@ -89,13 +90,10 @@
 
         </div>
         <div>
-
                 <button type="submit" class="transparent-button-2">Volgende stap</button>
-
         </div>
     </div>
     </form>
-
 </div>
 
 
