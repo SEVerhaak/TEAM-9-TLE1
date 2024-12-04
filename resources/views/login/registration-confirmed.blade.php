@@ -50,7 +50,6 @@
         margin: 1rem 0;
 
         width: 100%;
-
     }
     .account-button a {
         font-weight: bold;
