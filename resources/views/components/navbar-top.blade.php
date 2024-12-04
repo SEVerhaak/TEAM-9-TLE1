@@ -14,6 +14,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed; /* Keeps the navbar at the top */
+            top: 0; /* Aligns it to the top of the page */
+            left: 0;
+            right: 0;
+            width: 100%; /* Ensures it spans the full width */
+            z-index: 1000; /* Ensures it stays above other content */
+            background-color: white; /* Optional: Specify background color explicitly */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for a floating effect */
         }
 
         #logo {
