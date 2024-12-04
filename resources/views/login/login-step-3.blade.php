@@ -117,6 +117,13 @@
         font-size: 2.0rem;
         margin-top: -1vh;
     }
+
+    .transparent-button {
+        margin-top: 2vh;
+    }
+    .transparent-button-2 {
+        margin-top: 2vh;
+    }
 </style>
 
 <div class="header-div">
@@ -165,7 +172,21 @@
         <br>
         baan te vinden die bij jou past!
     </x-info-and-buttons>
+    <div class="buttons">
+        <div>
+            <form method="GET" action="{{ route('register.step2') }}">
+                <button class="transparent-button">Terug</button>
+            </form>
+        </div>
+        <div>
 
+        </div>
+        <div>
+            <form method="GET" action="{{ route('register.step3') }}">
+                <button type="submit" class="transparent-button-2">Volgende stap</button>
+            </form>
+        </div>
+    </div>
     <div class="liever-niet">
         <h2>Ik vul deze gegevens liever niet in</h2>
         <p>U kunt deze gegevens altijd later toevoegen</p>

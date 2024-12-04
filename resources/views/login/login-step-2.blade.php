@@ -33,6 +33,13 @@
     .wrapper div {
 
     }
+
+    .transparent-button {
+        margin-top: 2vh;
+    }
+    .transparent-button-2 {
+        margin-top: 2vh;
+    }
 </style>
 
 <div class="header-div">
@@ -43,14 +50,14 @@
 <div class="wrapper">
 
     <div>
-        <h1>E-mail</h1>
+        <h1>Voornaam</h1>
         <x-form-format-user-pen>
             <input type="text" placeholder="Jane or John" class="form-input">
         </x-form-format-user-pen>
 
     </div>
     <div>
-        <h1>Wachtwoord</h1>
+        <h1>Achternaam</h1>
         <x-form-format-user-pen>
             <input type="text" placeholder="Doe" class="form-input">
         </x-form-format-user-pen>
@@ -58,9 +65,9 @@
     </div>
 
     <div>
-        <h1>Herhaal wachtwoord</h1>
+        <h1>Geboortedatum</h1>
         <x-form-format-calender>
-            <input type="text" placeholder="01-01-1990" class="form-input">
+            <input type="date" placeholder="01-01-1990" class="form-input">
         </x-form-format-calender>
 
     </div>
@@ -72,7 +79,21 @@
         <br>
         niet gedeeld met de werkgevers!
     </x-info-and-buttons>
+    <div class="buttons">
+        <div>
+            <form method="GET" action="{{ route('register.step1') }}">
+                <button class="transparent-button">Terug</button>
+            </form>
+        </div>
+        <div>
 
+        </div>
+        <div>
+            <form method="GET" action="{{ route('register.step3') }}">
+                <button type="submit" class="transparent-button-2">Volgende stap</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 
