@@ -10,7 +10,7 @@
 
         border: none;
 
-        font-size: 2.5rem; /* Set the font size */
+        font-size: 1.2rem; /* Set the font size */
         font-weight: bolder;
 
         transition: all 0.3s ease; /* Smooth transition for hover effect */
@@ -20,13 +20,13 @@
         position: relative;
 
         top: 30%;
-        left: 15%;
+        left: 10%;
 
         background-color: transparent; /* Makes the button background transparent */
 
         border: none;
 
-        font-size: 2.5rem; /* Set the font size */
+        font-size: 1.2rem; /* Set the font size */
         font-weight: bolder;
         color: white;
 
@@ -37,7 +37,7 @@
 
     .noti  {
 
-    margin-top: 8vh;
+    margin-top: 6vh;
 
 
 
@@ -60,7 +60,7 @@
     font-size: 1.5rem;
     font-weight: lighter;
     position: relative;
-    top: 8%;
+    top: 4%;
     left: 10%;
     }
 
@@ -98,12 +98,15 @@
 
 
     }
+    h2 {
+        font-size: 1rem;
+    }
 </style>
 
 
 <div class="noti">
     <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 36 36">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
             <path id="Icon_fa-solid-circle-info" data-name="Icon fa-solid-circle-info"
                   d="M18,36A18,18,0,1,0,0,18,18,18,0,0,0,18,36ZM15.188,23.625h1.688v-4.5H15.188a1.688,1.688,0,0,1,0-3.375h3.375a1.683,1.683,0,0,1,1.688,1.688v6.188h.563a1.688,1.688,0,0,1,0,3.375H15.188a1.688,1.688,0,0,1,0-3.375ZM18,9a2.25,2.25,0,1,1-2.25,2.25A2.25,2.25,0,0,1,18,9Z"/>
         </svg>

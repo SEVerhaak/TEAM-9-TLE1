@@ -40,10 +40,10 @@ class RegisteredUserController extends Controller
 
 
         // Validate and store Step 2 data in session
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-        ]);
+//        $request->validate([
+//            'first_name' => 'required|string|max:255',
+//            'last_name' => 'required|string|max:255',
+//        ]);
 
         // Store Step 2 data in session
         $request->session()->put('first_name', $request->first_name);

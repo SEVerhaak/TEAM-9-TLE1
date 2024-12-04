@@ -1,14 +1,16 @@
 <style>
     h1 {
-        font-size: 3rem;
+        /*font-size: 3rem;*/
         margin-bottom: 1vh;
         font-weight: lighter;
+
     }
 
     .header-text {
-        font-size: 3.8rem;
+        font-size: 1.5rem;
         font-weight: bolder;
-        margin-bottom: 5vh;
+        margin-bottom: 2vh;
+
 
     }
 
@@ -16,10 +18,15 @@
 
         color: black;
         text-align: center;
-        padding-top: 0vh;
+        margin-top: 15vh;
     }
     h1 {
         margin-left: 1vh;
+    }
+
+    h2 {
+        font-weight: lighter;
+        margin-bottom: 0.5vh;
     }
     .wrapper {
         display: flex;
@@ -27,12 +34,12 @@
         align-items: center;
     }
 
-    .transparent-button {
-        margin-top: 0vh;
-    }
-    .transparent-button-2 {
-        margin-top: 2vh;
-    }
+    /*.transparent-button {*/
+    /*    margin-top: 0vh;*/
+    /*}*/
+    /*.transparent-button-2 {*/
+    /*    margin-top: 2vh;*/
+    /*}*/
 
 </style>
 
@@ -50,14 +57,14 @@
     <form method="POST" action="{{ route('register.step1') }}">
         @csrf <!-- Include CSRF token for security -->
     <div>
-        <h1>E-mail</h1>
+        <h2>E-mail</h2>
         <x-form-format>
             <input type="text" name="email" placeholder="example@email.com" class="form-input">
         </x-form-format>
 
     </div>
     <div>
-        <h1>Wachtwoord</h1>
+        <h2>Wachtwoord</h2>
         <x-form-format-key>
             <input type="password" name="password" placeholder="Voer je wachtwoord in" class="form-input">
         </x-form-format-key>
@@ -65,7 +72,7 @@
     </div>
 
     <div>
-        <h1>Herhaal wachtwoord</h1>
+        <h2>Herhaal wachtwoord</h2>
         <x-form-format-key>
             <input type="password" placeholder="Herhaal je wachtwoord" class="form-input">
         </x-form-format-key>
@@ -81,9 +88,9 @@
     </x-info-and-buttons>
     <div class="buttons">
         <div>
-            <form method="GET" action="{{ route('home') }}">
-                <button class="transparent-button">Terug</button>
-            </form>
+
+            <a class="transparent-button" href="{{url()->previous()}}">Terug</a>
+
         </div>
         <div>
 
