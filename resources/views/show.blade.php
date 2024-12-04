@@ -30,8 +30,9 @@
 
     <form action="{{ route('open_vacancies.vacancyApplicationHandler', $vacancy->id) }}" method="POST">
         @csrf
-        <button type="submit">
+        <button type="submit" name="redirect">
             {{ $userApplyStatus }}
         </button>
     </form>
+
 </div>

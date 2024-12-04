@@ -10,6 +10,7 @@ use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
 {
+    private $userApplyStatus = "";
     /**
      * Display a listing of the resource.
      */
@@ -44,12 +45,7 @@ class VacancyController extends Controller
         $vacancy = Vacancy::findOrFail($id);
 
         //Check of de gebruiker al is ingeschreven voor desze specifieke vacature)
-        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
-        if (!empty($userAlreadyApplied->all())) {
-            $userApplyStatus = "Withdraw Application";
-        } else {
-            $userApplyStatus = "Apply";
-        }
+        $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
 
         return view('show', compact('vacancy', 'userApplyStatus'));
     }
@@ -86,9 +82,27 @@ class VacancyController extends Controller
         return view('dashboard', compact('vacancies'));
     }
 
+    public function checkUserAlreadyApplied(vacancy $vacancy)
+    {
+        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+        if (!empty($userAlreadyApplied->all())) {
+            return $userApplyStatus = "Withdraw Application";
+        } else {
+            return $userApplyStatus = "Apply";
+        }
+    }
+
 
     public function vacancyApplicationHandler(vacancy $vacancy)
     {
+        $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
+
+        //Check of je op de 1e knop klikt die je krijgt op de details pagina
+        //Als je nog op details pagina bent redirect je naar de confirm pagina
+        if (isset($_POST['redirect'])) {
+            return view('confirm_application', compact('vacancy', 'userApplyStatus'));
+        } else {
+
         //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
         if (Auth::check()) {
             $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
@@ -114,5 +128,6 @@ class VacancyController extends Controller
             return redirect()->route('open_vacancies.show', $vacancy->id)->with('message', 'You must be logged in to reply');
         }
         return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'You have succesfully submitted an application for ' . $vacancy->name.'!');
+    }
     }
 }
