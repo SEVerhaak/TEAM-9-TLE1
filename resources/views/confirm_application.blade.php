@@ -1,6 +1,10 @@
 <x-template></x-template>
-<h1>Confirm your application</h1>
-
+@isset($removeApplication)
+<h1>Aanmelding Intrekken</h1>
+    <h2>Weet je zeker dat u uw aanmelding wilt verwijderen voor:</h2>
+@else
+    <h1>Bevestig Aanmelding</h1>
+@endisset
 
 <div style="background: #9ca3af; margin-bottom: 2vw">
 

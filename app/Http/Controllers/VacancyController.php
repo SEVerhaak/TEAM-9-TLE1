@@ -96,17 +96,22 @@ class VacancyController extends Controller
     public function vacancyApplicationHandler(vacancy $vacancy)
     {
         $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
-
+        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
         //Check of je op de 1e knop klikt die je krijgt op de details pagina
         //Als je nog op details pagina bent redirect je naar de confirm pagina
         if (isset($_POST['redirect'])) {
-            dump('bla');
-            return view('confirm_application', compact('vacancy', 'userApplyStatus'));
+            if (empty($userAlreadyApplied->all())) {
+                return view('confirm_application', compact('vacancy', 'userApplyStatus'));
+            } else {
+                $removeApplication = true;
+                return view('confirm_application', compact('vacancy', 'userApplyStatus', 'removeApplication'));
+            }
+
         } else {
 
         //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
         if (Auth::check()) {
-            $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+//            $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
             if (empty($userAlreadyApplied->all())) {
                 //Maak nieuwe aanmelding als er geen aanmeldingen van deze gebruiker voor deze specifieke vacature is
                 $application = new userVacancy();
