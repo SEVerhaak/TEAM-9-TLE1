@@ -2,8 +2,11 @@
 
 {{--Message die je krijgt als je een probleem hebt bij het aanmelden voor een vacature (bijv: niet ingelogd)--}}
 @if (session('message'))
-    <div>
+    <div class="error-message-container">
+    <div class="error-message">
         <h1>{{ session('message') }}</h1>
+        <a href="{{route('login')}}">Click here to log in></a>
+    </div>
     </div>
 @endif
 
@@ -91,6 +94,25 @@
 </div>
 
 <style>
+    .error-message-container {
+        display: flex;
+        justify-content: center;
+    }
+    .error-message {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        z-index: 100;
+        width: 80vw;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+        text-align: center;
+        background-color: #b20060;
+        color: white;
+        border-radius: 100rem;
+        padding: 1rem;
+    }
     .background-yellow {
         position: absolute;
         left: 0 !important;

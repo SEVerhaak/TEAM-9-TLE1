@@ -100,6 +100,7 @@ class VacancyController extends Controller
         //Check of je op de 1e knop klikt die je krijgt op de details pagina
         //Als je nog op details pagina bent redirect je naar de confirm pagina
         if (isset($_POST['redirect'])) {
+            dump('bla');
             return view('confirm_application', compact('vacancy', 'userApplyStatus'));
         } else {
 
