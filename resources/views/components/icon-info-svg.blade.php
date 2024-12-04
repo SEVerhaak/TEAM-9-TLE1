@@ -2,7 +2,9 @@
     <defs>
         <style>
             .cls-11 {
-                fill: #fff;
+                /*Zet de kleur van de SVG op een andere kleur als deze meegegeven is aan de component.
+                Als het niet is meegegeven wordt het automatisch wit*/
+                fill: {{$customColor ?? "#fff"}};
             }
         </style>
     </defs>

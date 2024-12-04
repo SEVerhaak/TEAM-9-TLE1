@@ -86,9 +86,9 @@ class VacancyController extends Controller
     {
         $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
         if (!empty($userAlreadyApplied->all())) {
-            return $userApplyStatus = "Withdraw Application";
+            return $userApplyStatus = "Aanmelding annuleren";
         } else {
-            return $userApplyStatus = "Apply";
+            return $userApplyStatus = "Aanmelden";
         }
     }
 

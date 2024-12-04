@@ -66,17 +66,17 @@
                 <p>{{$vacancy->salary}} Euro (Per maand)</p>
             </div>
 
-            <button class="more-info">
-                <div class="button-content-container">
+
+            <button class="more-info" onclick="location.href='{{ route('open_vacancies.show', $vacancy->id) }}'">
                     <a href="{{route('open_vacancies.show', $vacancy->id)}}">Meer informatie</a>
                     <x-icon-info-svg>
 
                     </x-icon-info-svg>
-                </div>
             </button>
         </div>
     @endforeach
 </div>
+
 <style>
 
     .text-icon-content-container{
