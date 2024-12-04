@@ -84,7 +84,7 @@ class RegisteredUserController extends Controller
         // Prepare the user's full name
         $name = $request->session()->get('first_name') . ' ' . $request->session()->get('last_name');
 
-        @dd($request->session()->all(), $request->session()->get('password'));
+//        @dd($request->session()->all(), $request->session()->get('password'));
 
 
         // Create the user
