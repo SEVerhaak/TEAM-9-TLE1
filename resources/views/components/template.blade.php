@@ -1,6 +1,6 @@
-<x-top-navbar>
+<x-navbar-top>
 
-</x-top-navbar>
+</x-navbar-top>
 <x-nav-menu-buttom>
 
 </x-nav-menu-buttom>
