@@ -1,12 +1,33 @@
-<nav class="navbar bg-white flex items-center justify-between p-4 shadow-md">
+<nav class='navbar' id="navbarId">
 
     <a href="/" class="flex items-center" style="flex-grow: 1;">
         <img src="{{ asset('images/logo-oh-png.png') }}" alt="Logo" class="h-10" id="logo">
     </a>
 
     <div class="flex items-center" style="flex-shrink: 0;">
-        <x-drop-down-nav-top />
+        <x-hamburger-menu-svg>
+
+        </x-hamburger-menu-svg>
     </div>
+
+    <script>
+        let header = document.getElementById('navbarId');
+
+        // Add smooth transition to the header's background color
+        header.style.transition = "background-color 0.3s ease";
+
+        document.addEventListener('scroll', function() {
+            // Get the scroll position
+            let scrollPos = window.pageYOffset;
+            console.log(scrollPos);
+            if (scrollPos > 10) {
+                header.style.backgroundColor = "#FFFFFF";
+            } else {
+                header.style.backgroundColor = "rgba(255,255,255,0)";
+            }
+        });
+
+    </script>
 
     <style>
 
@@ -20,14 +41,15 @@
             right: 0;
             width: 100%; /* Ensures it spans the full width */
             z-index: 1000; /* Ensures it stays above other content */
-            background-color: white; /* Optional: Specify background color explicitly */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for a floating effect */
+        }
+
+        .items-center{
+            margin-right: 0.75rem;
         }
 
         #logo {
-            height: 150px;
-            padding-left: 2rem;
-            padding-top: 1rem;
+            height: 3rem;
+            margin: 0.75rem;
         }
 
         .menu-icon {
