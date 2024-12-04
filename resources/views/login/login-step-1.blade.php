@@ -28,7 +28,7 @@
     }
 
     .transparent-button {
-        margin-top: 2vh;
+        margin-top: 0vh;
     }
     .transparent-button-2 {
         margin-top: 2vh;
@@ -47,17 +47,19 @@
 
 <div class="wrapper">
 
+    <form method="POST" action="{{ route('register.step1') }}">
+        @csrf <!-- Include CSRF token for security -->
     <div>
         <h1>E-mail</h1>
         <x-form-format>
-            <input type="text" placeholder="example@email.com" class="form-input">
+            <input type="text" name="email" placeholder="example@email.com" class="form-input">
         </x-form-format>
 
     </div>
     <div>
         <h1>Wachtwoord</h1>
         <x-form-format-key>
-            <input type="text" placeholder="****************" class="form-input">
+            <input type="password" name="password" placeholder="Voer je wachtwoord in" class="form-input">
         </x-form-format-key>
 
     </div>
@@ -65,7 +67,7 @@
     <div>
         <h1>Herhaal wachtwoord</h1>
         <x-form-format-key>
-            <input type="text" placeholder="****************" class="form-input">
+            <input type="password" placeholder="Herhaal je wachtwoord" class="form-input">
         </x-form-format-key>
 
     </div>
@@ -87,11 +89,12 @@
 
         </div>
         <div>
-            <form method="GET" action="{{ route('register.step2') }}">
+
                 <button type="submit" class="transparent-button-2">Volgende stap</button>
-            </form>
+
         </div>
     </div>
+    </form>
 
 </div>
 

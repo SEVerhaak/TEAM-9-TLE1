@@ -119,10 +119,10 @@
     }
 
     .transparent-button {
-        margin-top: 2vh;
+        margin-top: 0vh;
     }
     .transparent-button-2 {
-        margin-top: 2vh;
+        margin-top: 0vh;
     }
 </style>
 
@@ -132,66 +132,63 @@
 </div>
 
 <div class="wrapper">
+    <form method="POST" action="{{ route('register.storeStep3') }}">
+        @csrf <!-- Include CSRF token for security -->
 
-    <div class="checkbox-container">
-        <label>
-            <input type="checkbox" name="diploma">
-            Middelbare school diploma
-        </label>
-        <label>
-            <input type="checkbox" name="car-license">
-            Rijbewijs auto
-        </label>
-        <label>
-            <input type="checkbox" name="truck-license">
-            Rijbewijs vrachtwagen
-        </label>
-        <label>
-            <input type="checkbox" name="forklift-license">
-            Rijbewijs vorkheftruck
-        </label>
-    </div>
-
-
-    <div class="amount-hours">
-        <div>
-            <h2>Hoeveel uur per week wilt u werken?</h2>
+        <!-- Checkbox Inputs -->
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" name="diploma" {{ session('diploma') ? 'checked' : '' }}>
+                Middelbare school diploma
+            </label>
+            <label>
+                <input type="checkbox" name="car_license" {{ session('car_license') ? 'checked' : '' }}>
+                Rijbewijs auto
+            </label>
+            <label>
+                <input type="checkbox" name="truck_license" {{ session('truck_license') ? 'checked' : '' }}>
+                Rijbewijs vrachtwagen
+            </label>
+            <label>
+                <input type="checkbox" name="forklift_license" {{ session('forklift_license') ? 'checked' : '' }}>
+                Rijbewijs vorkheftruck
+            </label>
         </div>
 
-        <div>
-            <input type="number" name="hours" id="hours" min="0" max="40" step="1" value="32">
+        <!-- Hours Input -->
+        <div class="amount-hours">
+            <div>
+                <h2>Hoeveel uur per week wilt u werken?</h2>
+            </div>
+            <div>
+                <input type="number" name="hours" id="hours" min="0" max="40" step="1" value="{{ session('hours', 32) }}">
+            </div>
         </div>
 
+        <!-- Info and Buttons -->
+        <x-info-and-buttons>
+            Vul deze gegevens in om een <br>
+            baan te vinden die bij jou past!
+        </x-info-and-buttons>
 
-    </div>
+        <div class="buttons">
+            <div>
+                <form method="GET" action="{{ route('register.step2') }}">
+                    <button class="transparent-button">Terug</button>
+                </form>
+            </div>
+            <div></div>
+            <div>
 
-
-
-    <x-info-and-buttons>
-        Vul deze gegevens in om een
-        <br>
-        baan te vinden die bij jou past!
-    </x-info-and-buttons>
-    <div class="buttons">
-        <div>
-            <form method="GET" action="{{ route('register.step2') }}">
-                <button class="transparent-button">Terug</button>
-            </form>
-        </div>
-        <div>
-
-        </div>
-        <div>
-            <form method="GET" action="{{ route('register.step3') }}">
                 <button type="submit" class="transparent-button-2">Volgende stap</button>
-            </form>
+            </div>
         </div>
-    </div>
-    <div class="liever-niet">
-        <h2>Ik vul deze gegevens liever niet in</h2>
-        <p>U kunt deze gegevens altijd later toevoegen</p>
-    </div>
+    </form>
+
+        <div class="liever-niet">
+            <h2>Ik vul deze gegevens liever niet in</h2>
+            <p>U kunt deze gegevens altijd later toevoegen</p>
+        </div>
 
 </div>
-
 

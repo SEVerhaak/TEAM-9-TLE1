@@ -10,13 +10,16 @@ Route::get('/', function () {
 })->name('home');
 
 // login routes and web
+Route::get('register/step1', [RegisteredUserController::class, 'step1'])->name('register.step1');
+Route::post('register/step1', [RegisteredUserController::class, 'storeStep1'])->name('register.storeStep1');
 
-Route::get('/register/step-1', [RegisteredUserController::class, 'step1'])->name('register.step1');
-Route::get('/register/step-2', [RegisteredUserController::class, 'step2'])->name('register.step2');
-Route::get('/register/step-3', [RegisteredUserController::class, 'step3'])->name('register.step3');
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+Route::get('/register/step2', [RegisteredUserController::class, 'step2'])->name('register.step2');
+Route::post('/register/step2', [RegisteredUserController::class, 'storeStep2'])->name('register.storeStep2');
 
+Route::get('/register/step3', [RegisteredUserController::class, 'step3'])->name('register.step3');
+Route::post('/register/storeStep3', [RegisteredUserController::class, 'storeStep3'])->name('register.storeStep3');
 
+Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register.store');
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
     return view('login.login-step-1');
