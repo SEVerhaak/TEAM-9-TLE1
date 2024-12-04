@@ -9,15 +9,11 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 Route::resource('unsubscribes', UnsubscribeController::class);
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,8 +24,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::resource('open_vacancies', VacancyController::class)->names('open_vacancies');
-
+Route::resource('open_vacancies', VacancyController::class)->middleware(['auth', 'verified'])->names('open_vacancies');
 
 require __DIR__.'/auth.php';
