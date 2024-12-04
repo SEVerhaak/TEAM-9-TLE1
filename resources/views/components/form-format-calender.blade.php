@@ -1,23 +1,23 @@
-<!-- resources/views/components/form-format.blade.php -->
 <style>
     .form-input1 {
         position: relative;
         width: 80vw;
-        height: 5vh;
-        border: black solid;
+        height: 6vh;
+        border: none;
         border-radius: 40px;
-        box-shadow: 0px 4px 60px 2px rgba(0, 0, 0, 0.1); /* The '2px' is the spread radius */
+        margin-bottom: 1vh;
 
+        box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1); /* Add box-shadow */
     }
 
     .form-input1 input {
-        width: 100%;
+        width: 80%;
         height: 100%;
-        padding-left: 8vh; /* Add padding to the left to make space for the icon */
-        border: none;
-        border-radius: inherit;
 
-        font-size: 3rem;
+        padding-left: 8vh; /* Add padding to the left to make space for the icon */
+        border: #b4085c solid;
+
+        /*font-size: 1.3rem;*/
         /*padding-right: 10px; !* Optional: Adds some space on the right *!*/
     }
 
@@ -35,7 +35,7 @@
 
 <div class="form-input1">
     <!-- Envelope Icon placed inside the form -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="58.967" height="53.105" viewBox="0 0 28.967 33.105">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28.967" height="23.105" viewBox="0 0 28.967 33.105">
         <defs>
             <style>
                 .cls-1 {

@@ -17,7 +17,7 @@
         border: none;
         border-radius: inherit;
 
-        font-size: 3rem;
+        font-size: 1.3rem;
         /*padding-right: 10px; !* Optional: Adds some space on the right *!*/
     }
 
@@ -35,7 +35,7 @@
 
 <div class="form-input1">
     <!-- Envelope Icon placed inside the form -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="58.967" height="53.177" viewBox="0 0 28.967 23.177">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28.967" height="23.177" viewBox="0 0 28.967 23.177">
         <defs>
             <style>
                 .cls-1 {
