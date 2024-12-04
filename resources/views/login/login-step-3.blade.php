@@ -2,6 +2,11 @@
 
 </x-template>
 <style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     h1 {
         font-size: 1.2rem;
         margin-bottom: 1vh;
@@ -187,7 +192,10 @@
 
         <div class="liever-niet">
             <h2>Ik vul deze gegevens liever niet in</h2>
-            <p>U kunt deze gegevens altijd later toevoegen</p>
+            <p>U kunt deze gegevens altijd later toevoegen
+            <br>
+            Voor nu kunt u op "volgende stap" klikken.
+            </p>
         </div>
 
 </div>

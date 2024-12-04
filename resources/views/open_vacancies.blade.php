@@ -4,7 +4,10 @@
 <div class="wrapper">
     {{--Message die je krijgt als je voor een vacature hebt aangemeld of uitgeschreven--}}
     @if (session('message'))
-        <div>
+        <div
+            style="
+                color: #B20060;
+                text-align: center;">
             <h1>{{ session('message') }}</h1>
         </div>
     @endif
