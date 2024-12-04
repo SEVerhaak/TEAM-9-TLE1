@@ -2,6 +2,10 @@
 
 </x-template>
 <style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
     h1 {
         /*font-size: 3rem;*/
         margin-bottom: 1vh;
