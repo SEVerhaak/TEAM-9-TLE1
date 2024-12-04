@@ -1,4 +1,3 @@
-<x-template></x-template>
 {{--Message die je krijgt als je voor een vacature hebt aangemeld of uitgeschreven--}}
 @if (session('message'))
     <div>
@@ -11,16 +10,16 @@
 {{-- Willen we dit async maken? --}}
 {{--   Action = {{ route('open_vacancies.search')}}--}}
 <form method="GET" action="">
-{{--Zet deze op hidden--}}
+    {{--Zet deze op hidden--}}
     <label for="search_vacancy_input">Search</label>
     <input name="search_vacancy_input" placeholder="Search">
     <div>
         <button>
-{{--            <img src="">--}}
+            {{--            <img src="">--}}
             Filters
         </button>
         <button>
-{{--            <img src="">--}}
+            {{--            <img src="">--}}
             Sort by
         </button>
     </div>
