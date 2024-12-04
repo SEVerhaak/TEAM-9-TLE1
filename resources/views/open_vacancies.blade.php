@@ -1,4 +1,10 @@
 <x-template></x-template>
+{{--Message die je krijgt als je voor een vacature hebt aangemeld of uitgeschreven--}}
+@if (session('message'))
+    <div>
+        <h1>{{ session('message') }}</h1>
+    </div>
+@endif
 <h1>Openstaande Vacatures</h1>
 
 {{-- Search filter formulier. WERKT NU NOG NIET OMDAT ER GEEN USER STORY VOOR WAS!--}}
