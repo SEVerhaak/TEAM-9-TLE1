@@ -20,6 +20,10 @@ Route::get('/register/step3', [RegisteredUserController::class, 'step3'])->name(
 Route::post('/register/storeStep3', [RegisteredUserController::class, 'storeStep3'])->name('register.storeStep3');
 
 Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register.store');
+
+Route::get('/register/success', function () {
+    return view('login.registration-confirmed');
+})->name('register.success');
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
     return view('login.login-step-1');
