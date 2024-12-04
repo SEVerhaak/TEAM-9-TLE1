@@ -3,13 +3,13 @@
 </x-template>
 <style>
     h1 {
-        font-size: 3rem;
+        font-size: 1.2rem;
         margin-bottom: 1vh;
         font-weight: lighter;
     }
 
     .header-text {
-        font-size: 3.8rem;
+        font-size: 1.3rem;
         font-weight: bolder;
         margin-bottom: 5vh;
 
@@ -19,7 +19,7 @@
 
         color: black;
         text-align: center;
-        padding-top: 0vh;
+        margin-top: 15vh;
     }
     h1 {
         margin-left: 1vh;
@@ -42,12 +42,12 @@
 
         gap: 1vh;
 
-        font-size: 3.5rem;
+        font-size: 1.3rem;
     }
 
     .checkbox-container input[type="checkbox"] {
-        transform: scale(4.5); /* Adjust scale for size */
-        margin-right: 2vh; /* Space between checkbox and text */
+        transform: scale(1.5); /* Adjust scale for size */
+        margin-right: 1vh; /* Space between checkbox and text */
 
         margin-top: 0vh; /* Moves the checkbox upward */
 
@@ -72,7 +72,7 @@
         width: 15vw;
         height: 6vh;
 
-        font-size: 3rem;
+        font-size: 1.8rem;
         text-align: center;
         font-weight: bolder;
         border: black solid 0.1rem;
@@ -91,7 +91,7 @@
 
     .amount-hours h2 {
         margin-top: 3vh;
-        font-size: 3rem;
+        font-size: 1.1rem;
         font-weight: bold;
     }
 
@@ -106,15 +106,15 @@
     .liever-niet h2 {
         color: #b4085c;
 
-        font-size: 3rem;
+        font-size: 1.3rem;
         font-weight: bold;
-        margin-top: 1vh;
+        margin-top: 4vh;
         text-decoration: underline;
     }
     .liever-niet p {
         color: #b4085c;
 
-        font-size: 2.0rem;
+        font-size: 1.0rem;
         margin-top: -1vh;
     }
 
@@ -173,9 +173,9 @@
 
         <div class="buttons">
             <div>
-                <form method="GET" action="{{ route('register.step2') }}">
-                    <button class="transparent-button">Terug</button>
-                </form>
+
+                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>
+
             </div>
             <div></div>
             <div>
