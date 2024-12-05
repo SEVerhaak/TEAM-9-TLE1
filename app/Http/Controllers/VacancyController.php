@@ -127,13 +127,13 @@ class VacancyController extends Controller
                 foreach ($userAlreadyApplied as $singleApplication) {
                     $singleApplication->delete();
                 }
-                return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'You have succesfully withdrawn your application for ' . $vacancy->name.'.');
+                return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor:  ' . $vacancy->name. ' is succesvol verwijderd');
 
             }
         } else {
             return redirect()->route('open_vacancies.show', $vacancy->id)->with('message', 'You must be logged in to reply');
         }
-        return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'You have succesfully submitted an application for ' . $vacancy->name.'!');
+        return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor: ' . $vacancy->name.' is succesvol ingediend!');
     }
     }
 }

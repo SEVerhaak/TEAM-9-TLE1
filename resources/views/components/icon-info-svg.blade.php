@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24.773" height="24.773" viewBox="0 0 24.773 24.773">
+<svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "24.773"}}" height="{{$height ?? "24.773"}}" viewBox="0 0 24.773 24.773">
     <defs>
         <style>
             .cls-11 {
