@@ -68,12 +68,6 @@ class RegisteredUserController extends Controller
     }
     public function storeStep3(Request $request)
     {
-
-
-        // fuck validatie
-
-
-
         // Store Step 3 data in the session
         $request->session()->put('diploma', $request->has('diploma'));
         $request->session()->put('car_license', $request->has('car_license'));

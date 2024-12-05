@@ -177,11 +177,11 @@
         </x-info-and-buttons>
 
         <div class="buttons">
-            <div>
+{{--            <div>--}}
 
-                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>
+{{--                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>--}}
 
-            </div>
+{{--            </div>--}}
             <div></div>
             <div>
 
