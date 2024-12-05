@@ -114,7 +114,7 @@
 </section>
 </div>
 </body>
-
+<!---
 <footer style="margin-top: -20rem;">
     <div class="footer-wrapper">
         <div>
@@ -143,14 +143,7 @@
     </div>
 </footer>
 
-
+-->
 <x-template>
 
 </x-template>
-
-
-</html>
-
-<style>
-
-</style>
