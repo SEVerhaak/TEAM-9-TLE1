@@ -34,6 +34,12 @@ Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
+// Settings routes
+
+Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
+Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
+
+
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');
 })->name('vacancy-select');
