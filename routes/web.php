@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
@@ -48,5 +49,8 @@ Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['
 Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
+
+Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
+Route::resource('business', BusinessController::class)->names('business');
 
 require __DIR__.'/auth.php';
