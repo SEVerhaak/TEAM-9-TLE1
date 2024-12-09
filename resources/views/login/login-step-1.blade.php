@@ -173,30 +173,6 @@
                 isValid = false;
             }
 
-            // Validate password match
-            if (passwordValue !== passwordRepeatValue) {
-                if (passwordRepeatValue === '') {
-                    document.getElementById('error-repeat-password').innerText = "Vul een wachtwoord in";
-                } else {
-                    document.getElementById('error-repeat-password').innerText = "Wachtwoorden komen niet overeen";
-                }
-                isValid = false;
-            } else if (isValid) {
-                // Store valid data in localStorage
-                localStorage.setItem('email', emailValue);
-                localStorage.setItem('password', passwordValue);
-
-                console.log('Succes');
-            }
-
-            // Return false to prevent form submission if validation fails
-            return isValid;
-        }
-
-        // Attach the init function to the window load event
-        window.onload = init;
-
-    </script>
 </div>
 
 
