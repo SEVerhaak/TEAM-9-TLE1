@@ -39,11 +39,18 @@ class RegisteredUserController extends Controller
     {
 
 
-        // Validate and store Step 2 data in session
-//        $request->validate([
-//            'first_name' => 'required|string|max:255',
-//            'last_name' => 'required|string|max:255',
-//        ]);
+         //Validate and store Step 2 data in session
+        $request->validate(
+            [
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:8',
+            ],
+            [
+                'email.unique' => 'The email address is already in use. Please use a different email or log in.',
+                'email.required' => 'The email field is required.',
+                'password.required' => 'A password is required.',
+            ]
+        );
 
         // Store Step 2 data in session
         $request->session()->put('first_name', $request->first_name);

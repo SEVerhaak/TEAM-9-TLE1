@@ -25,6 +25,8 @@ Route::post('/register/storeStep3', [RegisteredUserController::class, 'storeStep
 
 Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register.store');
 
+
+
 Route::get('/register/success', function () {
     return view('login.registration-confirmed');
 })->name('register.success');
@@ -32,6 +34,12 @@ Route::get('/register/success', function () {
 Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
+
+// Settings routes
+
+Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
+Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
