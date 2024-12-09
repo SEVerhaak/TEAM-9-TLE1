@@ -1,7 +1,88 @@
 <x-template>
 
 </x-template>
+
+<div class="header-div">
+    <h1 class="header-text">Registratie werkzoekende <br>
+        Stap 3 van 3 (optioneel)</h1>
+</div>
+
+<div class="wrapper">
+    <form method="POST" onsubmit="return setResults()" action="{{ route('register.storeStep3') }}">
+        @csrf <!-- Include CSRF token for security -->
+
+        <!-- Checkbox Inputs -->
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" name="diploma" {{ session('diploma') ? 'checked' : '' }}>
+                Middelbare school diploma
+            </label>
+            <label>
+                <input type="checkbox" name="car_license" {{ session('car_license') ? 'checked' : '' }}>
+                Rijbewijs auto
+            </label>
+            <label>
+                <input type="checkbox" name="truck_license" {{ session('truck_license') ? 'checked' : '' }}>
+                Rijbewijs vrachtwagen
+            </label>
+            <label>
+                <input type="checkbox" name="forklift_license" {{ session('forklift_license') ? 'checked' : '' }}>
+                Rijbewijs vorkheftruck
+            </label>
+        </div>
+
+        <!-- Hours Input -->
+        <div class="amount-hours">
+            <div>
+                <h2>Hoeveel uur per week wilt u werken?</h2>
+            </div>
+            <div>
+                <input type="number" name="hours" id="hours" min="0" max="40" step="1"
+                       value="{{ session('hours', 32) }}">
+            </div>
+        </div>
+
+        <!-- Info and Buttons -->
+        <x-info-and-buttons>
+            Vul deze gegevens in om een <br>
+            baan te vinden die bij jou past!
+        </x-info-and-buttons>
+
+        <div class="buttons">
+            <div>
+
+                <a class="transparent-button" href="{{route('register.step2')}}">Terug</a>
+
+            </div>
+            <div></div>
+            <div>
+
+                <button type="submit" class="transparent-button-2">Volgende stap</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="liever-niet">
+        <h2>Ik vul deze gegevens liever niet in</h2>
+        <p>U kunt deze gegevens altijd later toevoegen
+            <br>
+            Voor nu kunt u op "volgende stap" klikken.
+        </p>
+    </div>
+
+</div>
+<script>
+function setResults(){
+    localStorage.clear();
+}
+</script>
+
 <style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     h1 {
         font-size: 1.2rem;
         margin-bottom: 1vh;
@@ -21,9 +102,11 @@
         text-align: center;
         margin-top: 15vh;
     }
+
     h1 {
         margin-left: 1vh;
     }
+
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -52,6 +135,7 @@
         margin-top: 0vh; /* Moves the checkbox upward */
 
     }
+
     .checkbox-container label {
         display: flex;
         align-items: center; /* Vertically align the checkbox with the text */
@@ -111,6 +195,7 @@
         margin-top: 4vh;
         text-decoration: underline;
     }
+
     .liever-niet p {
         color: #b4085c;
 
@@ -121,74 +206,8 @@
     .transparent-button {
         margin-top: 0vh;
     }
+
     .transparent-button-2 {
         margin-top: 0vh;
     }
 </style>
-
-<div class="header-div">
-    <h1 class="header-text">Registratie werkzoekende <br>
-    Stap 3 van 3 (optioneel)</h1>
-</div>
-
-<div class="wrapper">
-    <form method="POST" action="{{ route('register.storeStep3') }}">
-        @csrf <!-- Include CSRF token for security -->
-
-        <!-- Checkbox Inputs -->
-        <div class="checkbox-container">
-            <label>
-                <input type="checkbox" name="diploma" {{ session('diploma') ? 'checked' : '' }}>
-                Middelbare school diploma
-            </label>
-            <label>
-                <input type="checkbox" name="car_license" {{ session('car_license') ? 'checked' : '' }}>
-                Rijbewijs auto
-            </label>
-            <label>
-                <input type="checkbox" name="truck_license" {{ session('truck_license') ? 'checked' : '' }}>
-                Rijbewijs vrachtwagen
-            </label>
-            <label>
-                <input type="checkbox" name="forklift_license" {{ session('forklift_license') ? 'checked' : '' }}>
-                Rijbewijs vorkheftruck
-            </label>
-        </div>
-
-        <!-- Hours Input -->
-        <div class="amount-hours">
-            <div>
-                <h2>Hoeveel uur per week wilt u werken?</h2>
-            </div>
-            <div>
-                <input type="number" name="hours" id="hours" min="0" max="40" step="1" value="{{ session('hours', 32) }}">
-            </div>
-        </div>
-
-        <!-- Info and Buttons -->
-        <x-info-and-buttons>
-            Vul deze gegevens in om een <br>
-            baan te vinden die bij jou past!
-        </x-info-and-buttons>
-
-        <div class="buttons">
-            <div>
-
-                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>
-
-            </div>
-            <div></div>
-            <div>
-
-                <button type="submit" class="transparent-button-2">Volgende stap</button>
-            </div>
-        </div>
-    </form>
-
-        <div class="liever-niet">
-            <h2>Ik vul deze gegevens liever niet in</h2>
-            <p>U kunt deze gegevens altijd later toevoegen</p>
-        </div>
-
-</div>
-

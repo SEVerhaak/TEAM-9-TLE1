@@ -17,7 +17,7 @@
         <div class="question-mark">?</div>
         <h2>Hoe werkt het?</h2>
         <p>
-            Met Open Hiring heeft <p class="important-text"> iedereen </p> een eerlijke kans op een baan. Wie wil en kan werken, kan zo aan de slag.
+            Met Open Hiring heeft iedereen een eerlijke kans op een baan. Wie wil en kan werken, kan zo aan de slag.
         </p>
         <p>
             Zonder sollicitatiegesprek, zonder brief, zonder vragen.
@@ -114,7 +114,7 @@
 </section>
 </div>
 </body>
-
+<!---
 <footer style="margin-top: -20rem;">
     <div class="footer-wrapper">
         <div>
@@ -143,14 +143,7 @@
     </div>
 </footer>
 
-
+-->
 <x-template>
 
 </x-template>
-
-
-</html>
-
-<style>
-
-</style>

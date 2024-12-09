@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24.773" height="24.773" viewBox="0 0 24.773 24.773">
+<svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "24.773"}}" height="{{$height ?? "24.773"}}" viewBox="0 0 24.773 24.773">
     <defs>
         <style>
             .cls-11 {
-                fill: #fff;
+                /*Zet de kleur van de SVG op een andere kleur als deze meegegeven is aan de component.
+                Als het niet is meegegeven wordt het automatisch wit*/
+                fill: {{$customColor ?? "#fff"}};
             }
         </style>
     </defs>
