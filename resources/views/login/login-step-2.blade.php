@@ -2,6 +2,10 @@
 
 </x-template>
 <style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
     h1 {
         /*font-size: 3rem;*/
         margin-bottom: 1vh;
@@ -86,12 +90,12 @@
         niet gedeeld met de werkgevers!
     </x-info-and-buttons>
     <div class="buttons">
-        <div>
+{{--        <div>--}}
 
 {{--                <a type="submit" class="transparent-button">Terug</a>--}}
-                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>
+{{--                <a class="transparent-button" href="{{url()->previous()}}">Terug</a>--}}
 
-        </div>
+{{--        </div>--}}
         <div>
 
         </div>

@@ -1,11 +1,11 @@
 <div class="bottom-menu">
-    <div class="home selected button-container">
+    <div class="home selected button-container" id="home">
         <x-home-menu-icon-svg class="icon">
 
         </x-home-menu-icon-svg>
         <h4 class="menu-text">Thuis</h4>
     </div>
-    <div class="search button-container">
+    <div class="search button-container" id="search">
         <x-search-menu-icon-svg class="icon">
 
         </x-search-menu-icon-svg>
@@ -18,7 +18,23 @@
         <h4 class="menu-text">Account</h4>
     </div>
 </div>
+<script>
+    let button = document.getElementById('home')
+    let button2 = document.getElementById('search')
 
+    button.addEventListener('click', redirect1)
+    button2.addEventListener('click', redirect2)
+
+
+    function redirect1(){
+        window.location.href = "{{route('home')}}"
+    }
+
+    function redirect2(){
+        window.location.href = "{{route('open_vacancies.index')}}"
+    }
+
+</script>
 <style>
     body {
         margin: 0;

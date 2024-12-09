@@ -33,9 +33,9 @@ Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
-Route::get('/koen', function () {
-    return view('vacancy-overview');
-});
+Route::get('/vacature-selectie', function () {
+    return view('vacancy-selection-page');
+})->name('vacancy-select');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('open_vacancies', VacancyController::class)->names('open_vacancies');
+Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
 
