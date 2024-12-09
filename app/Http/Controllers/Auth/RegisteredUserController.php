@@ -14,6 +14,11 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    public bool $stepOneCompleted = false;
+    public bool $stepTwoCompleted = false;
+    public bool $stepThreeCompleted = false;
+
+
     public function step1(Request $request)
     {
         return view('login.login-step-1');
@@ -21,39 +26,69 @@ class RegisteredUserController extends Controller
 
     public function storeStep1(Request $request)
     {
+        // Validate the input data
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+        ], [
+            'email.required' => 'Vul een E-Mail adres in.',
+            'email.email' => 'Voer een geldig E-Mail adres in.',
+            'email.unique' => 'Dit E-Mail adres is al geregistreerd.',
+            'password.required' => 'Vul een wachtwoord in.',
+            'password.min' => 'Wachtwoord moet minimaal uit 8 karakters bestaan.',
+        ]);
+
         // Store Step 1 data in session
-        $request->session()->put('email', $request->email);
-        $request->session()->put('password', $request->password);
+        $request->session()->put('email', $validatedData['email']);
+        $request->session()->put('password', $validatedData['password']);
+
+        $request->session()->put('stepOneCompleted', true);
 
         // Redirect to Step 2
         return redirect()->route('register.step2');
-
-
     }
 
-    public function step2(): View
+
+    public function step2(Request $request): View
     {
-        return view('login.login-step-2');
+        if (!$request->session()->get('stepOneCompleted', false)) {
+            return view('login.login-step-1');
+        } else{
+            return view('login.login-step-2');
+        }
+
     }
+
     public function storeStep2(Request $request)
     {
+        // Validate the data
+        $validatedData = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'birth_date' => ['required', 'date', 'before:' . now()->subYears(16)->toDateString()],
+        ], [
+            'first_name.required' => 'Voornaam is verplicht.',
+            'first_name.string' => 'Voornaam moet een geldige tekst zijn.',
+            'first_name.max' => 'Voornaam mag niet langer zijn dan 255 tekens.',
+            'last_name.required' => 'Achternaam is verplicht.',
+            'last_name.string' => 'Achternaam moet een geldige tekst zijn.',
+            'last_name.max' => 'Achternaam mag niet langer zijn dan 255 tekens.',
+            'birth_date.required' => 'Geboortedatum is verplicht.',
+            'birth_date.date' => 'Geboortedatum moet een geldige datum zijn.',
+            'birth_date.before' => 'Je moet 16 jaar of ouder zijn.',
+        ]);
 
+        // Store the validated data in the session
+        $request->session()->put('first_name', $validatedData['first_name']);
+        $request->session()->put('last_name', $validatedData['last_name']);
+        $request->session()->put('birth_date', $validatedData['birth_date']);
 
-        // Validate and store Step 2 data in session
-//        $request->validate([
-//            'first_name' => 'required|string|max:255',
-//            'last_name' => 'required|string|max:255',
-//        ]);
-
-        // Store Step 2 data in session
-        $request->session()->put('first_name', $request->first_name);
-        $request->session()->put('last_name', $request->last_name);
-        $request->session()->put('birth_date', $request->birth_date);
-
+        $request->session()->put('stepTwoCompleted', true);
 
         // Redirect to Step 3
         return redirect()->route('register.step3');
     }
+
     /**
      * Display the view for Step 2 of registration.
      */
@@ -62,10 +97,19 @@ class RegisteredUserController extends Controller
     /**
      * Display the view for Step 3 of registration.
      */
-    public function step3(): View
+    public function step3(Request $request): View
     {
-        return view('login.login-step-3');
+        if (!$request->session()->get('stepTwoCompleted', false)) {
+            if (!$request->session()->get('stepOneCompleted', false)){
+                return view('login.login-step-1');
+            } else{
+                return view('login.login-step-2');
+            }
+        } else{
+            return view('login.login-step-3');
+        }
     }
+
     public function storeStep3(Request $request)
     {
         // Store Step 3 data in the session
@@ -92,9 +136,7 @@ class RegisteredUserController extends Controller
         // Get the certificates based on the user's selections (e.g., diploma, car_license, etc.)
         $certificates = [];
 
-        if ($request->session()->get('diploma')) {
-            $certificates[] = 4;  // Assuming 4 is the ID for the diploma in the certificates table
-        }
+
         if ($request->session()->get('car_license')) {
             $certificates[] = 1;  // Assuming 1 is the ID for car license
         }
@@ -103,6 +145,9 @@ class RegisteredUserController extends Controller
         }
         if ($request->session()->get('forklift_license')) {
             $certificates[] = 3;  // Assuming 3 is the ID for forklift license
+        }
+        if ($request->session()->get('diploma')) {
+            $certificates[] = 4;  // Assuming 4 is the ID for the diploma in the certificates table
         }
 
         // Attach certificates to the user through the user_certificates pivot table
@@ -118,11 +163,14 @@ class RegisteredUserController extends Controller
         // Log the user in
         Auth::login($user);
 
+        $request->session()->put('stepOneCompleted', false);
+        $request->session()->put('stepTwoCompleted', false);
+        $request->session()->put('stepThreeCompleted', false);
+
         // Redirect to a dashboard or other appropriate route
         return redirect()->route('register.success');
-
-
     }
+
     public function store(Request $request)
     {
 
