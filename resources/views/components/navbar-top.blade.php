@@ -30,7 +30,6 @@
     </script>
 
     <style>
-
         .navbar {
             display: flex;
             justify-content: space-between;

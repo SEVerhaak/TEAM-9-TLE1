@@ -25,8 +25,6 @@ Route::post('/register/storeStep3', [RegisteredUserController::class, 'storeStep
 
 Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register.store');
 
-
-
 Route::get('/register/success', function () {
     return view('login.registration-confirmed');
 })->name('register.success');
@@ -41,6 +39,10 @@ Route::get('settings/account', [\App\Http\Controllers\SettingsController::class,
 Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
 
 
+Route::get('/vacature-selectie', function () {
+    return view('vacancy-selection-page');
+})->name('vacancy-select');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('open_vacancies', VacancyController::class)->names('open_vacancies');
+Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
 

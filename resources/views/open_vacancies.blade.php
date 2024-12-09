@@ -4,7 +4,10 @@
 <div class="wrapper">
     {{--Message die je krijgt als je voor een vacature hebt aangemeld of uitgeschreven--}}
     @if (session('message'))
-        <div>
+        <div
+            style="
+                color: #B20060;
+                text-align: center;">
             <h1>{{ session('message') }}</h1>
         </div>
     @endif
@@ -66,17 +69,17 @@
                 <p>{{$vacancy->salary}} Euro (Per maand)</p>
             </div>
 
-            <button class="more-info">
-                <div class="button-content-container">
+
+            <button class="more-info" onclick="location.href='{{ route('open_vacancies.show', $vacancy->id) }}'">
                     <a href="{{route('open_vacancies.show', $vacancy->id)}}">Meer informatie</a>
                     <x-icon-info-svg>
 
                     </x-icon-info-svg>
-                </div>
             </button>
         </div>
     @endforeach
 </div>
+
 <style>
 
     .text-icon-content-container{
