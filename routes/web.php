@@ -38,6 +38,9 @@ Route::get('/junotest', function () {
 Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
 Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
 
+Route::get('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'preferences'])->name('settings.preferences');
+Route::post('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'storepreferences'])->name('settings.preferences');
+
 
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');

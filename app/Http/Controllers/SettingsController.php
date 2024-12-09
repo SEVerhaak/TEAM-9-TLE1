@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use App\Models\User;
+use App\Models\UserCertificate;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
@@ -151,5 +154,57 @@ class SettingsController extends Controller
             return redirect()->back()->with('incorrect', 'Password is incorrect, try again');
 
         }
+    }
+
+
+
+    public function preferences()
+    {
+        // set variables so get checkmarks
+        $certificates = Certificate::All();
+        $userCertificates = UserCertificate::All()->where('user_id', auth()->id());
+        $user = User::Where('id', auth()->id())->first();
+//        $certificates = Certificate::WhereHas('user_id', $user->id)->get();
+//        $certificates = $user->certificates;
+//        @dd($certificates);
+
+
+
+
+
+        return view('settings.preferences', compact('certificates', 'userCertificates', 'user'));
+    }
+
+    public function storepreferences(Request $request)
+    {
+        // set variabelen
+        $auto = $request->rijbewijs_auto;
+        $vrachtwagen = $request->rijbewijs_vrachtwagen;
+        $vorkheftruck = $request->rijbewijs_vorkheftruck;
+        $diploma = $request->Middelbare_school_diploma;
+
+        //define user id
+
+
+
+
+
+//        @dd($request->rijbewijs_vorkheftruck);
+
+        //check if checkbox is checked
+        //delete if checked of maak aan in database
+        if ($vorkheftruck === null) {
+            $user_id = auth()->id();
+            UserCertificate::Where('user_id',3) ->delete();
+        } elseif ($vorkheftruck === 'on') {
+            $userCertificate = new UserCertificate();
+            $userCertificate->user_id = auth()->id();
+            $userCertificate->certificate_id = 3;
+            $userCertificate->save();
+        }
+
+
+
+        return redirect()->route('settings.preferences');
     }
 }
