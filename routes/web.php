@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +35,12 @@ Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
+// Settings routes
+
+Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
+Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
+
+
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');
 })->name('vacancy-select');
@@ -52,5 +59,7 @@ Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacan
 
 Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
 Route::resource('business', BusinessController::class)->names('business');
+
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
 require __DIR__.'/auth.php';
