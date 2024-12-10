@@ -1,4 +1,6 @@
-<!doctype html>
+@props(['selected' => $selected])
+
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +14,6 @@
 <x-navbar-top>
 
 </x-navbar-top>
-<x-nav-menu-buttom>
+<x-nav-menu-buttom :selected="$selected">
 
 </x-nav-menu-buttom>

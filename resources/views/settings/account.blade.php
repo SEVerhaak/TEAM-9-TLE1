@@ -47,7 +47,7 @@
 
 </style>
 
-<x-template>
+<x-template :selected="-1">
 
 </x-template>
 

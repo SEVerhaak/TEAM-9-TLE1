@@ -1,29 +1,48 @@
-<div class="bottom-menu">
-    <div class="home selected button-container" id="home">
-        <x-home-menu-icon-svg class="icon">
+@props(['selected' => $selected])
 
+<div class="bottom-menu">
+    <div class="home button-container" id="home">
+        <x-home-menu-icon-svg
+            :colour="$selected === 0 ? '#B20060' : 'black'"
+            class="icon">
         </x-home-menu-icon-svg>
         <h4 class="menu-text">Thuis</h4>
     </div>
     <div class="search button-container" id="search">
-        <x-search-menu-icon-svg class="icon">
-
-        </x-search-menu-icon-svg>
-        <h4 class="menu-text">Zoeken</h4>
+        <x-icon-receipt-svg
+            :colour="$selected === 1 ? '#B20060' : 'black'"
+            class="icon">
+        </x-icon-receipt-svg>
+        <h4 class="menu-text">Vacatures</h4>
     </div>
-    <div class="account button-container">
-        <x-account-menu-icon-svg class="icon">
-
-        </x-account-menu-icon-svg>
-        <h4 class="menu-text">Account</h4>
+    <div class="account button-container" id="settings">
+        <x-icon-gear-svg
+            :colour="$selected === 2 ? '#B20060' : 'black'"
+            class="icon">
+        </x-icon-gear-svg>
+        <h4 class="menu-text-smaller">Instellingen</h4>
     </div>
 </div>
 <script>
-    let button = document.getElementById('home')
-    let button2 = document.getElementById('search')
+    let button = document.getElementById('home');
+    let button2 = document.getElementById('search');
+    let button3 = document.getElementById('settings');
 
-    button.addEventListener('click', redirect1)
-    button2.addEventListener('click', redirect2)
+    let selected =  {{$selected}};
+
+    if (selected !== '' && selected !== null && selected !== '-1'){
+        try{
+            let selectedButton = document.getElementsByClassName('button-container')[parseInt(selected)];
+            selectedButton.classList.add('selected')
+        }catch (e){
+            console.error('invalid selected index: ' + e);
+        }
+    }
+
+
+    button.addEventListener('click', redirect1);
+    button2.addEventListener('click', redirect2);
+    button3.addEventListener('click', redirect3);
 
 
     function redirect1(){
@@ -31,6 +50,10 @@
     }
 
     function redirect2(){
+        window.location.href = "{{route('open_vacancies.index')}}"
+    }
+
+    function redirect3(){
         window.location.href = "{{route('open_vacancies.index')}}"
     }
 
@@ -72,10 +95,7 @@
         background-color: rgba(214, 154, 186, 0.33);
         border-radius: 15px;
         color: #B20060;
-    }
-
-    .icon {
-
+        stroke: #b4085c !important;
     }
 
     .menu-text {
@@ -83,4 +103,11 @@
         margin: 0;
         font-weight: normal;
     }
+
+    .menu-text-smaller{
+        font-size: large;
+        margin: 0;
+        font-weight: normal;
+    }
+
 </style>

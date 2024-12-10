@@ -50,7 +50,7 @@
 
 </style>
 
-<x-template>
+<x-template selected="2">
 
 </x-template>
 
@@ -65,7 +65,7 @@
         route('register.storeStep1')}} */
 
     </style>
-    <form method="POST" onsubmit="return verifyInput()" action="{{route('register.storeStep1')}}" >
+    <form method="POST" onsubmit="return verifyInput()" action="{{route('register.storeStep1')}}">
         @csrf <!-- Include CSRF token for security -->
         <div>
             <h2>E-mail</h2>
@@ -172,7 +172,6 @@
                 }
                 isValid = false;
             }
-
+        }
+    </script>
 </div>
-
-

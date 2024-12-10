@@ -144,6 +144,6 @@
 </footer>
 
 -->
-<x-template>
+<x-template :selected="0">
 
 </x-template>
