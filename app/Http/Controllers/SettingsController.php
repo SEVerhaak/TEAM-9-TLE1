@@ -187,15 +187,50 @@ class SettingsController extends Controller
 
 
 
+        if ($diploma === null) {
+            $user_id = auth()->id();
+            UserCertificate::Where('user_id',$user_id)
+                ->where('certificate_id', 4)
+                ->delete();
+        } elseif ($diploma === 'on') {
+            $userCertificate = new UserCertificate();
+            $userCertificate->user_id = auth()->id();
+            $userCertificate->certificate_id = 4;
+            $userCertificate->save();
+        }
 
+        if ($auto === null) {
+            $user_id = auth()->id();
+            UserCertificate::Where('user_id',$user_id)
+                ->where('certificate_id', 1)
+                ->delete();
+        } elseif ($auto === 'on') {
+            $userCertificate = new UserCertificate();
+            $userCertificate->user_id = auth()->id();
+            $userCertificate->certificate_id = 1;
+            $userCertificate->save();
+        }
 
-//        @dd($request->rijbewijs_vorkheftruck);
+        if ($vrachtwagen === null) {
+            $user_id = auth()->id();
+            UserCertificate::Where('user_id',$user_id)
+                ->where('certificate_id', 2)
+                ->delete();
+        } elseif ($vrachtwagen === 'on') {
+            $userCertificate = new UserCertificate();
+            $userCertificate->user_id = auth()->id();
+            $userCertificate->certificate_id = 2;
+            $userCertificate->save();
+        }
+
 
         //check if checkbox is checked
         //delete if checked of maak aan in database
         if ($vorkheftruck === null) {
             $user_id = auth()->id();
-            UserCertificate::Where('user_id',3) ->delete();
+            UserCertificate::Where('user_id',$user_id)
+                ->where('certificate_id', 3)
+                ->delete();
         } elseif ($vorkheftruck === 'on') {
             $userCertificate = new UserCertificate();
             $userCertificate->user_id = auth()->id();
