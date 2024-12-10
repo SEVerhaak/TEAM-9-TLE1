@@ -41,6 +41,9 @@ Route::post('settings/account', [\App\Http\Controllers\SettingsController::class
 Route::get('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'preferences'])->name('settings.preferences');
 Route::post('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'storepreferences'])->name('settings.preferences');
 
+Route::post('settings/password', [\App\Http\Controllers\SettingsController::class, 'storepassword'])->name('settings.password');
+
+
 
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');

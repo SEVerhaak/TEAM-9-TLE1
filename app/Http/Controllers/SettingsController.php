@@ -242,4 +242,12 @@ class SettingsController extends Controller
 
         return redirect()->route('settings.preferences');
     }
+
+
+
+    public function storepassword () {
+
+    }
+
+
 }
