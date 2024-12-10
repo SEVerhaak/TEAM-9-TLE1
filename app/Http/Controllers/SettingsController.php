@@ -15,6 +15,12 @@ class SettingsController extends Controller
         return view('settings/settings');
     }
 
+    public function preferences()
+    {
+        return view('settings/preferences');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

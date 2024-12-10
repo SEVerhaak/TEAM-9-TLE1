@@ -35,6 +35,8 @@ Route::get('/junotest', function () {
 });
 
 // Settings routes
+Route::get('/settings/settings', [SettingsController::class, 'index'])->name('settings.index');
+Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->name('preferences');
 
 Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
 Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
@@ -57,5 +59,7 @@ Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacan
     ->name('open_vacancies.vacancyApplicationHandler');
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+
 
 require __DIR__.'/auth.php';
