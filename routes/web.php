@@ -66,6 +66,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/registrations_data', [VacancyController::class, 'registrationData'])->middleware(['auth', 'verified'])->name('registrations_data');
+Route::get('/accepted_registrations',[VacancyController::class, 'acceptedRegistrations'] )->middleware(['auth', 'verified'])->name('accepted_registrations');
+Route::get('/pending_registrations',[VacancyController::class, 'pendingRegistrations'] )->middleware(['auth', 'verified'])->name('pending_registrations');
+Route::get('/denied_registrations',[VacancyController::class, 'deniedRegistrations'] )->middleware(['auth', 'verified'])->name('denied_registrations');
+Route::get('/applied_vacancy/{vacancy}', [VacancyController::class, 'showApplication'])->middleware(['auth', 'verified'])->name('application.show');
+
 
 Route::get('open_vacancies', [VacancyController::class, 'index'])->name('open_vacancies.index');
 Route::get('open_vacancies/{vacancy}', [VacancyController::class, 'show'])->name('open_vacancies.show');
