@@ -7,7 +7,7 @@
     <!-- main image -->
     <img class="top-image" src="../images/main_image.png">
 
-    <a href="{{ route('register.step1') }}">
+    <a href="{{ route('register.choice') }}">
         <x-main-button-with-logo>
             <h3 class="button-title">Geïnteresseerd? Meld je aan!</h3>
         </x-main-button-with-logo>
@@ -144,6 +144,6 @@
 </footer>
 
 -->
-<x-template>
+<x-template :selected="0">
 
 </x-template>

@@ -1,4 +1,4 @@
-<x-template :selected="1">
+<x-template>
 
 </x-template>
 <div class="title">
@@ -7,36 +7,26 @@
     </div>
 </div>
 
-<div class="alles" id="clickable">
+<div class="alles">
     <h1 class="tekstAlles">Alle Vacatures</h1>
     <div>
-        <x-icon-3-people-svg class="icon"></x-icon-3-people-svg>
+        <x-3poppetjes class="icon"></x-3poppetjes>
     </div>
 </div>
 
 <div class="alles alt">
     <h1 class="tekstAlles">Vacatures voor jou</h1>
     <div>
-        <x-icon-people-check-svg class="icon"></x-icon-people-check-svg>
+        <x-poppetje class="icon"></x-poppetje>
     </div>
+
+
 </div>
+
 
 <div class="aanmeldingen">
     <a href="" style="flex-grow: 1;">Ga naar mijn aanmeldingen</a>
 </div>
-
-
-<script>
-
-    let allVacanciesButton = document.getElementById('clickable')
-    allVacanciesButton.addEventListener('click', redirect)
-
-    function redirect(){
-        console.log('test')
-        window.location.href = "{{route('open_vacancies.index')}}"
-    }
-
-</script>
 
 <style>
 
@@ -97,11 +87,7 @@
         align-items: center;
         font-size: large;
         margin-top: 3rem;
-    }
-
-    .aanmeldingen a{
         color: #b4085c;
-        font-size: x-large;
     }
 
 </style>
