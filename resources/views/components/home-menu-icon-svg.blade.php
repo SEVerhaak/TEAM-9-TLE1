@@ -1,9 +1,12 @@
+@props(['colour' => $colour])
+
 <svg xmlns="http://www.w3.org/2000/svg" width="60%" height="60%" viewBox="0 0 40.521 41.022">
     <defs>
         <style>
             .home-1 {
                 fill: none;
-                stroke: #B20060 !important;
+                stroke: {{$colour}} !important;
+                /* stroke: #B20060 !important; */
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 stroke-width: 3px;

@@ -122,7 +122,9 @@
     }
 </style>
 
-<x-template></x-template>
+<x-template :selected="2">
+
+</x-template>
 
 <div class="header-div">
     <h1 class="header-text">Account<br></h1>
