@@ -1,21 +1,21 @@
-<x-template>
+<x-template :selected="2">
 
 </x-template>
 <style>
 
     .transparent-button-1 {
         margin-top: 1rem;
-        padding: 0.2rem 1rem;
+        padding: 0.3rem 1rem;
         border: none;
         border-radius: 0 1rem 1rem 1rem;
         background-color: #ffe100;
         font-weight: bold;
         cursor: pointer;
-        font-size: 1.3rem;
+        font-size: 1.45rem;
     }
     .transparent-button-2 {
         margin-top: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.3rem 3rem;
         border: none;
         border-radius: 0 1rem 1rem 1rem;
         font-weight: bold;
@@ -25,19 +25,16 @@
         font-size: 1.45rem;
     }
 
-    .transparent-button-2:hover {
-        background-color: #bbb;
-
-    }
-    .transparent-button-1:hover {
-        background-color: #bbb;
-
-    }
 
     .buttonContainer{
+
         display: flex;
+        justify-content: center;
+        align-items: flex-end;
         gap: 5rem;
         margin-top: 12rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
 
     }
     a {
@@ -52,7 +49,7 @@
     }
 
     .header-text {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: bolder;
         margin-bottom: 5vh;
 
@@ -175,8 +172,7 @@
 </style>
 
 <div class="header-div">
-    <h1 class="header-text">Registratie werkzoekende <br>
-        Stap 3 van 3 (optioneel)</h1>
+    <h1 class="header-text">Voorkeuren</h1>
 </div>
 
 <div class="wrapper">
@@ -211,28 +207,11 @@
             </div>
         </div>
 
-        <!-- Info and Buttons -->
-        <x-info-and-buttons>
-            Vul deze gegevens in om een <br>
-            baan te vinden die bij jou past!
-        </x-info-and-buttons>
-
-        <div class="buttons">
-
-
-                <button type="submit" class="transparent-button-2">Volgende stap</button>
-
-        </div>
     </form>
-
-    <div class="liever-niet">
-        <h2>Ik vul deze gegevens liever niet in</h2>
-        <p>U kunt deze gegevens altijd later toevoegen
-            <br>
-            Voor nu kunt u op "volgende stap" klikken.
-        </p>
+    <div class="buttonContainer">
+        <button type="submit" class="transparent-button-1">terug</button>
+        <button type="submit" class="transparent-button-2">opslaan</button>
     </div>
-
 
 
 </div>
