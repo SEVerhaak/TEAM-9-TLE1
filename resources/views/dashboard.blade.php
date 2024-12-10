@@ -23,7 +23,7 @@
 </section>
 <section class="applied">
     <h2>applied</h2>
-    <a href="">show more</a>
+    <a href="{{route('pending_registrations')}}">show more</a>
     @foreach($vacancies as $vacancy)
         @if($vacancy->application_stage == 0)
             <h3> {{$vacancy->vacancy->name}}</h3>
@@ -44,7 +44,7 @@
 
 <section class="denied">
     <h2>denied</h2>
-    <a href="">show more</a>
+    <a href="{{route('denied_registrations')}}">show more</a>
     @foreach($vacancies as $vacancy)
         @if($vacancy->application_stage == 2)
             <div>

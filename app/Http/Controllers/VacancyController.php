@@ -107,20 +107,20 @@ class VacancyController extends Controller
     public function pendingRegistrations(){
         $userId = Auth::id();
 
-        $pendingVacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
-        return view('accepted_registrations', compact('acceptedVacancies'));
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
     }
     public function deniedRegistrations(){
         $userId = Auth::id();
 
-        $deniedVacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
-        return view('accepted_registrations', compact('acceptedVacancies'));
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
     }
     public function acceptedRegistrations(){
         $userId = Auth::id();
 
-        $acceptedVacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
-        return view('accepted_registrations', compact('acceptedVacancies'));
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
     }
 
     public function showApplication($id){
