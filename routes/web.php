@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -61,5 +62,7 @@ Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['
 Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
+
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
 require __DIR__.'/auth.php';
