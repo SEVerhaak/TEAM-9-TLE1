@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -42,6 +43,13 @@ Route::get('/junotest', function () {
 Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
 Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
 
+Route::get('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'preferences'])->name('settings.preferences');
+Route::post('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'storepreferences'])->name('settings.preferences');
+
+Route::get('settings/password', [\App\Http\Controllers\SettingsController::class, 'password'])->name('settings.password');
+Route::post('settings/password', [\App\Http\Controllers\SettingsController::class, 'storepassword'])->name('settings.password');
+
+
 
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');
@@ -58,5 +66,7 @@ Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['
 Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
+
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
 require __DIR__.'/auth.php';
