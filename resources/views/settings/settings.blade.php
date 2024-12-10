@@ -1,12 +1,10 @@
-<x-template>
+<x-template :selected="2">
 
 </x-template>
 
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instellingen</title>
     <style>
         .container {
@@ -17,6 +15,8 @@
             min-height: 40vh;
             font-family: Arial, sans-serif;
             margin-top: 2rem;
+            max-width: 90%;
+            margin: auto;
         }
 
         .container h1 {
@@ -70,7 +70,6 @@
 
         }
 
-
         .container .account {
             background-color: #b6004c;
         }
@@ -104,11 +103,17 @@
                 width: 95%;
             }
         }
+
+        .container span{
+            font-size: larger;
+        }
+
     </style>
 </head>
 <body>
+<h1 style="text-align: center">Instellingen</h1>
+
 <div class="container">
-    <h1>Instellingen</h1>
     <div class="button-container">
         <div class="button account">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 82.008 66.446">
