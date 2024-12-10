@@ -1,7 +1,42 @@
-<x-template>
+<x-template :selected="2">
 
 </x-template>
 <style>
+
+    .transparent-button-1 {
+        margin-top: 1rem;
+        padding: 0.3rem 1rem;
+        border: none;
+        border-radius: 0 1rem 1rem 1rem;
+        background-color: #ffe100;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.45rem;
+    }
+    .transparent-button-2 {
+        margin-top: 1rem;
+        padding: 0.3rem 3rem;
+        border: none;
+        border-radius: 0 1rem 1rem 1rem;
+        font-weight: bold;
+        background-color: #b4085c;
+        color: white;
+        cursor: pointer;
+        font-size: 1.45rem;
+    }
+
+
+    .buttonContainer{
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 5rem;
+        margin-top: 12rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
+
+    }
     a {
         text-decoration: none;
         color: inherit;
@@ -14,7 +49,7 @@
     }
 
     .header-text {
-        font-size: 1.3rem;
+        font-size: 2rem;
         font-weight: bolder;
         margin-bottom: 5vh;
 
@@ -26,9 +61,11 @@
         text-align: center;
         margin-top: 15vh;
     }
+
     h1 {
         margin-left: 1vh;
     }
+
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -44,7 +81,7 @@
         flex-direction: column;
         align-items: start;
         margin-top: 0vh;
-
+        margin-bottom: 4rem;
         gap: 1vh;
 
         font-size: 1.3rem;
@@ -57,6 +94,7 @@
         margin-top: 0vh; /* Moves the checkbox upward */
 
     }
+
     .checkbox-container label {
         display: flex;
         align-items: center; /* Vertically align the checkbox with the text */
@@ -116,6 +154,7 @@
         margin-top: 4vh;
         text-decoration: underline;
     }
+
     .liever-niet p {
         color: #b4085c;
 
@@ -126,18 +165,17 @@
     .transparent-button {
         margin-top: 0vh;
     }
+
     .transparent-button-2 {
         margin-top: 0vh;
     }
 </style>
 
 <div class="header-div">
-    <h1 class="header-text">Registratie werkzoekende <br>
-        Stap 3 van 3 (optioneel)</h1>
+    <h1 class="header-text">Voorkeuren</h1>
 </div>
 
 <div class="wrapper">
-
     <form method="POST" action="{{ route('settings.preferences') }}">
         @csrf <!-- Include CSRF token for security -->
 
@@ -169,28 +207,11 @@
             </div>
         </div>
 
-        <!-- Info and Buttons -->
-        <x-info-and-buttons>
-            Vul deze gegevens in om een <br>
-            baan te vinden die bij jou past!
-        </x-info-and-buttons>
-
-        <div class="buttons">
-
-
-                <button type="submit" class="transparent-button-2">Volgende stap</button>
-
-        </div>
     </form>
-
-    <div class="liever-niet">
-        <h2>Ik vul deze gegevens liever niet in</h2>
-        <p>U kunt deze gegevens altijd later toevoegen
-            <br>
-            Voor nu kunt u op "volgende stap" klikken.
-        </p>
+    <div class="buttonContainer">
+        <button type="submit" class="transparent-button-1">terug</button>
+        <button type="submit" class="transparent-button-2">opslaan</button>
     </div>
-
 
 
 </div>

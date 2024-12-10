@@ -90,7 +90,8 @@ div.scrollmenu img {
 
 body {
     font-family: "Radikal Trial", sans-serif;
-    margin-top: 3rem;
+    margin-top: 4rem !important;
+    margin-bottom: 10rem !important;
 }
 
 .alt-colours {
@@ -178,5 +179,25 @@ hr {
     background-color: white;
     height: 1px;
     width: 100%;
+}
+
+.button-content-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button-title a {
+    color: white;
+}
+
+.main-button{
+    max-width: 90vw;
+    background-color: #B20060;
+    color: white;
+    border: none;
+    border-radius: 15px 0 15px 15px;
+    margin: 2vw 0;
+    margin-left: 8rem;
 }
 

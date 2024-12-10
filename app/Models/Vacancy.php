@@ -17,7 +17,6 @@ class Vacancy extends Model
         'time_hours',
         'image',
     ];
-
     public function business()
     {
         return $this->belongsTo(Business::class);

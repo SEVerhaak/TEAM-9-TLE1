@@ -10,7 +10,6 @@ use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
 {
-    private $userApplyStatus = "";
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +25,7 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        //
+        dd("create page");
     }
 
     /**
@@ -95,6 +94,10 @@ class VacancyController extends Controller
 
     public function vacancyApplicationHandler(vacancy $vacancy)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je aan te melden voor vacatures');
+        }
+
         $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
         $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
         //Check of je op de 1e knop klikt die je krijgt op de details pagina
