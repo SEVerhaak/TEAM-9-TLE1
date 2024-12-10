@@ -106,6 +106,53 @@ class VacancyController extends Controller
         return view('dashboard', compact('vacancies'));
     }
 
+    public function registrationData()
+    {
+        $userId = Auth::id();
+
+        $vacancyPending = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->count();
+        $vacancyAccepted = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->count();
+        $vacancyDenied = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->count();;
+        return view('registrations_data', compact('vacancyAccepted', 'vacancyPending', 'vacancyDenied'));
+    }
+
+    public function showStatus($id){
+        $userId = Auth::id();
+        $vacancy = UserVacancy::where('user_id', $userId)->where('id', $id);
+        if($vacancy->application_stage == 0){
+            $this->pendingRegistrations();
+        } elseif ($vacancy->application_stage == 1){
+            $this->acceptedRegistrations();
+        } elseif ($vacancy->application_stage == 2){
+            $this->deniedRegistrations();
+        }
+    }
+
+    public function pendingRegistrations(){
+        $userId = Auth::id();
+
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
+    }
+    public function deniedRegistrations(){
+        $userId = Auth::id();
+
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
+    }
+    public function acceptedRegistrations(){
+        $userId = Auth::id();
+
+        $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
+        return view('status', compact('vacancies'));
+    }
+
+    public function showApplication($id){
+        $application = Uservacancy::findOrFail($id);
+//        return view('application', compact('application'));
+        return view('application', compact('application'));
+    }
+
     public function checkUserAlreadyApplied(vacancy $vacancy)
     {
         $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
