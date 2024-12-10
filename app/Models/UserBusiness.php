@@ -8,6 +8,10 @@ class UserBusiness extends Model
 {
     use HasFactory;
 
+    //Define de naam van user_business table omdat het anders het meervoud pakt omdat
+    //het laravel woordenboek deze niet goed oppakt. (maakt er user_businesses) van
+    protected $table = 'user_business';
+
     protected $fillable = [
         'user_id',
         'business_id',

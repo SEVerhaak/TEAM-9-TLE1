@@ -1,12 +1,10 @@
-<x-template>
+<x-template :selected="2">
 
 </x-template>
 
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instellingen</title>
     <style>
         .container {
@@ -17,6 +15,8 @@
             min-height: 40vh;
             font-family: Arial, sans-serif;
             margin-top: 2rem;
+            max-width: 90%;
+            margin: auto;
         }
 
         .container h1 {
@@ -70,7 +70,6 @@
 
         }
 
-
         .container .account {
             background-color: #b6004c;
         }
@@ -104,13 +103,19 @@
                 width: 95%;
             }
         }
+
+        .container span{
+            font-size: larger;
+        }
+
     </style>
 </head>
 <body>
+<h1 style="text-align: center">Instellingen</h1>
+
 <div class="container">
-    <h1>Instellingen</h1>
     <div class="button-container">
-        <div class="button account">
+        <div class="button account" id="account">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 82.008 66.446">
                 <path id="Icon_fa-solid-user-check" class="cls-1" data-name="Icon fa-solid-user-check" d="M12.459,16.611A16.611,16.611,0,1,1,29.07,33.223,16.611,16.611,0,0,1,12.459,16.611ZM0,62.591A23.135,23.135,0,0,1,23.139,39.452H35A23.135,23.135,0,0,1,58.14,62.591a3.855,3.855,0,0,1-3.854,3.854H3.854A3.855,3.855,0,0,1,0,62.591ZM81.111,22.971,64.5,39.582a3.1,3.1,0,0,1-4.4,0l-8.306-8.306a3.111,3.111,0,0,1,4.4-4.4l6.1,6.1L76.7,18.558a3.111,3.111,0,0,1,4.4,4.4Z"/>
             </svg>
@@ -118,7 +123,7 @@
             <span>Account</span>
         </div>
 
-        <div class="button preferences">
+        <div class="button preferences" id="preferences">
             <svg xmlns="http://www.w3.org/2000/svg" width="40.484" height="34.162" viewBox="0 0 40.484 34.162">
                 <defs>
                     <style>
@@ -133,7 +138,7 @@
             <span>Voorkeuren</span>
         </div>
 
-        <div class="button support">
+        <div class="button support" id="support">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
                 <defs>
                     <style>
@@ -148,14 +153,14 @@
             <span>Ondersteuning</span>
         </div>
 
-        <div class="button change-password">
+        <div class="button change-password" id="password">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
                 <path id="Icon_fa-solid-key" data-name="Icon fa-solid-key" d="M23.625,24.75a12.351,12.351,0,1,0-11.791-8.6L.492,27.492A1.686,1.686,0,0,0,0,28.688v5.625A1.683,1.683,0,0,0,1.688,36H7.313A1.683,1.683,0,0,0,9,34.313V31.5h2.813A1.683,1.683,0,0,0,13.5,29.813V27h2.813a1.686,1.686,0,0,0,1.2-.492l2.341-2.341A12.4,12.4,0,0,0,23.625,24.75Zm2.813-18a2.813,2.813,0,1,1-2.812,2.813A2.813,2.813,0,0,1,26.438,6.75Z"/>
             </svg>
             <span>Wachtwoord wijzigen</span>
         </div>
 
-        <div class="button logout">
+        <div class="button logout" id="logout">
             <svg xmlns="http://www.w3.org/2000/svg" width="42.103" height="42.103" viewBox="0 0 42.103 42.103">
                 <defs>
                     <style>
@@ -174,5 +179,53 @@
         </div>
     </div>
 </div>
+<script>
+    let account
+    let preferences
+    let support
+    let password
+    let logout
+
+    window.onload = init;
+
+    function init(){
+        account = document.getElementById('account');
+        preferences = document.getElementById('preferences')
+        support = document.getElementById('support')
+        password = document.getElementById('password')
+        logout = document.getElementById('logout')
+
+        account.addEventListener('click', function(){
+            window.location.href = "{{route('settings.account')}}"
+        })
+        preferences.addEventListener('click', function(){
+            window.location.href = "{{route('settings.preferences')}}"
+        })
+        support.addEventListener('click', function(){
+            window.location.href = "{{route('settings')}}"
+        })
+        password.addEventListener('click', function(){
+            window.location.href = "{{route('settings.password')}}"
+        })
+        logout.addEventListener('click', function () {
+            // Create a form dynamically to send a POST request
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = "{{ route('logout') }}";
+
+            // Add CSRF token for Laravel
+            const csrfToken = document.createElement('input');
+            csrfToken.type = 'hidden';
+            csrfToken.name = '_token';
+            csrfToken.value = "{{ csrf_token() }}";
+            form.appendChild(csrfToken);
+
+            // Append form to the body and submit
+            document.body.appendChild(form);
+            form.submit();
+        });
+    }
+
+</script>
 </body>
 </html>

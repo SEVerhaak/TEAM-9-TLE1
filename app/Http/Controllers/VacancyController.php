@@ -10,7 +10,6 @@ use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
 {
-    private $userApplyStatus = "";
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +25,7 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        //
+        dd("create page");
     }
 
     /**
