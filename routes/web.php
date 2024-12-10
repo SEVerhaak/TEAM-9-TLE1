@@ -31,7 +31,7 @@ Route::get('/register/success', function () {
 })->name('register.success');
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
-    return view('login.login-step-1');
+    return view('user-vacancy-overview.application-details');
 });
 
 // Settings routes
