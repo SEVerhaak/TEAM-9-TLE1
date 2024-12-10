@@ -89,12 +89,6 @@ class SettingsController extends Controller
         $email = $user->email;
 
 
-
-
-
-
-
-
         return view('settings.account', [
             'user' => $user,
             'firstname' => $firstname,
@@ -120,35 +114,30 @@ class SettingsController extends Controller
             ;
 
 
-
-
-        // IF ERROR OCCURS DD($REQUEST->ALL()) TO SEE THE ERROR SKRRRT
+            // IF ERROR OCCURS DD($REQUEST->ALL()) TO SEE THE ERROR SKRRRT
 //        @dd($request->all());
 
-        //Merge First and Last Name
-        //get first and last name
-        $firstname = $request->Firstname;
-        $lastname = $request->Lastname;
+            //Merge First and Last Name
+            //get first and last name
+            $firstname = $request->Firstname;
+            $lastname = $request->Lastname;
 
 //        @dd($firstname);
 
-        //add to eachoterh
-        $name = $firstname . ' ' . $lastname;
+            //add to eachoterh
+            $name = $firstname . ' ' . $lastname;
 
 
+            //get user
 
 
+            //update user
+            $user->name = $name;
+            $user->email = $request->email;
+            $user->save();
 
-        //get user
-
-
-        //update user
-        $user->name = $name;
-        $user->email = $request->email;
-        $user->save();
-
-        //redirect to account page
-        return redirect()->route('settings.account');
+            //redirect to account page
+            return redirect()->route('settings.account');
 
         } else {
 //            @dd($request->all(), 'Password is incorrect');
@@ -156,7 +145,6 @@ class SettingsController extends Controller
 
         }
     }
-
 
 
     public function preferences()
@@ -168,9 +156,6 @@ class SettingsController extends Controller
 //        $certificates = Certificate::WhereHas('user_id', $user->id)->get();
 //        $certificates = $user->certificates;
 //        @dd($certificates);
-
-
-
 
 
         return view('settings.preferences', compact('certificates', 'userCertificates', 'user'));
@@ -187,10 +172,9 @@ class SettingsController extends Controller
         //define user id
 
 
-
         if ($diploma === null) {
             $user_id = auth()->id();
-            UserCertificate::Where('user_id',$user_id)
+            UserCertificate::Where('user_id', $user_id)
                 ->where('certificate_id', 4)
                 ->delete();
         } elseif ($diploma === 'on') {
@@ -202,7 +186,7 @@ class SettingsController extends Controller
 
         if ($auto === null) {
             $user_id = auth()->id();
-            UserCertificate::Where('user_id',$user_id)
+            UserCertificate::Where('user_id', $user_id)
                 ->where('certificate_id', 1)
                 ->delete();
         } elseif ($auto === 'on') {
@@ -214,7 +198,7 @@ class SettingsController extends Controller
 
         if ($vrachtwagen === null) {
             $user_id = auth()->id();
-            UserCertificate::Where('user_id',$user_id)
+            UserCertificate::Where('user_id', $user_id)
                 ->where('certificate_id', 2)
                 ->delete();
         } elseif ($vrachtwagen === 'on') {
@@ -229,7 +213,7 @@ class SettingsController extends Controller
         //delete if checked of maak aan in database
         if ($vorkheftruck === null) {
             $user_id = auth()->id();
-            UserCertificate::Where('user_id',$user_id)
+            UserCertificate::Where('user_id', $user_id)
                 ->where('certificate_id', 3)
                 ->delete();
         } elseif ($vorkheftruck === 'on') {
@@ -240,16 +224,17 @@ class SettingsController extends Controller
         }
 
 
-
         return redirect()->route('settings.preferences');
     }
 
 
-    public function password ()
+    public function password()
     {
         return view('settings.password');
     }
-    public function storepassword (Request $request) {
+
+    public function storepassword(Request $request)
+    {
         $user = User::Where('id', auth()->id())->first();
         $pkey = $user->password;
 // password van ingelogde user wordt opgehaald
@@ -260,15 +245,17 @@ class SettingsController extends Controller
         $newpkey = $request->new_password;
         $confirmednewpk = $request->confirmed_new_password;
 
-        if ($pkey === $insertedpkey && $newpkey === $confirmednewpk) {
+        if ( Hash::check($insertedpkey, $pkey) && $newpkey === $confirmednewpk) {
             // save $newpkey to database
             $user->password = Hash::make($newpkey);
-            @dd($user->password);
-            $user->save();
-            @dd($user->password);
 
+            $user->save();
+
+            return redirect()->back()->with('success', 'Wachtwoord verandert!');
+        } else {
+            return redirect()->back()->with('error', 'Wachtwoord wijzigen mislukt, probeer het opnieuw!');
+        }
 
     }
-
-
 }
+

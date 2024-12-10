@@ -1,6 +1,19 @@
 
 <form method="POST" action="{{ route('settings.password') }}">
     @csrf <!-- Include CSRF token for security -->
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
 <h2>Oud Wachtwoord</h2>
 <x-form-format-key>
     <input type="password" name="old password" placeholder="Voer je oude wachtwoord in" class="form-input">
