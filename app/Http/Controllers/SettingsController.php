@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserCertificate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
@@ -113,7 +114,7 @@ class SettingsController extends Controller
 
         //CHECK IF PASSWORD IS CORRECT
         if ($request->password === null) {
-            @dd($request->all(), 'Password is null');
+//            @dd($request->all(), 'Password is null');
             return redirect()->back()->with('error', 'Please enter your password to update your account');
         } elseif ($request->password === $user->password) {
             ;
@@ -244,8 +245,28 @@ class SettingsController extends Controller
     }
 
 
+    public function password ()
+    {
+        return view('settings.password');
+    }
+    public function storepassword (Request $request) {
+        $user = User::Where('id', auth()->id())->first();
+        $pkey = $user->password;
+// password van ingelogde user wordt opgehaald
+//        @DD($pkey);
 
-    public function storepassword () {
+
+        $insertedpkey = $request->old_password;
+        $newpkey = $request->new_password;
+        $confirmednewpk = $request->confirmed_new_password;
+
+        if ($pkey === $insertedpkey && $newpkey === $confirmednewpk) {
+            // save $newpkey to database
+            $user->password = Hash::make($newpkey);
+            @dd($user->password);
+            $user->save();
+            @dd($user->password);
+
 
     }
 
