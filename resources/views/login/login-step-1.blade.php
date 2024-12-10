@@ -76,7 +76,6 @@
             <x-form-format>
                 <input type="text" name="email" placeholder="example@email.com" class="form-input">
             </x-form-format>
-
         </div>
         <div>
             <h2>Wachtwoord</h2>

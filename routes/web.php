@@ -25,6 +25,10 @@ Route::post('/register/storeStep3', [RegisteredUserController::class, 'storeStep
 
 Route::post('/register/store', [RegisteredUserController::class, 'store'])->name('register.store');
 
+Route::get('/register/choice', function () {
+    return view('login.login-choice');
+})->name('register.choice');
+
 Route::get('/register/success', function () {
     return view('login.registration-confirmed');
 })->name('register.success');

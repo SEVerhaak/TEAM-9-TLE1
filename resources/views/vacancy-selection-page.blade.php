@@ -28,8 +28,8 @@
 
 <script>
 
-    let button = document.getElementById('clickable')
-    button.addEventListener('click', redirect)
+    let allVacanciesButton = document.getElementById('clickable')
+    allVacanciesButton.addEventListener('click', redirect)
 
     function redirect(){
         console.log('test')
@@ -97,7 +97,11 @@
         align-items: center;
         font-size: large;
         margin-top: 3rem;
+    }
+
+    .aanmeldingen a{
         color: #b4085c;
+        font-size: x-large;
     }
 
 </style>

@@ -50,7 +50,7 @@
     }
 
     function redirect2(){
-        window.location.href = "{{route('open_vacancies.index')}}"
+        window.location.href = "{{route('vacancy-select')}}"
     }
 
     function redirect3(){
