@@ -11,12 +11,13 @@
         </x-search-menu-icon-svg>
         <h4 class="menu-text">Zoeken</h4>
     </div>
+    <a href="{{route('dashboard')}}">
     <div class="account button-container">
         <x-account-menu-icon-svg class="icon">
 
         </x-account-menu-icon-svg>
         <h4 class="menu-text">Account</h4>
-    </div>
+    </div></a>
 </div>
 <script>
     let button = document.getElementById('home')

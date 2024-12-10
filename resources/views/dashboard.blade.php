@@ -1,27 +1,60 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-template></x-template>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+<x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        {{ __('Dashboard') }}
+    </h2>
+</x-slot>
 
-                    @foreach($vacancies as $vacancy)
-                        <div>
-                           <p> {{$vacancy}}</p>
-                            <p> {{$vacancy->vacancy->name}}</p>
-                            <p> {{$vacancy->vacancy->salary}}</p>
-                            <p> {{$vacancy->vacancy->time_hours}}</p>
-                            <p> {{$vacancy->vacancy->image}}</p>
-                            <button class="btn">cancel</button>
-                        </div>
-                    @endforeach
-                </div>
+<a href="{{route('registrations_data')}}">count</a>
+
+
+<section class="accepted">
+    <h2>accepted</h2>
+    <a href="{{route('accepted_registrations')}}">show more</a>
+    @foreach($vacancies as $vacancy)
+        @if($vacancy->application_stage == 1)
+            <h3> {{$vacancy->vacancy->name}}</h3>
+            <p> {{$vacancy->vacancy->business->hq_location}}</p>
+            <p> {{$vacancy->vacancy->salary}}</p>
+            <p> {{$vacancy->vacancy->time_hours}}</p>
+        @endif
+    @endforeach
+</section>
+<section class="applied">
+    <h2>applied</h2>
+    <a href="">show more</a>
+    @foreach($vacancies as $vacancy)
+        @if($vacancy->application_stage == 0)
+            <h3> {{$vacancy->vacancy->name}}</h3>
+            <p> {{$vacancy->vacancy->business->hq_location}}</p>
+            <p> {{$vacancy->vacancy->salary}}</p>
+            <p> {{$vacancy->vacancy->time_hours}}</p>
+            <form class="confirm-submission"
+                  action="{{ route('open_vacancies.vacancyApplicationHandler', $vacancy->vacancy->id) }}"
+                  method="POST">
+                @csrf
+                <button type="submit">
+                    cancel registration
+                </button>
+            </form>
+        @endif
+    @endforeach
+</section>
+
+<section class="denied">
+    <h2>denied</h2>
+    <a href="">show more</a>
+    @foreach($vacancies as $vacancy)
+        @if($vacancy->application_stage == 2)
+            <div>
+                <h3> {{$vacancy->vacancy->name}}</h3>
+                <p> {{$vacancy->vacancy->business->hq_location}}</p>
+                <p> {{$vacancy->vacancy->salary}}</p>
+                <p> {{$vacancy->vacancy->time_hours}}</p>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+
+        @endif
+    @endforeach
+</section>
+
