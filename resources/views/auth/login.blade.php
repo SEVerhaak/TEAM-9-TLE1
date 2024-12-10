@@ -1,7 +1,16 @@
 <!-- Session Status -->
 <x-auth-session-status :status="session('status')"/>
 <h1 style="text-align: center; margin-top: 5rem">Log-in</h1>
+
+@if (session('error'))
+    <div class="wrapper error-text" role="alert">
+        <strong class="font-bold">Error:</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+@endif
+
 <div class="wrapper-login">
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -82,8 +91,13 @@
         width: 90%;
     }
 
-    .email, .password {
-        margin: 1.5rem 0;
+    .email{
+        margin: 0;
+    }
+
+    .password {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
     }
 
     .email label, .password label, .remember-me{
@@ -97,7 +111,7 @@
         color: white;
         border: none;
         border-radius: 15px 0 15px 15px;
-        margin: 5vw 0;
+        margin: 0vw 0;
         padding: 1rem;
         font-size: x-large;
         font-weight: bold;
@@ -105,7 +119,7 @@
 
 
     .forgot-password {
-        margin-top: 3rem;
+        margin-top: 1rem;
     }
 
     .login-button-container {
@@ -133,6 +147,13 @@
         pointer-events: none;
         top: 4rem;
         left: 1rem;
+    }
+
+    .error-text{
+        color: red;
+        text-align: center;
+        position: absolute;
+        left: 1.5rem;
     }
 
 </style>
