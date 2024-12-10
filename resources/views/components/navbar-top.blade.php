@@ -5,25 +5,30 @@
     </a>
 
     <div class="flex items-center" style="flex-shrink: 0;">
+        <!--
         <x-hamburger-menu-svg>
 
         </x-hamburger-menu-svg>
+        -->
     </div>
 
     <script>
         let header = document.getElementById('navbarId');
 
+        //linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+
         // Add smooth transition to the header's background color
-        header.style.transition = "background-color 0.3s ease";
+        header.style.transition = "background 0.5s ease";
 
         document.addEventListener('scroll', function() {
             // Get the scroll position
             let scrollPos = window.pageYOffset;
             console.log(scrollPos);
             if (scrollPos > 10) {
-                header.style.backgroundColor = "#FFFFFF";
+                //header.style.background = "rgba(255,255,255,1)";
+                header.style.background = 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)';
             } else {
-                header.style.backgroundColor = "rgba(255,255,255,0)";
+                header.style.background = "rgba(255,255,255,0)";
             }
         });
 

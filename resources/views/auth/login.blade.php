@@ -1,47 +1,159 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!-- Session Status -->
+<x-auth-session-status :status="session('status')"/>
+<h1 style="text-align: center; margin-top: 5rem">Log-in</h1>
+
+@if (session('error'))
+    <div class="wrapper error-text" role="alert">
+        <strong class="font-bold">Error:</strong>
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+@endif
+
+<div class="wrapper-login">
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="email flex-col">
+            <div class="mail-icon">
+                <x-icon-mail-svg >
+
+                </x-icon-mail-svg>
+            </div>
+            <x-input-label for="email" :value="__('Email')"/>
+            <x-text-input id="email" type="email" name="email" :value="old('email')" required autofocus
+                          autocomplete="username" placeholder="email@mail.com"/>
+            <x-input-error :messages="$errors->get('email')"/>
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="password flex-col">
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <div class="key-icon">
+                <x-icon-key-svg >
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </x-icon-key-svg>
+            </div>
+
+            <x-input-label for="password" :value="__('Wachtwoord')"/>
+            <x-text-input id="password" type="password" name="password" placeholder="••••••••••" required autocomplete="current-password"/>
+            <x-input-error :messages="$errors->get('password')"/>
         </div>
 
         <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+        <div class="remember-me">
+            <label for="remember_me">
+                <input id="remember_me" type="checkbox" name="remember">
+                <span>{{ __('Onthoudt mij') }}</span>
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+        <div class="forgot-password flex-col">
+            <div class="login-button-container">
+                <x-primary-button class="login-button">
+                    {{ __('Inloggen') }}
+                </x-primary-button>
+            </div>
+            <div class="forgot-password-text">
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}">
+                        {{ __('Wachtwoord vergeten?') }}
+                    </a>
+                @endif
+            </div>
         </div>
     </form>
-</x-guest-layout>
+</div>
+<x-template :selected="-1"></x-template>
+
+<style>
+    html{
+        font-family: "Radikal Trial", sans-serif;
+    }
+
+    .flex-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .wrapper-login {
+        max-width: 90vw;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+    }
+
+    .wrapper-login form {
+        width: 90%;
+    }
+
+    .email{
+        margin: 0;
+    }
+
+    .password {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .email label, .password label, .remember-me{
+        font-size: larger;
+    }
+
+    .login-button {
+        width: 100%;
+        max-width: 50vw;
+        background-color: #B20060;
+        color: white;
+        border: none;
+        border-radius: 15px 0 15px 15px;
+        margin: 0vw 0;
+        padding: 1rem;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+
+    .forgot-password {
+        margin-top: 1rem;
+    }
+
+    .login-button-container {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .forgot-password-text {
+        text-align: center;
+        font-size: larger;
+    }
+
+    #email, #password{
+        border-radius: 1rem;
+        border: 1px solid #b4085c;
+        padding: 0.75rem 1rem;
+        margin-top: 0.5rem;
+        font-size: large;
+        text-indent: 2.5rem;
+    }
+
+    .mail-icon, .key-icon{
+        position: relative;
+        pointer-events: none;
+        top: 4rem;
+        left: 1rem;
+    }
+
+    .error-text{
+        color: red;
+        text-align: center;
+        position: absolute;
+        left: 1.5rem;
+    }
+
+</style>
