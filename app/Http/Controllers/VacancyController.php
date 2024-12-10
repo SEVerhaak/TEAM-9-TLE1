@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\UserVacancy;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -23,9 +24,14 @@ class VacancyController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
-        dd("create page");
+        $business = Business::where('id', $id)->first();
+        return view('business/vacancies/create', compact('business'));
+
+        if (isset($_POST['submit'])) {
+            dump('test');
+        }
     }
 
     /**
@@ -33,7 +39,26 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required|min:10',
+                'hours' => 'required|numeric',
+                'salary' => 'required|numeric',
+            ],
+            [
+                'tags.required' => "Select one or more tag(s)"
+            ]
+        );
+
+        $vacancy = new Vacancy();
+        $vacancy->business_id = $request->business;
+        $vacancy->name = $request->title;
+        $vacancy->description = $request->description;
+        $vacancy->salary = $request->salary;
+        $vacancy->time_hours = $request->hours;
+        $vacancy->image = "https://www.nbbuskillslab.nl/skillslab-training/opleiding-open-hiring/openhiring_5F420x280.jpg";
+        $vacancy->save();
     }
 
     /**
