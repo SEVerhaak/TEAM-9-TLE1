@@ -1,3 +1,4 @@
+@dd($business, $vacancies)
 <?php
 
 use Carbon\Carbon;
@@ -15,7 +16,7 @@ use Carbon\Carbon;
 <body>
 
 <main>
-    <x-business-dashboard-sidebar id="{{$business->id}}"></x-business-dashboard-sidebar>
+    <x-business-dashboard-sidebar></x-business-dashboard-sidebar>
 
     <div class="right-container">
         <div class="vacancies-container">
@@ -78,13 +79,12 @@ use Carbon\Carbon;
                         </div>
                     </div>
                 @endforeach
-                <a href="{{ route('business.vacancies', $business->id) }}" class="all-vacancies-link"> Alle vacatures
+
+                {{--            moet later nog een andere link worden voor de link van alle vacatures van het bedrijf--}}
+                <a href="{{ route('open_vacancies.index') }}" class="all-vacancies-link"> Alle Vacatures
                 </a>
             @else
                 <h3>Uw bedrijf heeft nog geen vacatures</h3>
-                {{--            moet later nog een andere link worden voor de link van alle vacatures van het bedrijf--}}
-                <a href="{{ route('open_vacancies.index') }}" class="all-vacancies-link"> Open een vacature
-                </a>
             @endif
         </div>
         <div class="right-side-info-container">
@@ -98,11 +98,11 @@ use Carbon\Carbon;
                                 <x-icon-building-svg width="22" height="22">
 
                                 </x-icon-building-svg>
-                                <p>{{$business->name}}</p>
+                                <p>{{$vacancy->business->name}}</p>
                             </div>
                             <div class="text-icon-content-container">
                                 <x-icon-map-svg width="22" height="22"></x-icon-map-svg>
-                                <p>{{$business->hq_location}}</p>
+                                <p>{{$vacancy->business->hq_location}}</p>
                             </div>
 
                         </div>

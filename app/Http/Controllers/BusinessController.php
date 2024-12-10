@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use App\Models\UserBusiness;
+use App\Models\UserVacancy;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,10 @@ class BusinessController extends Controller
      */
     public function show(string $id)
     {
-        if (empty($id)) {
-            dd('bla');
+        $business = Business::all()->where('id', $id)->first();
+        if ($business == null) {
+            abort(403);
         } else {
-            $business = Business::all()->where('id', $id)->first();
             $vacancyCount = Vacancy::all()->where('business_id', $id)->count();
             return view('business/business', compact('business', 'vacancyCount'));
         }
@@ -57,7 +58,7 @@ class BusinessController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        dd("bla");
     }
 
     /**
@@ -78,18 +79,18 @@ class BusinessController extends Controller
 
     public function dashboard(string $id)
     {
-        $vacancies = Vacancy::all()->where('business_id', $id);
-        $isAdmin = UserBusiness::all()
-            ->where('business_id', $id)
-            ->where('user_id', Auth::id())
-            ->where('function', 'ceo' || 'admin')
-            ->count();
+        //Deze functie gaat door mijn custom middleware dus is beveiligd
 
-        if (!empty($isAdmin)) {
-            $business = Business::all()->where('id', $id)->first();
-            return view('business/dashboard', compact('business', 'vacancies'));
-        } else {
-            abort(403);
-        }
+        $vacancies = Vacancy::all()->where('business_id', $id)->reverse()->take(2);
+        $business = Business::all()->where('id', $id)->first();
+        return view('business/dashboard', compact('business', 'vacancies'));
+
+    }
+
+    public function vacancies(string $id)
+    {
+        $vacancies = Vacancy::all()->where('business_id', $id);
+        $business = Business::all()->where('id', $id)->first();
+        return view('business/vacancies', compact('business', 'vacancies'));
     }
 }

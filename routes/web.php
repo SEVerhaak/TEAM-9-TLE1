@@ -5,6 +5,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Middleware\BusinessPermissionMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -57,8 +58,20 @@ Route::resource('open_vacancies', VacancyController::class);
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
 
-Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
-Route::resource('business', BusinessController::class)->names('business');
+
+Route::get('business', [BusinessController::class, 'index'])->name('business.index');
+Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
+
+Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
+    Route::get('business/create', [BusinessController::class, 'create'])->name('business.create');
+    Route::post('business', [BusinessController::class, 'store'])->name('business.store');
+    Route::get('business/{business}/edit', [BusinessController::class, 'edit'])->name('business.edit');
+    Route::put('business/{business}', [BusinessController::class, 'update'])->name('business.update');
+    Route::delete('business/{business}', [BusinessController::class, 'destroy'])->name('business.destroy');
+
+    Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
+    Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
+});
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
