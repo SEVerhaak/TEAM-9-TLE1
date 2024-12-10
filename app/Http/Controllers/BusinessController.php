@@ -26,7 +26,7 @@ class BusinessController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(request $request)
     {
         //
     }
@@ -89,7 +89,7 @@ class BusinessController extends Controller
 
     public function vacancies(string $id)
     {
-        $vacancies = Vacancy::all()->where('business_id', $id);
+        $vacancies = Vacancy::where('business_id', $id)->orderBy('created_at')->get();
         $business = Business::all()->where('id', $id)->first();
         return view('business/vacancies/vacancies_list', compact('business', 'vacancies'));
     }

@@ -19,7 +19,7 @@
             <span class="sidebar-icon">
                 <x-icon-info-svg></x-icon-info-svg>
             </span>
-        <a class="sidebar-link">Nieuwe Vacature</a>
+        <a class="sidebar-link" href="{{route('vacancy.create', $id)}}">Nieuwe Vacature</a>
     </div>
     <div>
             <span class="sidebar-icon">

@@ -67,7 +67,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('open_vacancies', VacancyController::class);
+Route::get('open_vacancies', [VacancyController::class, 'index'])->name('open_vacancies.index');
+Route::get('open_vacancies/{vacancy}', [VacancyController::class, 'show'])->name('open_vacancies.show');
+
 Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacancyApplicationHandler'])
     ->name('open_vacancies.vacancyApplicationHandler');
 
@@ -84,6 +86,13 @@ Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
 
     Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
     Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
+    Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('business.vacancy.create');
+
+    Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
+//    Route::post('open_vacancies', [VacancyController::class, 'store'])->name('open_vacancies.store');
+//    Route::get('open_vacancies/{vacancy}/edit', [VacancyController::class, 'edit'])->name('open_vacancies.edit');
+//    Route::put('open_vacancies/{vacancy}', [VacancyController::class, 'update'])->name('open_vacancies.update');
+//    Route::delete('open_vacancies/{vacancy}', [VacancyController::class, 'destroy'])->name('open_vacancies.destroy');
 });
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');

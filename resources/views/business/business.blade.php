@@ -1,4 +1,6 @@
-<x-template></x-template>
+<x-template :selected="1">
+
+</x-template>
 <div class="container-show">
     <div class="business-banner">
         <img class="business-banner" src="{{$business->banner_image}}" alt="Banner image of {{$business->name}}">
