@@ -1,3 +1,4 @@
+<x-template :selected="1"></x-template>
 <section>
     <!-- Breathing in, I calm body and mind. Breathing out, I smile. - Thich Nhat Hanh -->
         <h3> {{$application->vacancy->name}}</h3>

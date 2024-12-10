@@ -1,4 +1,4 @@
-<x-template></x-template>
+<x-template :selected="1"></x-template>
 <div>
     <!-- If you do not have a consistent goal in life, you can not live it in a consistent way. - Marcus Aurelius -->
 {{--

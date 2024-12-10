@@ -1,4 +1,5 @@
-<x-template></x-template>
+
+<x-template :selected="1"></x-template>
 
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -56,5 +57,6 @@
 
         @endif
     @endforeach
+
 </section>
 

@@ -1,4 +1,4 @@
-<x-template></x-template>
+<x-template :selected="1"></x-template>
 <div>
     <!-- The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk -->
 
