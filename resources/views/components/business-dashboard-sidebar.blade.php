@@ -7,6 +7,12 @@
             <span class="sidebar-icon">
                 <x-icon-info-svg></x-icon-info-svg>
             </span>
+        <a class="sidebar-link" href="{{route('business.dashboard', $id)}}">Dashboard</a>
+    </div>
+    <div>
+            <span class="sidebar-icon">
+                <x-icon-info-svg></x-icon-info-svg>
+            </span>
         <a class="sidebar-link" href="{{route('business.vacancies', $id)}}">Mijn vacatures</a>
     </div>
     <div>

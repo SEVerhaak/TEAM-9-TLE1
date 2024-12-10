@@ -91,6 +91,6 @@ class BusinessController extends Controller
     {
         $vacancies = Vacancy::all()->where('business_id', $id);
         $business = Business::all()->where('id', $id)->first();
-        return view('business/vacancies', compact('business', 'vacancies'));
+        return view('business/vacancies/vacancies_list', compact('business', 'vacancies'));
     }
 }

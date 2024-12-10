@@ -19,7 +19,7 @@ use Carbon\Carbon;
 
     <div class="right-container">
         <div class="vacancies-container">
-            <h2>Mijn Openstaande Vacatures</h2>
+            <h2>Recente Vacatures</h2>
             @if($vacancies->count() !== 0)
                 @foreach($vacancies as $vacancy)
                     <div class="result-container">
