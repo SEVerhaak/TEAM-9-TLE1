@@ -103,7 +103,7 @@ class VacancyController extends Controller
         $userId = Auth::id();
 
         $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
-        return view('settings.settings', compact('vacancies'));
+        return view('dashboard', compact('vacancies'));
     }
 
     public function registrationData()
