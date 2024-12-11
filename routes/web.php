@@ -94,9 +94,9 @@ Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
     Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
     Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
     Route::post('business/{business}/vacancy/store', [VacancyController::class, 'store'])->name('vacancy.store');
-//    Route::get('open_vacancies/{vacancy}/edit', [VacancyController::class, 'edit'])->name('open_vacancies.edit');
-//    Route::put('open_vacancies/{vacancy}', [VacancyController::class, 'update'])->name('open_vacancies.update');
-//    Route::delete('open_vacancies/{vacancy}', [VacancyController::class, 'destroy'])->name('open_vacancies.destroy');
+    Route::get('business/{business}/vacancy/{vacancy}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
+    Route::put('business/{business}/vacancy/{vacancy}/store', [VacancyController::class, 'update'])->name('vacancy.update');
+    Route::delete('business/{business}/vacancy/{vacancy}/delete', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
 });
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');

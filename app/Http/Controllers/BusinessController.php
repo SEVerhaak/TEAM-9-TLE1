@@ -89,7 +89,7 @@ class BusinessController extends Controller
 
     public function vacancies(string $id)
     {
-        $vacancies = Vacancy::where('business_id', $id)->orderBy('created_at')->get();
+        $vacancies = Vacancy::where('business_id', $id)->orderBy('created_at', 'desc')->get();
         $business = Business::all()->where('id', $id)->first();
         return view('business/vacancies/vacancies_list', compact('business', 'vacancies'));
     }

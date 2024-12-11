@@ -28,10 +28,6 @@ class VacancyController extends Controller
     {
         $business = Business::where('id', $id)->first();
         return view('business/vacancies/create', compact('business'));
-
-        if (isset($_POST['submit'])) {
-            dump('test');
-        }
     }
 
     /**
@@ -43,11 +39,12 @@ class VacancyController extends Controller
             [
                 'title' => 'required',
                 'description' => 'required|min:10',
-                'hours' => 'required|numeric',
-                'salary' => 'required|numeric',
+                'hours' => 'required|integer',
+                'salary' => 'required|integer',
             ],
             [
-                'tags.required' => "Select one or more tag(s)"
+                'hours.integer' => "Hours must be a number (can not be a decimal number)",
+                'salary.integer' => "Salary must be a number (can not be a decimal number)"
             ]
         );
 
@@ -59,6 +56,8 @@ class VacancyController extends Controller
         $vacancy->time_hours = $request->hours;
         $vacancy->image = "https://www.nbbuskillslab.nl/skillslab-training/opleiding-open-hiring/openhiring_5F420x280.jpg";
         $vacancy->save();
+
+        return redirect()->route('business.vacancies', $request->business);
     }
 
     /**
@@ -77,17 +76,44 @@ class VacancyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vacancy $vacancy)
+    public function edit(string $id, string $vacancy)
     {
-        //
+        $business = Business::where('id', $id)->first();
+        $vacancy = Vacancy::find($vacancy);
+        if ($business && $vacancy) {
+            return view('business/vacancies/edit', compact('business', 'vacancy'));
+        } else {
+            return redirect()->route('business.vacancies', $id);
+        }
     }
 
     /**
      * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vacancy $vacancy)
+     * businesses*/
+    public function update(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required',
+                'description' => 'required|min:10',
+                'hours' => 'required|integer',
+                'salary' => 'required|integer',
+            ],
+            [
+                'hours.integer' => "Hours must be a number (can not be a decimal number)",
+                'salary.integer' => "Salary must be a number (can not be a decimal number)"
+            ]
+        );
+        $vacancy = Vacancy::findOrFail($request->vacancy);
+
+        $vacancy->name = $request->input('title');
+        $vacancy->description = $request->input('description');
+        $vacancy->salary = $request->input('salary');
+        $vacancy->time_hours = $request->input('hours');
+        $vacancy->save();
+
+
+        return redirect()->route('business.vacancies', $request->business);
     }
 
     /**
@@ -116,38 +142,45 @@ class VacancyController extends Controller
         return view('registrations_data', compact('vacancyAccepted', 'vacancyPending', 'vacancyDenied'));
     }
 
-    public function showStatus($id){
+    public function showStatus($id)
+    {
         $userId = Auth::id();
         $vacancy = UserVacancy::where('user_id', $userId)->where('id', $id);
-        if($vacancy->application_stage == 0){
+        if ($vacancy->application_stage == 0) {
             $this->pendingRegistrations();
-        } elseif ($vacancy->application_stage == 1){
+        } elseif ($vacancy->application_stage == 1) {
             $this->acceptedRegistrations();
-        } elseif ($vacancy->application_stage == 2){
+        } elseif ($vacancy->application_stage == 2) {
             $this->deniedRegistrations();
         }
     }
 
-    public function pendingRegistrations(){
+    public function pendingRegistrations()
+    {
         $userId = Auth::id();
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
         return view('status', compact('vacancies'));
     }
-    public function deniedRegistrations(){
+
+    public function deniedRegistrations()
+    {
         $userId = Auth::id();
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
         return view('status', compact('vacancies'));
     }
-    public function acceptedRegistrations(){
+
+    public function acceptedRegistrations()
+    {
         $userId = Auth::id();
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
         return view('status', compact('vacancies'));
     }
 
-    public function showApplication($id){
+    public function showApplication($id)
+    {
         $application = Uservacancy::findOrFail($id);
 //        return view('application', compact('application'));
         return view('user-vacancy-overview.application-details', compact('application'));
@@ -184,31 +217,31 @@ class VacancyController extends Controller
 
         } else {
 
-        //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
-        if (Auth::check()) {
+            //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
+            if (Auth::check()) {
 //            $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
-            if (empty($userAlreadyApplied->all())) {
-                //Maak nieuwe aanmelding als er geen aanmeldingen van deze gebruiker voor deze specifieke vacature is
-                $application = new userVacancy();
-                $application->user_id = Auth::id();
-                $application->vacancy_id = $vacancy->id;
-                $application->application_stage = 0;
-                $application->save();
-            } else {
-                //Verwijder de applicatie als die al bestaat zodat je je kan uitschrijven
-                //DIT ZIT ALLEEN IN EEN FOR LOOP OM TE ZORGEN DAT HET OOK APPLICATIONS VERWIJDERD ALS
-                //ER OP EEN OF ANDERE MANIER INEENS DUPLICATES ZIJN IN DE DATABASE. (
-                //Gaat waarschijnlijk niet gebeuren, maar toch goed om te hebben)
-                foreach ($userAlreadyApplied as $singleApplication) {
-                    $singleApplication->delete();
-                }
-                return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor:  ' . $vacancy->name. ' is succesvol verwijderd');
+                if (empty($userAlreadyApplied->all())) {
+                    //Maak nieuwe aanmelding als er geen aanmeldingen van deze gebruiker voor deze specifieke vacature is
+                    $application = new userVacancy();
+                    $application->user_id = Auth::id();
+                    $application->vacancy_id = $vacancy->id;
+                    $application->application_stage = 0;
+                    $application->save();
+                } else {
+                    //Verwijder de applicatie als die al bestaat zodat je je kan uitschrijven
+                    //DIT ZIT ALLEEN IN EEN FOR LOOP OM TE ZORGEN DAT HET OOK APPLICATIONS VERWIJDERD ALS
+                    //ER OP EEN OF ANDERE MANIER INEENS DUPLICATES ZIJN IN DE DATABASE. (
+                    //Gaat waarschijnlijk niet gebeuren, maar toch goed om te hebben)
+                    foreach ($userAlreadyApplied as $singleApplication) {
+                        $singleApplication->delete();
+                    }
+                    return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor:  ' . $vacancy->name . ' is succesvol verwijderd');
 
+                }
+            } else {
+                return redirect()->route('open_vacancies.show', $vacancy->id)->with('message', 'You must be logged in to reply');
             }
-        } else {
-            return redirect()->route('open_vacancies.show', $vacancy->id)->with('message', 'You must be logged in to reply');
+            return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor: ' . $vacancy->name . ' is succesvol ingediend!');
         }
-        return redirect()->route('open_vacancies.index', $vacancy->id)->with('message', 'Uw aanmelding voor: ' . $vacancy->name.' is succesvol ingediend!');
-    }
     }
 }

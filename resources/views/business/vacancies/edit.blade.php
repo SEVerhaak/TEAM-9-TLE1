@@ -10,7 +10,7 @@ use Carbon\Carbon;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Vacancy - {{$business->name}}</title>
+    <title>Edit Vacancy - {{$vacancy->name}} - {{ $business->name }}</title>
 </head>
 <body>
 
@@ -29,22 +29,23 @@ use Carbon\Carbon;
         @endif
 
         <div class="create-vacancy-container">
-            <h2>Maak nieuwe vacature</h2>
+            <h2>Weizig vacature</h2>
 
-            <form method="POST" action="{{route('vacancy.store', $business->id)}}">
+            <form method="POST" action="{{route('vacancy.update', ['business' => $business->id, 'vacancy' => $vacancy->id])}}">
+                @method('PUT')
                 @csrf
                 <div>
                     <div>
                         <label for="title">Titel</label>
-                        <input type="text" name="title" id="title" oninput="copyData('title', 'cp-title')" value="{{old('title')}}">
+                        <input type="text" name="title" id="title" oninput="copyData('title', 'cp-title')" value="{{old('title') ?? $vacancy->name}}">
                     </div>
                     <div>
                         <label for="hours">Uren</label>
-                        <input type="number" name="hours" id="hours" oninput="copyData('hours', 'cp-hours')" value="{{old('hours')}}">
+                        <input type="number" name="hours" id="hours" oninput="copyData('hours', 'cp-hours')" value="{{old('hours') ?? $vacancy->time_hours}}">
                     </div>
                     <div>
                         <label for="salary">Salaris (bruto per maand)</label>
-                        <input type="number" name="salary" id="salary" oninput="copyData('salary', 'cp-salary')" value="{{old('salary')}}">
+                        <input type="number" name="salary" id="salary" oninput="copyData('salary', 'cp-salary')" value="{{old('salary') ?? $vacancy->salary}}">
                     </div>
 
                     <input type="submit" name="submit" value="Opslaan">
@@ -54,11 +55,11 @@ use Carbon\Carbon;
                 <div>
                     <div>
                         <label for="description">Beschrijving</label>
-                        <textarea name="description" id="description">{{old('description')}}</textarea>
+                        <textarea name="description" id="description">{{old('description') ?? $vacancy->description}}</textarea>
                     </div>
 
                     <div class="result-container">
-                        <h2 id="cp-title"></h2>
+                        <h2 id="cp-title">{{old('title') ?? $vacancy->name}}</h2>
                         <div class="text-icon-content-container">
                             <x-icon-building-svg>
 
@@ -76,7 +77,7 @@ use Carbon\Carbon;
 
                             </x-icon-clock-svg>
                             <div>
-                            <p id="cp-hours"></p><p class="preview-text">Uur per week</p>
+                                <p id="cp-hours">{{old('hours')}}</p><p class="preview-text">Uur per week</p>
                             </div>
                         </div>
                         <div class="text-icon-content-container">
@@ -85,17 +86,17 @@ use Carbon\Carbon;
                             </x-icon-money-svg>
 
                             <div>
-                            <p id="cp-salary"></p><p class="preview-text">Euro (per maand)</p>
+                                <p id="cp-salary">{{old('hours')}}</p><p class="preview-text">Euro (per maand)</p>
                             </div>
                         </div>
 
 
-                        <button class="more-info">
+                        <p class="more-info">
                             Meer informatie
                             <x-icon-info-svg>
 
                             </x-icon-info-svg>
-                        </button>
+                        </p>
                     </div>
                 </div>
             </form>
@@ -106,7 +107,7 @@ use Carbon\Carbon;
 </body>
 </html>
 
-<script type="text/javascript">
+<script type="text/javascript" defer>
     function copyData(sourceId, targetId) {
       let data = document.getElementById(sourceId).value;
       document.getElementById(targetId).innerHTML = data;
@@ -165,6 +166,7 @@ use Carbon\Carbon;
         justify-content: flex-start;
         gap: 0.5rem;
     }
+
     .text-icon-content-container div {
         display: flex;
         flex-direction: row;
@@ -192,7 +194,6 @@ use Carbon\Carbon;
         font-size: large;
     }
 
-
     .more-info {
         display: flex;
         justify-content: center;
@@ -210,6 +211,6 @@ use Carbon\Carbon;
         text-decoration: none;
     }
     #cp-title {
-        margin: ;
+        margin: 0.5rem 0;
     }
 </style>

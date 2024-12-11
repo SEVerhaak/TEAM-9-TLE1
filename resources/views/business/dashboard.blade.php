@@ -72,7 +72,7 @@ use Carbon\Carbon;
                                 Sollicitaties
                                 <x-icon-info-svg width="20" height="20"></x-icon-info-svg>
                             </a>
-                            <a href="{{ route('open_vacancies.show', $vacancy->id) }}" class="more-info"> Bewerk
+                            <a href="{{route('vacancy.edit', ['business' => $business->id, 'vacancy' => $vacancy->id])}}" class="more-info"> Bewerk
                                 <x-icon-info-svg width="20" height="20"></x-icon-info-svg>
                             </a>
                         </div>
@@ -83,7 +83,7 @@ use Carbon\Carbon;
             @else
                 <h3>Uw bedrijf heeft nog geen vacatures</h3>
                 {{--            moet later nog een andere link worden voor de link van alle vacatures van het bedrijf--}}
-                <a href="{{ route('open_vacancies.index') }}" class="all-vacancies-link"> Open een vacature
+                <a href="{{ route('vacancy.create', $business->id)}}" class="all-vacancies-link"> Open een vacature
                 </a>
             @endif
         </div>
