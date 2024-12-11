@@ -14,6 +14,11 @@
 <x-navbar-top>
 
 </x-navbar-top>
+
+<x-expandable-menu>
+
+</x-expandable-menu>
+
 <x-nav-menu-buttom :selected="$selected">
 
 </x-nav-menu-buttom>

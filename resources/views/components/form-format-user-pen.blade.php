@@ -5,7 +5,7 @@
         width: 80vw;
         height: 5vh;
         border: black solid;
-        border-radius: 40px;
+        border-radius: 20px;
         box-shadow: 0px 4px 60px 2px rgba(0, 0, 0, 0.1); /* The '2px' is the spread radius */
 
     }
@@ -15,7 +15,7 @@
         height: 100%;
         padding-left: 8vh; /* Add padding to the left to make space for the icon */
         border: none;
-        border-radius: inherit;
+        border-radius: 20px;
 
         font-size: 1.3rem;
         /*padding-right: 10px; !* Optional: Adds some space on the right *!*/

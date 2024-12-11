@@ -2,10 +2,7 @@
 
     .transparent-button {
         position: relative;
-
-        top: 30%;
-        left: 20%;
-
+        line-height: 6vh;
         background-color: transparent; /* Makes the button background transparent */
 
         border: none;
@@ -18,9 +15,7 @@
 
     .transparent-button-2 {
         position: relative;
-
-        top: 30%;
-        left: 10%;
+        line-height: 6vh;
 
         background-color: transparent; /* Makes the button background transparent */
 
@@ -34,70 +29,59 @@
     }
 
 
-
-    .noti  {
-
-    margin-top: 6vh;
-
-
-
-    width: 80vw;
-    height: 8vh;
-    background-color: #f9ee00;
-
-    border-radius: 1vw 10vw 10vw 10vw;
-
-    display: flex;
-
+    .noti {
+        margin-top: 6vh;
+        width: 80vw;
+        height: 8vh;
+        background-color: #f9ee00;
+        border-radius: 0 20px 20px 20px;
+        display: flex;
     }
 
     .noti div:nth-child(1) {
-    position: relative;
-    top: 25%;
-    left: 5%;
+        position: relative;
+        top: 25%;
+        left: 5%;
     }
+
     .noti div:nth-child(2) {
-    font-size: 1.5rem;
-    font-weight: lighter;
-    position: relative;
-    top: 4%;
-    left: 10%;
+        font-size: 1.5rem;
+        font-weight: lighter;
+        position: relative;
+        top: 4%;
+        left: 10%;
     }
 
     .buttons {
-    display: flex;
-    align-content: center;
+        display: flex;
+        align-content: center;
 
-    margin-top: 5vh;
+        margin-top: 5vh;
     }
 
     .buttons div:nth-child(1) {
-    background-color: #f9ee00;
-    width: 30vw;
-    height: 6vh;
-
-    border-radius: 1vw 10vw 10vw 10vw;
-
-
+        background-color: #f9ee00;
+        width: 30vw;
+        height: 6vh;
+        border-radius: 0 20px 20px 20px;
+        text-align: center;
     }
 
     .buttons div:nth-child(2) {
-
-    width: 8vw;
-    height: 6vh;
-
-
+        width: 8vw;
+        height: 6vh;
     }
 
     .buttons div:nth-child(3) {
-    background-color: #b4085c;
-    width: 44vw;
-    height: 6vh;
-
-    border-radius: 1vw 10vw 10vw 10vw;
+        background-color: #b4085c;
+        width: 44vw;
+        height: 6vh;
+        text-align: center;
+        border-radius: 1vw 10vw 10vw 10vw;
 
 
     }
+
     h2 {
         font-size: 1rem;
     }

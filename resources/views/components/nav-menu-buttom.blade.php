@@ -70,8 +70,8 @@
         right: 0;
         border-radius: 30px 30px 0 0;
         background-color: white;
-        max-height: 25vw;
-        min-height: 25vw;
+        max-height: 15vh;
+        min-height: 15vh;
         display: flex;
         justify-content: space-around;
         box-shadow: 0 -4px 60px rgba(0, 0, 0, 0.3);
@@ -79,10 +79,10 @@
     }
 
     .button-container {
-        min-width: 20%;
-        max-width: 20%;
-        min-height: 20%;
-        max-height: 20%;
+        min-width: 25%;
+        max-width: 25%;
+        min-height: 25%;
+        max-height: 25%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -93,7 +93,7 @@
 
     .selected {
         background-color: rgba(214, 154, 186, 0.33);
-        border-radius: 15px;
+        border-radius: 30px;
         color: #B20060;
         stroke: #b4085c !important;
     }

@@ -5,9 +5,9 @@
         width: 80vw;
         height: 6vh;
         border: #b4085c solid;
-        border-radius: 40px;
+        border-radius: 20px;
         margin-bottom: 1vh;
-        box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1); /* Add box-shadow */
+        box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1); /* Add box-shadow */
     }
 
     .form-input1 input {
@@ -15,7 +15,7 @@
         height: 100%;
         padding-left: 8vh; /* Add padding to the left to make space for the icon */
         border: none;
-        border-radius: inherit;
+        border-radius: 20px;
 
         font-size: 1.3rem;
         /*padding-right: 10px; !* Optional: Adds some space on the right *!*/
