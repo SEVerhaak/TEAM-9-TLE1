@@ -27,15 +27,9 @@
 
 
     .buttonContainer{
-
         display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 5rem;
-        margin-top: 12rem;
-        margin-left: 5rem;
-        margin-right: 5rem;
-
+        gap: 4rem;
+        margin-top: 5rem;
     }
     a {
         text-decoration: none;
@@ -155,6 +149,7 @@
         text-decoration: underline;
     }
 
+
     .liever-niet p {
         color: #b4085c;
 
@@ -162,7 +157,7 @@
         margin-top: -1vh;
     }
 
-    .transparent-button {
+    .transparent-button-1 {
         margin-top: 0vh;
     }
 
@@ -209,7 +204,7 @@
 
     </form>
     <div class="buttonContainer">
-        <button type="submit" class="transparent-button-1">terug</button>
+        <button type="submit" class="transparent-button-1"><a href="{{ route('settings.index') }}">Terug</a></button>
         <button type="submit" class="transparent-button-2">opslaan</button>
     </div>
 
