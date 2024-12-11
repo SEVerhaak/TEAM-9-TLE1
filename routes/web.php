@@ -59,6 +59,8 @@ Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');
 })->name('vacancy-select');
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
