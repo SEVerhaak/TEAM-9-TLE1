@@ -104,6 +104,10 @@
         width: 90%;
     }
 
+    .wrapper-login a {
+        color: #b4085c;
+    }
+
     .email {
         margin: 0;
     }

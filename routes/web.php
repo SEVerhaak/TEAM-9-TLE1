@@ -40,6 +40,9 @@ Route::get('/junotest', function () {
     return view('login.login-step-1');
 });
 
+Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
 // Settings routes
 Route::get('/settings/settings', [SettingsController::class, 'index'])->name('settings.index');
 Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->name('preferences');
@@ -67,6 +70,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('open_vacancies_succes/{position}', [VacancyController::class, 'vacancySucces'])->name('open_vacancies.succes');
 Route::get('open_vacancies', [VacancyController::class, 'index'])->name('open_vacancies.index');
 Route::get('open_vacancies/{vacancy}', [VacancyController::class, 'show'])->name('open_vacancies.show');
 

@@ -96,7 +96,7 @@
 
     .buttonContainer{
         display: flex;
-        gap: 5rem;
+        gap: 4rem;
         margin-top: 1rem;
 
     }
@@ -187,8 +187,8 @@
 
 
         <div class="buttonContainer">
-            <button type="submit" class="transparent-button-1">terug</button>
-            <button type="submit" class="transparent-button-2">volgende stap</button>
+            <button class="transparent-button-1"><a href="{{ route('settings.index') }}">Terug</a></button>
+            <button type="submit" class="transparent-button-2">Opslaan</button>
         </div>
     </form>
 </div>

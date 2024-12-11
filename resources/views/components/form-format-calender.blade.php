@@ -4,7 +4,7 @@
         width: 80vw;
         height: 6vh;
         border: none;
-        border-radius: 40px;
+        border-radius: 20px;
         margin-bottom: 1vh;
 
         box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.1); /* Add box-shadow */
