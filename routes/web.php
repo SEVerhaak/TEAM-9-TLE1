@@ -40,9 +40,6 @@ Route::get('/junotest', function () {
     return view('user-vacancy-overview.application-details');
 });
 
-Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
-
 // Settings routes
 Route::get('/settings/settings', [SettingsController::class, 'index'])->name('settings.index');
 Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->name('preferences');

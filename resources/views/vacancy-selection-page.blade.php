@@ -22,7 +22,7 @@
 </div>
 
 <div class="aanmeldingen">
-    <a href="{{route('dashboard')}}" style="flex-grow: 1;">Ga naar mijn aanmeldingen</a>
+    <a href="{{route('registrations_data')}}" style="flex-grow: 1;">Ga naar mijn aanmeldingen</a>
 </div>
 
 
