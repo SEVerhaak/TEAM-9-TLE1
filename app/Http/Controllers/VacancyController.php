@@ -130,21 +130,23 @@ class VacancyController extends Controller
 
     public function pendingRegistrations(){
         $userId = Auth::id();
+        $application = 0;
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
-        return view('status', compact('vacancies'));
+        return view('status', compact('vacancies', 'application'));
     }
     public function deniedRegistrations(){
         $userId = Auth::id();
+        $application = 2;
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
-        return view('status', compact('vacancies'));
+        return view('status', compact('vacancies', 'application'));
     }
     public function acceptedRegistrations(){
         $userId = Auth::id();
-
+        $application = 1;
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
-        return view('status', compact('vacancies'));
+        return view('status', compact('vacancies', 'application'));
     }
 
     public function showApplication($id){
