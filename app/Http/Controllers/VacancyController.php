@@ -103,7 +103,7 @@ class VacancyController extends Controller
     {
         $userId = Auth::id();
 
-        $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
+        $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->take(1)->get();
         return view('dashboard', compact('vacancies'));
     }
 
