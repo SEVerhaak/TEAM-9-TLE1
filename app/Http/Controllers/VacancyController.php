@@ -7,6 +7,7 @@ use App\Models\UserVacancy;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
@@ -116,22 +117,13 @@ class VacancyController extends Controller
         return view('registrations_data', compact('vacancyAccepted', 'vacancyPending', 'vacancyDenied'));
     }
 
-    public function showStatus($id){
-        $userId = Auth::id();
-        $vacancy = UserVacancy::where('user_id', $userId)->where('id', $id);
-        if($vacancy->application_stage == 0){
-            $this->pendingRegistrations();
-        } elseif ($vacancy->application_stage == 1){
-            $this->acceptedRegistrations();
-        } elseif ($vacancy->application_stage == 2){
-            $this->deniedRegistrations();
-        }
-    }
-
     public function pendingRegistrations(){
         $userId = Auth::id();
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
+        foreach ($vacancies as $vacancy){
+            $vacancy->placement = $this->showPlaceInQueue($vacancy);;
+        }
         return view('status', compact('vacancies'));
     }
     public function deniedRegistrations(){
@@ -149,8 +141,13 @@ class VacancyController extends Controller
 
     public function showApplication($id){
         $application = Uservacancy::findOrFail($id);
-//        return view('application', compact('application'));
         return view('application', compact('application'));
+    }
+
+    public function showPlaceInQueue($vacancy){
+        $dateS = $vacancy->created_at;
+        $queue = UserVacancy::where('vacancy_id', $vacancy->vacancy_id)->whereDate('created_at', '<', $vacancy->created_at)->count();
+        return $queue;
     }
 
     public function checkUserAlreadyApplied(vacancy $vacancy)
