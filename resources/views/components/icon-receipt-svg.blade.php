@@ -1,6 +1,6 @@
 @props(['colour' => $colour])
 
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 40.096 40.096">
+<svg xmlns="http://www.w3.org/2000/svg" width="60%" height="60%" viewBox="0 0 40.096 40.096">
     <defs>
         <style>
             .cls-121, .cls-201 {

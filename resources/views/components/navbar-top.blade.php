@@ -4,15 +4,27 @@
         <img src="{{ asset('images/logo-oh-png.png') }}" alt="Logo" class="h-10" id="logo">
     </a>
 
-    <div class="flex items-center" style="flex-shrink: 0;">
-        <!--
-        <x-hamburger-menu-svg>
+    <div class="flex items-center account-thing" id="account-option" style="flex-shrink: 0;">
+        @if (Auth::check())
+                <p id="logged-in">{{auth()->user()->name}}</p>
+        @else
+            <p id="not-logged-in">Log-in</p>
+        @endif
+        <x-icon-user-profile-svg>
 
-        </x-hamburger-menu-svg>
-        -->
+        </x-icon-user-profile-svg>
     </div>
 
     <script>
+        let user = document.getElementById('account-option')
+        user.addEventListener('click', function(){
+            if (user.getElementsByTagName('p')[0].id === 'logged-in'){
+                //window.location.href = "{{route('settings.index')}}"
+            } else{
+                window.location.href = "{{route('login')}}"
+            }
+        })
+
         let header = document.getElementById('navbarId');
 
         //linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
@@ -71,6 +83,14 @@
 
         .navbar > div {
             flex-shrink: 0;
+        }
+
+        .account-thing{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: -0.75rem;
         }
     </style>
 </nav>

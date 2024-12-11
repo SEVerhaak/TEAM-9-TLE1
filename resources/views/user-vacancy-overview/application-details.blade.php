@@ -1,6 +1,4 @@
-<x-template>
-
-</x-template>
+<x-template :selected="1"></x-template>
 
 <style>
 
@@ -53,6 +51,27 @@
         width: 100%;
 
         background-color: #00ad5d;
+        margin: 1rem 1rem 0 0;
+        border: none;
+        color: white;
+        padding: 1rem;
+        border-radius: 0 15px 15px 15px;
+    }
+
+    .more-info-red {
+        width: 100%;
+
+        background-color: #bf212e;
+        margin: 1rem 1rem 0 0;
+        border: none;
+        color: white;
+        padding: 1rem;
+        border-radius: 0 15px 15px 15px;
+    }
+    .more-info-yellow {
+        width: 100%;
+
+        background-color: #faee00;
         margin: 1rem 1rem 0 0;
         border: none;
         color: white;
@@ -160,8 +179,14 @@
 
 
 
+@if($application->application_stage == 0)
+            <button class="more-info-yellow" onclick="">
+        @elseif ($application->application_stage == 1)
+                    <button class="more-info" onclick="">
+                @elseif ($application->application_stage == 2)
+                            <button class="more-info-red" onclick="">
+@endif
 
-        <button class="more-info" onclick="">
             <div class="bericht">
                 <a href="">Stuur een bericht <br>
                     naar de werkgever</a>
