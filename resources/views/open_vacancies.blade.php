@@ -71,16 +71,25 @@
 
 
             <button class="more-info" onclick="location.href='{{ route('open_vacancies.show', $vacancy->id) }}'">
-                    <a href="{{route('open_vacancies.show', $vacancy->id)}}">Meer informatie</a>
+                <div class="icon-wrapper">
+                <a href="{{route('open_vacancies.show', $vacancy->id)}}">Meer informatie</a>
                     <x-icon-info-svg>
 
                     </x-icon-info-svg>
+                </div>
             </button>
         </div>
     @endforeach
 </div>
-
+<div class="div-spacer"></div>
 <style>
+    .div-spacer{
+        padding: 10vh;
+    }
+    .icon-wrapper{
+        display: flex;
+        justify-content: space-evenly;
+    }
 
     .text-icon-content-container{
         display: flex;

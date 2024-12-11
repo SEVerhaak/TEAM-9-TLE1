@@ -10,7 +10,7 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                     pageLanguage: 'nl',
-                    includedLanguages: 'en,es,it,pl,fr,de,ch',
+                    includedLanguages: 'en,es,it,pl,fr,de',
                     autoDisplay: false,
                     gaTrack: true,
                     gaId: '{replace with your gaId}'
@@ -105,8 +105,8 @@
         const box = document.getElementById('expandable-box');
         box.classList.toggle('expanded');
         // Change the "+" to a "-" when expanded and vice versa
-        const header = box.querySelector('.box-header span');
-        header.textContent = box.classList.contains('expanded') ? '🇩🇪' : '🇩🇪';
+        //const header = box.querySelector('.box-header span');
+        //header.textContent = box.classList.contains('expanded') ? '🇩🇪' : '🇩🇪';
     }
 
     // Function to close the box if clicked outside
@@ -115,8 +115,6 @@
         // Check if the clicked element is outside the expandable box
         if (!box.contains(event.target)) {
             box.classList.remove('expanded');
-            const header = box.querySelector('.box-header span');
-            header.textContent = '🇩🇪';  // Set back to the initial state
         }
     }
 
@@ -131,7 +129,7 @@
 </script>
 <script>
     // List of flag emojis to cycle through
-    const flags = ['🇺🇸', '🇬🇧', '🇮🇳', '🇯🇵', '🇩🇪', '🇫🇷', '🇮🇹', '🇨🇳'];
+    const flags = ['🇪🇸', '🇬🇧', '🇩🇪', '🇫🇷', '🇮🇹','🇵🇱'];
 
     // Function to cycle through flags
     function cycleFlags() {

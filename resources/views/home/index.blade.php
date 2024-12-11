@@ -1,3 +1,7 @@
+<x-template :selected="0">
+
+</x-template>
+
 <body>
 
 <div class="wrapper">
@@ -165,7 +169,3 @@
 <div class="spacer">
 
 </div>
-
-<x-template :selected="0">
-
-</x-template>
