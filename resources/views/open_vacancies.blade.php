@@ -95,7 +95,7 @@
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
         padding: 1rem;
         margin: 2rem 1rem;
-        border-radius: 0 30px 30px 30px;
+        border-radius: 0 30px 30px 30px
     }
 
     .result-container p {
