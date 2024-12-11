@@ -58,7 +58,7 @@ class BusinessController extends Controller
      */
     public function edit(string $id)
     {
-        dd("bla");
+
     }
 
     /**

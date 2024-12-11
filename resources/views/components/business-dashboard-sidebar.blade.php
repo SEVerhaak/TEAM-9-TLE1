@@ -25,7 +25,7 @@
             <span class="sidebar-icon">
                 <x-icon-info-svg></x-icon-info-svg>
             </span>
-        <a class="sidebar-link">Mijn Account</a>
+        <a class="sidebar-link" href="{{route('business.edit', $id)}}">Mijn Account</a>
     </div>
 </div>
 

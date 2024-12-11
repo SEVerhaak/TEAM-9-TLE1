@@ -76,7 +76,7 @@ use Carbon\Carbon;
 
                             </x-icon-clock-svg>
                             <div>
-                            <p id="cp-hours"></p><p class="preview-text">Uur per week</p>
+                            <p id="cp-hours"></p><p class="preview-text">uur per week</p>
                             </div>
                         </div>
                         <div class="text-icon-content-container">
@@ -85,7 +85,7 @@ use Carbon\Carbon;
                             </x-icon-money-svg>
 
                             <div>
-                            <p id="cp-salary"></p><p class="preview-text">Euro (per maand)</p>
+                            <p id="cp-salary"></p><p class="preview-text">euro (per maand)</p>
                             </div>
                         </div>
 

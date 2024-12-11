@@ -60,13 +60,13 @@
                 <x-icon-clock-svg>
 
                 </x-icon-clock-svg>
-                <p>{{$vacancy->time_hours}} Uur per week</p>
+                <p>{{$vacancy->time_hours}} uur per week</p>
             </div>
             <div class="text-icon-content-container">
                 <x-icon-money-svg>
 
                 </x-icon-money-svg>
-                <p>{{$vacancy->salary}} Euro (Per maand)</p>
+                <p>{{$vacancy->salary}} euro (per maand)</p>
             </div>
 
 
