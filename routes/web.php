@@ -37,7 +37,7 @@ Route::get('/register/success', function () {
 })->name('register.success');
 // JUNO CSS TEST PAGE
 Route::get('/junotest', function () {
-    return view('login.login-step-1');
+    return view('user-vacancy-overview.application-details');
 });
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -69,6 +69,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/registrations_data', [VacancyController::class, 'registrationData'])->middleware(['auth', 'verified'])->name('registrations_data');
+Route::get('/accepted_registrations',[VacancyController::class, 'acceptedRegistrations'] )->middleware(['auth', 'verified'])->name('accepted_registrations');
+Route::get('/pending_registrations',[VacancyController::class, 'pendingRegistrations'] )->middleware(['auth', 'verified'])->name('pending_registrations');
+Route::get('/denied_registrations',[VacancyController::class, 'deniedRegistrations'] )->middleware(['auth', 'verified'])->name('denied_registrations');
+Route::get('/applied_vacancy/{vacancy}', [VacancyController::class, 'showApplication'])->middleware(['auth', 'verified'])->name('application.show');
+
 
 Route::get('open_vacancies_succes/{position}', [VacancyController::class, 'vacancySucces'])->name('open_vacancies.succes');
 Route::get('open_vacancies', [VacancyController::class, 'index'])->name('open_vacancies.index');
@@ -90,10 +96,8 @@ Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
 
     Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
     Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
-    Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('business.vacancy.create');
-
     Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
-//    Route::post('open_vacancies', [VacancyController::class, 'store'])->name('open_vacancies.store');
+    Route::post('business/{business}/vacancy/store', [VacancyController::class, 'store'])->name('vacancy.store');
 //    Route::get('open_vacancies/{vacancy}/edit', [VacancyController::class, 'edit'])->name('open_vacancies.edit');
 //    Route::put('open_vacancies/{vacancy}', [VacancyController::class, 'update'])->name('open_vacancies.update');
 //    Route::delete('open_vacancies/{vacancy}', [VacancyController::class, 'destroy'])->name('open_vacancies.destroy');
