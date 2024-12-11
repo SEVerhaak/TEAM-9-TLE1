@@ -210,6 +210,6 @@ use Carbon\Carbon;
         text-decoration: none;
     }
     #cp-title {
-        margin: ;
+        margin: 0.5rem 0;
     }
 </style>
