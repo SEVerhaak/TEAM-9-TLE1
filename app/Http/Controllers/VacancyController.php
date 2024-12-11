@@ -141,7 +141,7 @@ class VacancyController extends Controller
 
     public function showApplication($id){
         $application = Uservacancy::findOrFail($id);
-        return view('application', compact('application'));
+        return view('user-vacancy-overview.application-details', compact('application'));
     }
 
     public function showPlaceInQueue($vacancy){
