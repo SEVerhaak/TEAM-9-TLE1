@@ -1,3 +1,4 @@
+<x-template :selected="-1"></x-template>
 <!-- Session Status -->
 <x-auth-session-status :status="session('status')"/>
 <h1 style="text-align: center; margin-top: 5rem">Log-in</h1>
@@ -71,7 +72,7 @@
 
     </form>
 </div>
-<x-template :selected="-1"></x-template>
+
 
 <style>
     .register-wrapper {

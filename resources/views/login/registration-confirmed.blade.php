@@ -1,3 +1,7 @@
+<x-template :selected="-1">
+
+</x-template>
+
 <h1 class="center-text extra-margin-top">
     Registratie voltooid!
 </h1>
@@ -75,6 +79,4 @@
 
 </style>
 
-<x-template :selected="-1">
 
-</x-template>
