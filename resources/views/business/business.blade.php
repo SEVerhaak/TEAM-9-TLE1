@@ -7,7 +7,7 @@
     </div>
 
     <div class="header-info">
-        <img class="business-logo" src="{{$business->logo}}" alt="Logo of {{$business->name}}">
+        <img class="business-logo" src="{{asset('storage/' . $business->logo)}}" alt="Logo of {{$business->name}}">
         <h1>{{$business->name}}</h1>
     </div>
 
@@ -71,6 +71,8 @@
 
     .business-logo {
         height: 5rem;
+        width: 5rem;
+        object-fit: fill;
     }
 
     .header-info {

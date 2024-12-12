@@ -58,7 +58,8 @@ class BusinessController extends Controller
      */
     public function edit(string $id)
     {
-
+        $business = Business::all()->where('id', $id)->first();
+        return view('business/edit', compact('business'));
     }
 
     /**
@@ -66,7 +67,33 @@ class BusinessController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'hq_location' => 'required',
+            'logo' => 'mimes:jpeg,jpg,png',
+            'dashboard' => 'mimes:jpeg,jpg,png',
+
+        ]);
+        $business = Business::all()->where('id', $id)->first();
+        $business->name = $request->input('name');
+        $business->description = $request->input('description');
+        $business->hq_location = $request->input('hq_location');
+        $business->email = $request->input('email') ?? "No Email";
+        $business->phone_number = $request->input('phone_number') ?? "No Phone Number";
+
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo')->storePublicly('uploads/business/logo', 'public');
+            $business->logo = $logo; //to store the link to the image in the DB
+        }
+        if ($request->hasFile('banner')) {
+            $banner = $request->file('banner')->storePublicly('uploads/business/banner', 'public');
+            $business->banner_image = $banner; //to store the link to the image in the DB
+        }
+
+        $business->save();
+
+        return redirect()->route('business.edit', $business->id);
     }
 
     /**
