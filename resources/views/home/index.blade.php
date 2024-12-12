@@ -10,7 +10,7 @@
         <!-- title -->
         <h1 class="title">Werken Voor Wie <br> Wil Werken</h1>
         <!-- main image -->
-        <img class="top-image" src="../images/main_image.png">
+        <img alt="main-image" class="top-image" src="../images/main_image.png">
 
         <a href="{{ route('register.choice') }}">
             <x-main-button-with-logo>
