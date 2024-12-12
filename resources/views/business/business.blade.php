@@ -72,7 +72,7 @@
     .business-logo {
         height: 5rem;
         width: 5rem;
-        object-fit: fill;
+        object-fit: contain;
     }
 
     .header-info {

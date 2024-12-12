@@ -273,7 +273,7 @@ use Carbon\Carbon;
     .business-details img {
         width: 6rem;
         height: 6rem;
-        object-fit: fill;
+        object-fit: contain;
     }
 
     .business-details {

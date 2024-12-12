@@ -14,14 +14,11 @@ class BusinessController extends Controller
     /**
      * Display a listing of the resource.
      */
-//    public function index(string $id = null)
-//    {
-//        //Simpele error als er geen ID word ingevuld, kunnen we later nog een lijst van alle
-//        //bedrijven voor maken als we willen.
-//        if (empty($id)) {
-//            return redirect('home');
-//        }
-//    }
+    public function index()
+    {
+        $businesses = UserBusiness::where('user_id', Auth::id())->get();
+        return view('business/my-businesses', compact('businesses'));
+    }
 
     /**
      * Show the form for creating a new resource.
