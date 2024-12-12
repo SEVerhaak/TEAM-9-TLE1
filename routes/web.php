@@ -83,7 +83,7 @@ Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacan
     ->name('open_vacancies.vacancyApplicationHandler');
 
 
-Route::get('business', [BusinessController::class, 'index'])->name('business.index');
+//Route::get('business', [BusinessController::class, 'index'])->name('business.index');
 Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
 
 Route::middleware(BusinessPermissionMiddleware::class)->group(function () {

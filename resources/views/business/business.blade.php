@@ -3,7 +3,7 @@
 </x-template>
 <div class="container-show">
     <div class="business-banner">
-        <img class="business-banner" src="{{$business->banner_image}}" alt="Banner image of {{$business->name}}">
+        <img class="business-banner" src="{{asset('storage/'. $business->banner_image)}}" alt="Banner image of {{$business->name}}">
     </div>
 
     <div class="header-info">

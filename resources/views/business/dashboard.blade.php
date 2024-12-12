@@ -92,7 +92,7 @@ use Carbon\Carbon;
                 <div class="business-details-top">
                     <h2>Mijn Gegevens</h2>
                     <div class="business-details">
-                        <img src="{{$business->logo}}" alt="Logo of {{$business->name}}">
+                        <img src="{{asset('storage/' . $business->logo)}}" alt="Logo of {{$business->name}}">
                         <div>
                             <div class="text-icon-content-container">
                                 <x-icon-building-svg width="22" height="22">
@@ -272,7 +272,8 @@ use Carbon\Carbon;
 
     .business-details img {
         width: 6rem;
-        height: auto;
+        height: 6rem;
+        object-fit: fill;
     }
 
     .business-details {

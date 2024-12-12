@@ -57,11 +57,11 @@
                     </div>
                     <div>
                         <label for="logo">Logo</label>
-                        <input type=file name="logo" id="logo">
+                        <input type=file name="logo" id="logo" accept="image/png, image/jpg, image/jpeg">
                     </div>
                     <div>
                         <label for="banner">Banner</label>
-                        <input type=file name="banner" id="banner">
+                        <input type=file name="banner" id="banner" accept="image/png, image/jpg, image/jpeg">
                     </div>
                 </div>
             </form>
