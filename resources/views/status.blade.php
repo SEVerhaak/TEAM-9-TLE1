@@ -1,7 +1,7 @@
 <x-template :selected="1"></x-template>
 <style>
 
-    .text-icon-content-container{
+    .text-icon-content-container {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -126,6 +126,7 @@
         padding: 1rem;
         border-radius: 0 15px 15px 15px;
     }
+
     .more-info-yellow {
         width: 100%;
         font-family: "Radikal Trial", sans-serif;
@@ -138,6 +139,7 @@
         padding: 1rem;
         border-radius: 0 15px 15px 15px;
     }
+
     .button-wrapper-1 {
         display: flex;
 
@@ -151,21 +153,8 @@
     }
 </style>
 <div>
-    <!-- The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk -->
-
-
 
     @foreach($vacancies as $vacancy)
-{{--        <div>--}}
-{{--            <a href="{{route('application.show', $vacancy->id)}}"> more info</a>--}}
-{{--            <p> {{$vacancy->vacancy->name}}</p>--}}
-{{--            <p> {{$vacancy->vacancy->business->hq_location}}</p>--}}
-{{--            <p> {{$vacancy->vacancy->salary}}</p>--}}
-{{--            <p> {{$vacancy->vacancy->time_hours}}</p>--}}
-{{--            <a href="{{route('open_vacancies.show', $vacancy->vacancy->id)}}">job listing</a>--}}
-{{--        </div>--}}
-
-
 
         <div class="result-container">
             <h2>{{$vacancy->vacancy->name}}</h2>
@@ -197,21 +186,22 @@
             @if($application == 0)
                 <button class="more-info-yellow" onclick="location.href='{{route('application.show', $vacancy->id)}}'">
                     <div class="button-wrapper-1">
-                    <a>In afwachting</a>
-                    <x-icon-clock-svg>
-                    </x-icon-clock-svg>
+                        <a>In afwachting</a>
+                        <x-icon-clock-svg>
+                        </x-icon-clock-svg>
                     </div>
                     @elseif ($application == 1)
                         <button class="more-info" onclick="location.href='{{route('application.show', $vacancy->id)}}'">
                             <div class="button-wrapper-1">
-                                <a >Aangenomen!</a>
-                                <x-unique-icon-check-svg>
+                                <a>Aangenomen!</a>
+                                <x-unique-icon-check-svg></x-unique-icon-check-svg>
                             </div>
 
                             </x-unique-icon-check-svg>
                             @elseif ($application == 2)
                                 <div class="button-holder">
-                                    <button class="more-info-red" onclick="location.href='{{route('application.show', $vacancy->id)}}'">
+                                    <button class="more-info-red"
+                                            onclick="location.href='{{route('application.show', $vacancy->id)}}'">
 
                                         <div class="button-wrapper-1">
                                             <a>Afgewezen</a>
@@ -219,13 +209,9 @@
 
                                             </x-icon-exclamation-svg>
                                         </div>
-
                                 </div>
-
-                                    @endif
-
-
-            </button>
+                        </button>
+            @endif
         </div>
     @endforeach
 </div>
