@@ -12,6 +12,7 @@ use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -247,5 +248,12 @@ class VacancyController extends Controller
             return redirect()->route('open_vacancies.succes', ['position' => $vacancyName]);
 
         }
+    }
+
+    public function viewApplications(string $id, vacancy $vacancy) {
+
+        $business = Business::where('id', $id)->first();
+        $applications = UserVacancy::all()->where('vacancy_id', $vacancy->id);
+        return view('business/vacancies/applications', compact('business','applications', 'vacancy'));
     }
 }

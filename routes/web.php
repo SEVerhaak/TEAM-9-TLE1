@@ -86,20 +86,30 @@ Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacan
 Route::get('my-businesses', [BusinessController::class, 'index'])->name('business.index');
 Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
 
+
+
+//Middleware that checks if you're a CEO or Admin for a specific business
 Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
+
+    //CRUD functions for dashboard
     Route::get('business/create', [BusinessController::class, 'create'])->name('business.create');
     Route::post('business', [BusinessController::class, 'store'])->name('business.store');
     Route::get('business/{business}/edit', [BusinessController::class, 'edit'])->name('business.edit');
     Route::put('business/{business}', [BusinessController::class, 'update'])->name('business.update');
     Route::delete('business/{business}', [BusinessController::class, 'destroy'])->name('business.destroy');
-
     Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
+
+    //Crud Routes for vacancy management
     Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
     Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
     Route::post('business/{business}/vacancy/store', [VacancyController::class, 'store'])->name('vacancy.store');
     Route::get('business/{business}/vacancy/{vacancy}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
     Route::put('business/{business}/vacancy/{vacancy}/store', [VacancyController::class, 'update'])->name('vacancy.update');
     Route::delete('business/{business}/vacancy/{vacancy}/delete', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
+
+    //Manage applications for specific vacancies
+    Route::get('business/{business}/vacancy/{vacancy}/applications', [VacancyController::class, 'viewApplications'])->name('vacancy.applications');
+    Route::post('business/{business}/vacancy/{vacancy}/accept', [VacancyController::class, 'destroy'])->name('vacancy.accept');
 });
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
