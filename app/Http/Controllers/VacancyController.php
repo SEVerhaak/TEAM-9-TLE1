@@ -181,7 +181,7 @@ class VacancyController extends Controller
 
     public function checkUserAlreadyApplied(vacancy $vacancy)
     {
-        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+        $userAlreadyApplied = UserVacancy::where('vacancy_id', $vacancy->id)->where('user_id', Auth::id())->get();
         if (!empty($userAlreadyApplied->all())) {
             return $userApplyStatus = "Aanmelding annuleren";
         } else {
@@ -203,7 +203,7 @@ class VacancyController extends Controller
 
 
         $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
-        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+        $userAlreadyApplied = UserVacancy::where('vacancy_id', $vacancy->id)->where('user_id', Auth::id())->get();
         //Check of je op de 1e knop klikt die je krijgt op de details pagina
         //Als je nog op details pagina bent redirect je naar de confirm pagina
         if (isset($_POST['redirect'])) {
@@ -218,7 +218,6 @@ class VacancyController extends Controller
 
             //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
             if (Auth::check()) {
-//            $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
                 if (empty($userAlreadyApplied->all())) {
                     //Maak nieuwe aanmelding als er geen aanmeldingen van deze gebruiker voor deze specifieke vacature is
                     $application = new userVacancy();
@@ -253,7 +252,17 @@ class VacancyController extends Controller
     public function viewApplications(string $id, vacancy $vacancy) {
 
         $business = Business::where('id', $id)->first();
-        $applications = UserVacancy::all()->where('vacancy_id', $vacancy->id);
+        $applications = UserVacancy::where('vacancy_id', $vacancy->id)->get();
+
+        foreach ($applications as $application) {
+            $application->application_stage_formatted = match ($application->application_stage) {
+                0 => "Wachtend",
+                1 => "Geaccepteerd",
+                2 => "Geweigerd",
+                default => "Onbekend", // Future-proofing
+            };
+        }
+
         return view('business/vacancies/applications', compact('business','applications', 'vacancy'));
     }
 }

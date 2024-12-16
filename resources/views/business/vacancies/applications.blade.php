@@ -15,7 +15,24 @@
         <div class="applications-container">
             <h2>Aanmeldingen voor: <br> {{$vacancy->name}}</h2>
             <div class="application-container-layout">
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Country</th>
+                    </tr>
 
+                    @foreach($applications as $application)
+                        <tr>
+                            <td>{{$application->id}}</td>
+                            <td>{{$application->application_stage_formatted}}</td>
+                        </tr>
+
+                    @endforeach
+                </table>
+
+
+                <div></div>
             </div>
         </div>
     </div>
@@ -61,8 +78,24 @@
         width: 100%;
         padding: 1rem 1.5rem;
     }
+
     .applications-container h2 {
         text-align: center;
     }
 
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
 </style>
