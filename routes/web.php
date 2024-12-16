@@ -16,6 +16,11 @@ Route::get('/test', function () {
     return view('login.registration-confirmed');
 });
 
+Route::get('/fyp', [\App\Http\Controllers\ForYouPageController::class, 'index'])->name('fyp.index');
+Route::post('/fyp/next', [\App\Http\Controllers\ForYouPageController::class, 'next'])->name('fyp.next');
+Route::get('/fyp/reset', [\App\Http\Controllers\ForYouPageController::class, 'resetStorage'])->name('fyp.reset');
+
+
 // login routes and web
 Route::get('register/step1', [RegisteredUserController::class, 'step1'])->name('register.step1');
 Route::post('register/step1', [RegisteredUserController::class, 'storeStep1'])->name('register.storeStep1');

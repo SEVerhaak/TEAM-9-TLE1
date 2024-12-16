@@ -24,5 +24,6 @@ class UserVacancy extends Model
     {
         return $this->belongsTo(Vacancy::class);
     }
+
 }
 

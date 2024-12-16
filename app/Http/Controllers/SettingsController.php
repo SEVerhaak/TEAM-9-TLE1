@@ -16,6 +16,9 @@ class SettingsController extends Controller
      */
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je instellingen aan te passen');
+        }
         return view('settings/settings');
     }
 
