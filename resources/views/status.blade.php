@@ -194,7 +194,7 @@
                         <button class="more-info" onclick="location.href='{{route('application.show', $vacancy->id)}}'">
                             <div class="button-wrapper-1">
                                 <a>Aangenomen!</a>
-                                <x-unique-icon-check-svg></x-unique-icon-check-svg>
+                                <x-unique-icon-check-svg>
                             </div>
 
                             </x-unique-icon-check-svg>

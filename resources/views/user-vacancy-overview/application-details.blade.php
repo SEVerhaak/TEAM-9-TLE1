@@ -94,7 +94,7 @@
         background-color: #faee00;
         margin: 1rem 1rem 0 0;
         border: none;
-        color: white;
+        color: black;
         padding: 1rem;
         border-radius: 0 15px 15px 15px;
     }
@@ -211,7 +211,12 @@
                             @endif
 
                             @if($application->application_stage == 0)
-                                <button class="more-info-yellow" onclick="">
+                                <form class="confirm-submission" action="{{ route('open_vacancies.vacancyApplicationHandler', $application->vacancy->id) }}" method="POST">
+                                    @csrf
+                                    <button class="more-info-yellow" type="submit" name="redirect">
+                                        Remove me from list
+                                    </button>
+                                </form>
                             @elseif ($application->application_stage == 1)
                                 <button class="more-info" onclick="">
                             @elseif ($application->application_stage == 2)
