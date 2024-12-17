@@ -17,8 +17,11 @@ Route::get('/test', function () {
 });
 
 Route::get('/fyp', [\App\Http\Controllers\ForYouPageController::class, 'index'])->name('fyp.index');
+Route::get('/fyp/out-of-vacancies', [\App\Http\Controllers\ForYouPageController::class, 'empty'])->name('fyp.out-of-vacancies');
 Route::get('/fyp/confirm', [\App\Http\Controllers\ForYouPageController::class, 'confirm'])->name('fyp.confirm');
-Route::post('/fyp/next', [\App\Http\Controllers\ForYouPageController::class, 'next'])->name('fyp.next');
+Route::post('/fyp/accept', [\App\Http\Controllers\ForYouPageController::class, 'acceptVacancy'])->name('fyp.acceptVacancy');
+Route::post('/fyp/deny', [\App\Http\Controllers\ForYouPageController::class, 'denyVacancy'])->name('fyp.denyVacancy');
+
 Route::get('/fyp/reset', [\App\Http\Controllers\ForYouPageController::class, 'resetStorage'])->name('fyp.reset');
 
 

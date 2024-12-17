@@ -38,30 +38,33 @@ class ForYouPageController extends Controller
         return view('for-you-page.index', ['vacancies' => [$vacancy]]);
     }
 
-    public function next(Request $request)
+    public function acceptVacancy(Request $request)
     {
-        $action = $request->input('action'); // Retrieve the action value
         $vacancies = json_decode($request->input('vacancies'), true); // Decode the vacancies JSON
 
         // Retrieve accepted and denied vacancies from session
         $acceptedVacancies = session()->get('acceptedVacancies', []);
         $deniedVacancies = session()->get('deniedVacancies', []);
 
-        if ($action === 'accept') {
-            // Handle the accept action with $vacancies
-            $this->userApply($vacancies[0]['id']); // Mark vacancy as applied
-            $acceptedVacancies[] = $vacancies[0]['id']; // Add to accepted list
-            session()->put('acceptedVacancies', $acceptedVacancies); // Update session with new accepted vacancies
-            return $this->acceptedVacancyShowNewVacancy($vacancies, $acceptedVacancies, $deniedVacancies);
-        } elseif ($action === 'deny') {
-            // Handle the deny action with $vacancies
-            $deniedVacancies[] = $vacancies[0]['id']; // Add to denied list
-            session()->put('deniedVacancies', $deniedVacancies); // Update session with new denied vacancies
-            return $this->rejectedVacancyShowNewVacancy($vacancies, $acceptedVacancies, $deniedVacancies);
-        } else {
-            // Handle an unexpected action
-            return response()->json(['message' => 'Invalid action'], 400);
-        }
+        $this->userApply($vacancies[0]['id']); // Mark vacancy as applied
+        $acceptedVacancies[] = $vacancies[0]['id']; // Add to accepted list
+        session()->put('acceptedVacancies', $acceptedVacancies); // Update session with new accepted vacancies
+
+        return $this->acceptedVacancyShowNewVacancy($vacancies, $acceptedVacancies, $deniedVacancies);
+    }
+
+    public function denyVacancy(Request $request)
+    {
+        $vacancies = json_decode($request->input('vacancies'), true); // Decode the vacancies JSON
+
+        // Retrieve accepted and denied vacancies from session
+        $acceptedVacancies = session()->get('acceptedVacancies', []);
+        $deniedVacancies = session()->get('deniedVacancies', []);
+        // Handle the deny action with $vacancies
+        $deniedVacancies[] = $vacancies[0]['id']; // Add to denied list
+        session()->put('deniedVacancies', $deniedVacancies); // Update session with new denied vacancies
+
+        return $this->rejectedVacancyShowNewVacancy($vacancies, $acceptedVacancies, $deniedVacancies);
     }
 
     public function rejectedVacancyShowNewVacancy($vacancyOld, $acceptedVacancies, $deniedVacancies)
@@ -83,10 +86,18 @@ class ForYouPageController extends Controller
 
         if ($vacancies->isEmpty()) {
             // Return an error response if no new vacancies are available
-            return response()->view('for-you-page.out-of-vacancies');
+            return redirect()->route('fyp.out-of-vacancies');
+            //return response()->view('for-you-page.out-of-vacancies');
         }
 
-        return view('for-you-page.index', compact('vacancies'));
+        return redirect()->route('fyp.index', compact('vacancies'));
+
+        //return view('for-you-page.index', compact('vacancies'));
+    }
+
+    public function empty()
+    {
+        return view('for-you-page.out-of-vacancies');
     }
 
     public function acceptedVacancyShowNewVacancy($vacancyOld, $acceptedVacancies, $deniedVacancies)
@@ -113,12 +124,15 @@ class ForYouPageController extends Controller
             return response()->view('for-you-page.out-of-vacancies');
         }
 
-        return view('for-you-page.index', compact('vacancies'));
+        return redirect()->route('fyp.index', compact('vacancies'));
+
+        //return view('for-you-page.index', compact('vacancies'));
     }
 
     public function resetStorage()
     {
-        session()->flush();
+        session()->forget('acceptedVacancies');
+        session()->forget('deniedVacancies');
 
         return redirect()->route('fyp.index');
     }
@@ -135,7 +149,7 @@ class ForYouPageController extends Controller
 
         if ($existingApplication) {
             // If an application already exists, you can return or handle the case accordingly
-            //return response()->json(['message' => 'You have already applied for this vacancy.'], 400);
+            return response()->json(['message' => 'You have already applied for this vacancy.'], 400);
         }
 
         // If no application exists, create a new one

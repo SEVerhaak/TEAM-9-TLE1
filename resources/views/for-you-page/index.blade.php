@@ -41,31 +41,123 @@
 
         </div>
     </div>
-    <form class="button-form" method="POST" action="{{ route('fyp.next') }}">
-        @csrf
-        <input type="hidden" name="vacancies" value="{{ json_encode($vacancies) }}">
+    <div class="button-form">
+        <!-- Deny Button Form -->
+        <form method="POST" action="{{ route('fyp.denyVacancy') }}">
+            @csrf
+            <input type="hidden" name="vacancies" value="{{ json_encode($vacancies) }}">
+            <button type="submit" id="deny" name="action" value="deny" class="btn btn-danger">✕</button>
+        </form>
 
-        <button type="submit" id="deny" name="action" value="deny" class="btn btn-danger">✕</button>
-        <button type="submit" id="accept" name="action" value="accept" class="btn btn-success">✓</button>
-    </form>
-
-    <div class="confirm-container">
-        <h1>Bevestig uw inschrijving:</h1>
-        <h3>details</h3>
+        <!-- Accept Button -->
+        <button id="accept" class="btn btn-success">✓</button>
     </div>
 
-</div>
+    <!-- Confirmation Modal -->
+    <div class="confirm-container" id="confirm-box">
+        <div class="close-button" id="close">✖</div>
+        <h2 style="text-align: center">Bevestig uw inschrijving:</h2>
+        <h3>Details:</h3>
+        <h4 class="header-title-text">{{ $vacancies[0]->name }}</h4>
+        <div class="text-icon-content-container">
+            <x-icon-map-svg></x-icon-map-svg>
+            <p>{{ $vacancies[0]->business->hq_location }}</p>
+        </div>
+        <div class="text-icon-content-container">
+            <x-icon-clock-svg></x-icon-clock-svg>
+            <p>{{ $vacancies[0]->time_hours }} uur per week</p>
+        </div>
+        <div class="text-icon-content-container">
+            <x-icon-money-svg></x-icon-money-svg>
+            <p>{{ $vacancies[0]->salary }} euro (per maand)</p>
+        </div>
 
+        <!-- Confirmation Accept Button Form -->
+        <form method="POST" action="{{ route('fyp.acceptVacancy') }}">
+            @csrf
+            <input type="hidden" name="vacancies" value="{{ json_encode($vacancies) }}">
+            <button type="submit" id="confirm-accept" name="action" value="accept" class="btn btn-success">Bevestig
+                inschrijving
+            </button>
+        </form>
+    </div>
+
+
+
+<script>
+    window.onload = init;
+    let closeButton;
+    let confirmButton;
+    let confirmContainer;
+
+    function init() {
+        closeButton = document.getElementById('close');
+        confirmButton = document.getElementById('accept');
+        confirmContainer = document.getElementById('confirm-box');
+
+        confirmButton.addEventListener('click', open);
+        closeButton.addEventListener('click', close);
+    }
+
+    function open(){
+        confirmContainer.style.display = 'block';
+        confirmContainer.style.visibility = 'visible';
+    }
+
+    function close(){
+        confirmContainer.style.display = 'none';
+        confirmContainer.style.visibility = 'hidden';
+    }
+
+</script>
 
 <style>
-    .text-icon-content-container{
+
+    .close-button {
+        font-size: x-large;
+        text-align: right;
+        color: #ff2d20;
+    }
+
+    #confirm-accept {
+        max-width: 90vw;
+        background-color: #00AD5D;
+        color: white;
+        border: none;
+        border-radius: 15px 0 15px 15px;
+        width: 100%;
+        padding: 1rem 0;
+        margin-top: 0.5rem;
+        font-size: x-large;
+        font-family: "Radikal Trial", sans-serif;
+    }
+
+    .confirm-container {
+        position: fixed;
+        width: 75%;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%, 0);
+        background-color: white;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+        visibility: hidden;
+        display: none;
+    }
+
+    .confirm-container p, .confirm-container h1, .confirm-container h3 {
+        margin: 0.5rem 0;
+    }
+
+    .text-icon-content-container {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         gap: 0.5rem;
     }
 
-    .header-title-text{
+    .header-title-text {
         margin: 0.5rem 0;
     }
 
@@ -75,7 +167,7 @@
         gap: 1rem;
     }
 
-    #accept, #deny{
+    #accept, #deny {
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         position: relative;
         top: -2rem;
