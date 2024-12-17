@@ -3,6 +3,7 @@
 </x-template>
 
 <body>
+@vite('resources/js/tutorial.js')
 
 <div class="wrapper">
     <!-- section 1 -->
