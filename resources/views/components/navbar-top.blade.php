@@ -19,7 +19,7 @@
         let user = document.getElementById('account-option')
         user.addEventListener('click', function(){
             if (user.getElementsByTagName('p')[0].id === 'logged-in'){
-                window.location.href = "{{route('business.index')}}"
+                window.location.href = "{{route('settings.my-links')}}"
             } else{
                 window.location.href = "{{route('login')}}"
             }

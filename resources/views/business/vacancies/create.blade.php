@@ -108,8 +108,7 @@ use Carbon\Carbon;
 
 <script type="text/javascript">
     function copyData(sourceId, targetId) {
-      let data = document.getElementById(sourceId).value;
-      document.getElementById(targetId).innerHTML = data;
+        document.getElementById(targetId).innerHTML = document.getElementById(sourceId).innerHTML;
     }
 </script>
 

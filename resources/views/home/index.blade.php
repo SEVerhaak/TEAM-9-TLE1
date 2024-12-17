@@ -11,7 +11,7 @@
         <!-- title -->
         <h1 class="title">Werken Voor Wie <br> Wil Werken</h1>
         <!-- main image -->
-        <img class="top-image" src="../images/main_image.png">
+        <img alt="main-image" class="top-image" src="../images/main_image.png">
 
         <a href="{{ route('register.choice') }}">
             <x-main-button-with-logo>
@@ -62,7 +62,7 @@
         <div class="step-container">
             <h1>3</h1>
             <p>
-                Je ontvangt een bericht als je bent aangenomen met instructies om het proces af te ronden!
+                Je ontvangt een bericht als je bent uitgenodigd met instructies om het proces af te ronden!
             </p>
         </div>
 

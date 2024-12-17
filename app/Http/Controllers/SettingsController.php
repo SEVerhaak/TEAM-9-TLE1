@@ -16,6 +16,9 @@ class SettingsController extends Controller
      */
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je instellingen aan te passen');
+        }
         return view('settings/settings');
     }
 
@@ -106,15 +109,15 @@ class SettingsController extends Controller
         //get table
         $user = User::Where('id', auth()->id())->first();
 
+        $request->validate([
+            'Firstname' => 'required',
+            'Lastname' => 'required',
+            'password' => 'required',
+        ]);
+
 
         //CHECK IF PASSWORD IS CORRECT
-        if ($request->password === null) {
-//            @dd($request->all(), 'Password is null');
-            return redirect()->back()->with('error', 'Please enter your password to update your account');
-        } elseif ($request->password === $user->password) {
-            ;
-
-
+        if (Hash::check($request->password, $user->password)) {
             // IF ERROR OCCURS DD($REQUEST->ALL()) TO SEE THE ERROR SKRRRT
 //        @dd($request->all());
 
@@ -142,7 +145,7 @@ class SettingsController extends Controller
 
         } else {
 //            @dd($request->all(), 'Password is incorrect');
-            return redirect()->back()->with('incorrect', 'Password is incorrect, try again');
+            return redirect()->back()->with('error', 'Password is incorrect, try again');
 
         }
     }
