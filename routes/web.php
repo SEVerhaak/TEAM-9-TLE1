@@ -109,7 +109,7 @@ Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
 
     //Manage applications for specific vacancies
     Route::get('business/{business}/vacancy/{vacancy}/applications', [VacancyController::class, 'viewApplications'])->name('vacancy.applications');
-    Route::post('business/{business}/vacancy/{vacancy}/accept', [VacancyController::class, 'destroy'])->name('vacancy.accept');
+    Route::post('business/{business}/vacancy/{vacancy}/accept', [VacancyController::class, 'acceptHandler'])->name('vacancy.accept');
 });
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');

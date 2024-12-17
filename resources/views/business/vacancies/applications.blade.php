@@ -12,21 +12,49 @@
     <x-business-dashboard-sidebar id="{{$business->id}}"></x-business-dashboard-sidebar>
 
     <div class="right-container">
+        @if ($errors->any())
+            <div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="applications-container">
             <h2>Aanmeldingen voor: <br> {{$vacancy->name}}</h2>
             <div class="application-container-layout">
+                <div class="container-layout-top">
+                    <h3>Er staan {{$waitListCounter}} mensen in de wachtrij voor deze vacature</h3>
+
+                    <form method="POST" action="{{route('vacancy.accept', ['business' => $business->id, 'vacancy' => $vacancy->id])}}">
+                        @csrf
+{{--                        @method('PUT')--}}
+                        <div>
+                            <label for="amountOfPeople">Selecteer het sollicitanten dat u wilt accepteren</label>
+                            <input name="amountOfPeople" type="number" max="{{$waitListCounter}}">
+                        </div>
+                        <input type="submit" name="submit" value="Accepteer">
+                    </form>
+
+                </div>
                 <table>
                     <tr>
-                        <th>#</th>
+                        <th>Positie in wachtrij</th>
                         <th>Status</th>
-                        <th>Country</th>
+                        <th>Aanmeldingsdatum</th>
+                        <th>Aanmeldingsnummer</th>
                     </tr>
 
                     @foreach($applications as $application)
-                        <tr>
-                            <td>{{$application->id}}</td>
-                            <td>{{$application->application_stage_formatted}}</td>
-                        </tr>
+                        @if($application->application_stage === 0)
+                            <tr>
+                                <td>{{$application->wait_list}}</td>
+                                <td>{{$application->application_stage_formatted}}</td>
+                                <td>{{$application->created_at}}</td>
+                                <td>{{$application->id}}</td>
+                            </tr>
+                        @endif
 
                     @endforeach
                 </table>
@@ -79,6 +107,16 @@
         padding: 1rem 1.5rem;
     }
 
+    .container-layout-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container-layout-top h3 {
+        width: 40%;
+    }
+
     .applications-container h2 {
         text-align: center;
     }
@@ -97,5 +135,10 @@
 
     tr:nth-child(even) {
         background-color: #dddddd;
+    }
+
+    form div {
+        display: flex;
+        flex-direction: column;
     }
 </style>
