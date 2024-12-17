@@ -171,7 +171,7 @@
 
 
         <div class="aangenomen">
-            <h2>Aangenomen</h2>
+            <h2>Uitgenodigd</h2>
             <svg xmlns="http://www.w3.org/2000/svg" width="28.5" height="28.5" viewBox="0 0 28.5 28.5">
                 <path id="Icon_fa-solid-circle-check" data-name="Icon fa-solid-circle-check" fill="black" d="M14.25,28.5A14.25,14.25,0,1,0,0,14.25,14.25,14.25,0,0,0,14.25,28.5Zm6.29-16.866-7.125,7.125a1.33,1.33,0,0,1-1.887,0L7.966,15.2a1.334,1.334,0,0,1,1.887-1.887l2.616,2.616,6.179-6.184a1.334,1.334,0,1,1,1.887,1.887Z"/>
             </svg>

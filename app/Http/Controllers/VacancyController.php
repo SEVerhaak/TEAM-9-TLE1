@@ -300,6 +300,6 @@ class VacancyController extends Controller
             $application->save();
         }
         session(['waitListCounter' => 0]);
-        return route('vacancy.applications', ['business' => $request->business, 'vacancy' => $request->vacancy]);
+        return redirect()->route('vacancy.applications', ['business' => $request->business, 'vacancy' => $request->vacancy]);
     }
 }

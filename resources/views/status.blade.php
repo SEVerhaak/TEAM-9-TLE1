@@ -204,7 +204,7 @@
                     @elseif ($application == 1)
                         <button class="more-info" onclick="location.href='{{route('application.show', $vacancy->id)}}'">
                             <div class="button-wrapper-1">
-                                <a >Aangenomen!</a>
+                                <a>Uitgenodigd!</a>
                                 <x-unique-icon-check-svg>
                             </div>
 

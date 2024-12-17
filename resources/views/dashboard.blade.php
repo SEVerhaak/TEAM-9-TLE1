@@ -9,7 +9,7 @@
 <div class="wrapper">
 
     <div class="aangenomentitel">
-        <h2>Aangenomen</h2><a href="{{route('accepted_registrations')}}" class="more-info">Toon meer</a>
+        <h2>Uitgenodigd</h2><a href="{{route('accepted_registrations')}}" class="more-info">Toon meer</a>
     </div>
     <section class="Aangenomen">
         @if(count($vacancies) !== 0)
@@ -57,7 +57,7 @@
                     </div>
                     <!-- Green icon section -->
                     <div class="aangenomenicon">
-                        <h2>Aangenomen</h2>
+                        <h2>Uitgenodigd</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="8%" height="8%" viewBox="0 0 28.5 28.5">
                             <defs>
                                 <style>
