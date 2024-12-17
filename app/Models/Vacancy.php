@@ -39,4 +39,10 @@ class Vacancy extends Model
     {
         return $this->hasMany(UserSwipe::class);
     }
+
+    public function userVacancies()
+    {
+        return $this->hasMany(UserVacancy::class);
+    }
+
 }

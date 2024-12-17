@@ -16,6 +16,15 @@ Route::get('/test', function () {
     return view('login.registration-confirmed');
 });
 
+Route::get('/fyp', [\App\Http\Controllers\ForYouPageController::class, 'index'])->name('fyp.index');
+Route::get('/fyp/out-of-vacancies', [\App\Http\Controllers\ForYouPageController::class, 'empty'])->name('fyp.out-of-vacancies');
+Route::get('/fyp/confirm', [\App\Http\Controllers\ForYouPageController::class, 'confirm'])->name('fyp.confirm');
+Route::post('/fyp/accept', [\App\Http\Controllers\ForYouPageController::class, 'acceptVacancy'])->name('fyp.acceptVacancy');
+Route::post('/fyp/deny', [\App\Http\Controllers\ForYouPageController::class, 'denyVacancy'])->name('fyp.denyVacancy');
+
+Route::get('/fyp/reset', [\App\Http\Controllers\ForYouPageController::class, 'resetStorage'])->name('fyp.reset');
+
+
 // login routes and web
 Route::get('register/step1', [RegisteredUserController::class, 'step1'])->name('register.step1');
 Route::post('register/step1', [RegisteredUserController::class, 'storeStep1'])->name('register.storeStep1');
