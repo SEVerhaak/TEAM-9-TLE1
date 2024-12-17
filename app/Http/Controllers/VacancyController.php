@@ -130,8 +130,10 @@ class VacancyController extends Controller
     {
         $userId = Auth::id();
 
-        $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->take(1)->get();
-        return view('dashboard', compact('vacancies'));
+        $pending = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('created_at', 'desc')->first();
+        $invited = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('created_at', 'desc')->first();
+        $denied = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('created_at', 'desc')->first();
+        return view('dashboard', compact('pending', 'invited', 'denied'));
     }
 
     public function registrationData()
