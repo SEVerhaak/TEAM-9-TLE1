@@ -148,6 +148,10 @@ class ForYouPageController extends Controller
         //return response()->json(['message' => 'Application successful.'], 200);
     }
 
+    public function confirm()
+    {
+        return view('for-you-page.confirm');
+    }
 
 
     /**
