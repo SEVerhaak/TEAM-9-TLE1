@@ -41,19 +41,21 @@ Route::get('/junotest', function () {
 });
 
 // Settings routes
-Route::get('/settings/settings', [SettingsController::class, 'index'])->name('settings.index');
-Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->name('preferences');
+Route::get('/settings/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.index');
+Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->middleware(['auth', 'verified'])->name('preferences');
 
-Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
-Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
+Route::get('settings/account', [SettingsController::class, 'account'])->middleware(['auth', 'verified'])->name('settings.account');
+Route::post('settings/account', [SettingsController::class, 'storesettings'])->middleware(['auth', 'verified'])->name('settings.storesettings');
 
-Route::get('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'preferences'])->name('settings.preferences');
-Route::post('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'storepreferences'])->name('settings.preferences');
+Route::get('settings/preferences', [SettingsController::class, 'preferences'])->middleware(['auth', 'verified'])->name('settings.preferences');
+Route::post('settings/preferences', [SettingsController::class, 'storepreferences'])->middleware(['auth', 'verified'])->name('settings.preferences');
 
-Route::get('settings/password', [\App\Http\Controllers\SettingsController::class, 'password'])->name('settings.password');
-Route::post('settings/password', [\App\Http\Controllers\SettingsController::class, 'storepassword'])->name('settings.password');
+Route::get('settings/password', [SettingsController::class, 'password'])->middleware(['auth', 'verified'])->name('settings.password');
+Route::post('settings/password', [SettingsController::class, 'storepassword'])->middleware(['auth', 'verified'])->name('settings.password');
 
-
+Route::get('settings/navigation', function () {
+    return view('settings/my-links');
+})->middleware(['auth', 'verified'])->name('settings.my-links');
 
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');

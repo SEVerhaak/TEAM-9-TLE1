@@ -97,7 +97,7 @@
     .buttonContainer{
         display: flex;
         gap: 4rem;
-        margin-top: 1rem;
+        margin: 1rem 0 5rem 0;
 
     }
 
@@ -131,33 +131,33 @@
 </div>
 
 <div class="wrapper">
-    <form method="POST" action="{{ route('settings.account') }}" class="form">
+    <form method="POST" action="{{ route('settings.storesettings') }}" class="form">
         @csrf <!-- Include CSRF token for security -->
 
         <div>
             <h2>E-mail</h2>
             <x-form-format>
-                <input type="text" name="email" placeholder="{{$email}}" class="form-input">
+                <input type="text" name="email" placeholder="E-mail" value="{{$email}}" class="form-input">
             </x-form-format>
         </div>
 
         <div>
             <h2>Voornaam</h2>
             <x-form-format-key>
-                <input type="text" name="Firstname" placeholder="{{$firstname}}" class="form-input">
+                <input type="text" name="Firstname" placeholder="First Name" value="{{$firstname}}" class="form-input">
             </x-form-format-key>
         </div>
 
         <div>
             <h2>Achternaam</h2>
             <x-form-format-key>
-                <input type="text" name="Lastname" placeholder="{{$lastname}}" class="form-input">
+                <input type="text" name="Lastname" placeholder="Last Name" value="{{$lastname}}" class="form-input">
             </x-form-format-key>
         </div>
 
-        @if(session('incorrect'))
+        @if(session('error'))
             <div>
-                <h2 style="color: red;">{{session('incorrect')}}</h2>
+                <h2 style="color: red;">{{session('error')}}</h2>
             </div>
         @endif
 
