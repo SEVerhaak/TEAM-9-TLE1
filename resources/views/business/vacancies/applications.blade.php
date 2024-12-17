@@ -29,7 +29,6 @@
 
                     <form method="POST" action="{{route('vacancy.accept', ['business' => $business->id, 'vacancy' => $vacancy->id])}}">
                         @csrf
-{{--                        @method('PUT')--}}
                         <div>
                             <label for="amountOfPeople">Selecteer het sollicitanten dat u wilt accepteren</label>
                             <input name="amountOfPeople" type="number" max="{{$waitListCounter}}">
@@ -38,7 +37,11 @@
                     </form>
 
                 </div>
+
+
+                <h2>Sollicitanten in wachtrij</h2>
                 <table>
+
                     <tr>
                         <th>Positie in wachtrij</th>
                         <th>Status</th>
@@ -51,6 +54,30 @@
                             <tr>
                                 <td>{{$application->wait_list}}</td>
                                 <td>{{$application->application_stage_formatted}}</td>
+                                <td>{{$application->created_at}}</td>
+                                <td>{{$application->id}}</td>
+                            </tr>
+                        @endif
+
+                    @endforeach
+                </table>
+
+
+                <h2>Uitgenodigde Sollicitanten</h2>
+                <table>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Status</th>
+                        <th>Aanmeldingsdatum</th>
+                        <th>Aanmeldingsnummer</th>
+                    </tr>
+
+                    @foreach($applications as $application)
+                        @if($application->application_stage === 1)
+                            <tr>
+                                <td>{{$application->wait_list}}</td>
+                                <td class="green">{{$application->application_stage_formatted}}</td>
                                 <td>{{$application->created_at}}</td>
                                 <td>{{$application->id}}</td>
                             </tr>
@@ -111,10 +138,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 1rem;
     }
 
     .container-layout-top h3 {
         width: 40%;
+        margin: 0;
     }
 
     .applications-container h2 {
@@ -124,13 +153,17 @@
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 60rem;
+        table-layout: fixed;
+    }
+    .application-container-layout h2 {
+        margin-top:3rem;
     }
 
     td, th {
         border: 1px solid #dddddd;
         text-align: left;
-        padding: 8px;
+        padding: 0.6rem;
     }
 
     tr:nth-child(even) {
@@ -141,4 +174,8 @@
         display: flex;
         flex-direction: column;
     }
+    .green {
+        background-color: #00ad5d;
+    }
+
 </style>

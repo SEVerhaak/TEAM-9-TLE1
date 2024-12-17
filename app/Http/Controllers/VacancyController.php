@@ -264,14 +264,14 @@ class VacancyController extends Controller
 
         $waitListCounter = 0;
         foreach ($applications as $application) {
+            $application->application_stage_formatted = match ($application->application_stage) {
+                0 => "Wachtend",
+                1 => "Uitgenodigd",
+                2 => "Geweigerd",
+                default => "Onbekend", // Future-proofing
+            };
             if ($application->application_stage == 0) {
                 $waitListCounter++;
-                $application->application_stage_formatted = match ($application->application_stage) {
-                    0 => "Wachtend",
-                    1 => "Geaccepteerd",
-                    2 => "Geweigerd",
-                    default => "Onbekend", // Future-proofing
-                };
                 $application->wait_list = $waitListCounter;
             }
         }
