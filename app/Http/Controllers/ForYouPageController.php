@@ -15,6 +15,10 @@ class ForYouPageController extends Controller
      */
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
+
         $userId = auth()->id();
 
         // Get all vacancy IDs the user has applied for
@@ -40,6 +44,10 @@ class ForYouPageController extends Controller
 
     public function acceptVacancy(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
+
         $vacancies = json_decode($request->input('vacancies'), true); // Decode the vacancies JSON
 
         // Retrieve accepted and denied vacancies from session
@@ -55,6 +63,9 @@ class ForYouPageController extends Controller
 
     public function denyVacancy(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         $vacancies = json_decode($request->input('vacancies'), true); // Decode the vacancies JSON
 
         // Retrieve accepted and denied vacancies from session
@@ -69,6 +80,9 @@ class ForYouPageController extends Controller
 
     public function rejectedVacancyShowNewVacancy($vacancyOld, $acceptedVacancies, $deniedVacancies)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         $userId = auth()->id(); // Get the authenticated user's ID
         $vacancyOldId = $vacancyOld[0]['id']; // The ID of the current vacancy
 
@@ -97,11 +111,17 @@ class ForYouPageController extends Controller
 
     public function empty()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         return view('for-you-page.out-of-vacancies');
     }
 
     public function acceptedVacancyShowNewVacancy($vacancyOld, $acceptedVacancies, $deniedVacancies)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         $userId = auth()->id(); // Get the authenticated user's ID
         $vacancyOldId = $vacancyOld[0]['id']; // The ID of the current vacancy
 
@@ -131,6 +151,9 @@ class ForYouPageController extends Controller
 
     public function resetStorage()
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         session()->forget('acceptedVacancies');
         session()->forget('deniedVacancies');
 
@@ -140,6 +163,9 @@ class ForYouPageController extends Controller
 
     public function userApply($vacancyId)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Je moet ingelogd zijn om je gepersonaliseerde vacatures in te zien');
+        }
         $userId = Auth::id();
 
         // Check if the user has already applied to the given vacancy

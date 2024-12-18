@@ -2,6 +2,12 @@
 
 <style>
 
+    #link-fix{
+        text-decoration: none;
+        color: black;
+        font-size: larger;
+        font-weight: bolder;
+    }
 
     h1 {
         /*font-size: 3rem;*/
@@ -101,6 +107,7 @@
     .bericht {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .bericht a {
@@ -188,13 +195,13 @@
 @endif
 
             <div class="bericht">
-                <a href="">Stuur een bericht <br>
+                <a id="link-fix" href="">Stuur een bericht <br>
                     naar de werkgever</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="39.67" height="39.67" viewBox="0 0 39.67 39.67">
                     <defs>
                         <style>
                             .cls-1 {
-                                fill: #fff;
+                                fill: black;
                             }
                         </style>
                     </defs>

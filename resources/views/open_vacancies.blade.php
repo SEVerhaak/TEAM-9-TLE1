@@ -6,7 +6,7 @@
     @if (session('message'))
         <div
             style="
-                color: #B20060;
+                color: #BF212F;
                 text-align: center;">
             <h1>{{ session('message') }}</h1>
         </div>
@@ -40,7 +40,9 @@
             </button>
         </div>
     </form>
-
+    <button class="fyp-button">
+        <a href="{{route('fyp.index')}}">Ga naar vacatures voor jou!</a>
+    </button>
     @foreach($vacancies as $vacancy)
         <div class="result-container">
             <h2>{{$vacancy->name}}</h2>
@@ -180,6 +182,28 @@
         padding: 1rem 0;
         text-indent: 2rem;
         margin: 1rem;
+    }
+
+    .fyp-button{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        margin: 1.5rem 0 0 0;
+        background-color: #b4085c;
+        border: none;
+        border-radius: 1.5rem 0 1.5rem 1.5rem;
+        width: 90vw;
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        font-weight: 500;
+        font-family: "Radikal Trial", sans-serif;
+        text-decoration: none;
+    }
+
+    .fyp-button a{
+        color: white !important;
+        text-decoration: none;
     }
 
 </style>

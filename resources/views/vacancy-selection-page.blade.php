@@ -14,26 +14,30 @@
     </div>
 </div>
 
-<div class="alles alt">
-    <h1 class="tekstAlles">Vacatures voor jou</h1>
+<div class="alles alt" id="clickable-alt">
+    <h1 class="tekstAlles">Mijn inschrijvingen</h1>
     <div>
-        <x-icon-people-check-svg class="icon"></x-icon-people-check-svg>
+        <x-icon-people-inschrijving-svg class="icon"></x-icon-people-inschrijving-svg>
     </div>
-</div>
-
-<div class="aanmeldingen">
-    <a href="{{route('dashboard')}}" style="flex-grow: 1;">Ga naar mijn aanmeldingen</a>
 </div>
 
 
 <script>
 
     let allVacanciesButton = document.getElementById('clickable')
+    let allVacanciesButton2 = document.getElementById('clickable-alt')
     allVacanciesButton.addEventListener('click', redirect)
+    allVacanciesButton2.addEventListener('click', redirect2)
+
 
     function redirect(){
         console.log('test')
         window.location.href = "{{route('open_vacancies.index')}}"
+    }
+
+    function redirect2(){
+        console.log('test')
+        window.location.href = "{{route('dashboard')}}"
     }
 
 </script>

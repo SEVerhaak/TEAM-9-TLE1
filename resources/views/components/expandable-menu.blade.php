@@ -82,7 +82,7 @@
 <!-- Expandable Box -->
 <div id="expandable-box">
     <div class="box-header" onclick="toggleExpand()">
-        <span id="flags" style="font-size: xx-large">🇩🇪</span>  <!-- Use + symbol when collapsed -->
+        <span id="flags" style="font-size: xx-large">🇩🇪</span>
     </div>
     <div class="box-content">
         <div id="google_translate_element"></div>

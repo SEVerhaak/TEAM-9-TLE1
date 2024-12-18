@@ -118,10 +118,9 @@
         font-weight: bold;
         width: max-content;
         background-color: #faec02;
-        padding: 3vw;
-        border-radius: 100rem;
-        border-top-left-radius: 0.3rem !important;
+        border-radius: 0 1rem 1rem 1rem;
         margin:0;
+        padding: 0.8rem;
     }
     .requirements h1 {
         margin: 0 0 0.8rem 0 ;
@@ -135,20 +134,19 @@
         gap: 1rem;
         justify-content: center;
         align-items: center;
-        margin: 1.2rem 0 0 0;
+        margin: 1.5rem 0 0 0;
         background-color: #b4085c;
         border: none;
-        border-radius: 100rem;
+        border-radius: 1.5rem 0 1.5rem 1.5rem;
         color: white;
         width: 90vw;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
         font-size: 1.5rem;
         font-weight: 500;
         font-family: "Radikal Trial", sans-serif;
     }
     .info-container {
-        border-radius: 2rem;
-        border-top-right-radius: 0.3rem !important;
+        border-radius: 0 1.5rem 1.5rem 1.5rem;
         margin-top:1rem;
         background-color: #faec02;
         display: flex;

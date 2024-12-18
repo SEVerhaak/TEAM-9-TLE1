@@ -5,7 +5,7 @@
 
     .transparent-button-1 {
         margin-top: 1rem;
-        padding: 0.3rem 1rem;
+        padding: 0.5rem 1rem;
         border: none;
         border-radius: 0 1rem 1rem 1rem;
         background-color: #ffe100;
@@ -15,7 +15,7 @@
     }
     .transparent-button-2 {
         margin-top: 1rem;
-        padding: 0.3rem 3rem;
+        padding: 0.5rem 3rem;
         border: none;
         border-radius: 0 1rem 1rem 1rem;
         font-weight: bold;
@@ -74,10 +74,7 @@
         display: flex;
         flex-direction: column;
         align-items: start;
-        margin-top: 0vh;
-        margin-bottom: 4rem;
         gap: 1vh;
-
         font-size: 1.3rem;
     }
 

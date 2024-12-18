@@ -7,7 +7,7 @@
     <h2 style="text-align: center;margin-top: 5rem;">Aanmelding voltooid! U ontvangt een bericht als u aangenomen bent voor de functie:</h2>
     <h1 style="text-align: center">{{$position}}</h1>
     <h1 style="text-align: center; font-size: 6rem; margin: 0.5rem 0;">🥳</h1>
-    <button class="vac-button"><a href="{{route('open_vacancies.index')}}">Ga naar mijn aanmeldingen</a></button>
+    <button class="vac-button"><a href="{{route('dashboard')}}">Ga naar mijn aanmeldingen</a></button>
     <button class="account-button"><a href="{{route('open_vacancies.index')}}">Ga naar openstaande vacatures</a></button>
 </div>
 <script type="module">
