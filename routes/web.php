@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\ForYouPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\SettingsController;
@@ -12,17 +13,13 @@ Route::get('/', function () {
     return view('home.index');
 })->name('home');
 
-Route::get('/test', function () {
-    return view('login.registration-confirmed');
-});
+Route::get('/fyp', [ForYouPageController::class, 'index'])->name('fyp.index');
+Route::get('/fyp/out-of-vacancies', [ForYouPageController::class, 'empty'])->name('fyp.out-of-vacancies');
+Route::get('/fyp/confirm', [ForYouPageController::class, 'confirm'])->name('fyp.confirm');
+Route::post('/fyp/accept', [ForYouPageController::class, 'acceptVacancy'])->name('fyp.acceptVacancy');
+Route::post('/fyp/deny', [ForYouPageController::class, 'denyVacancy'])->name('fyp.denyVacancy');
 
-Route::get('/fyp', [\App\Http\Controllers\ForYouPageController::class, 'index'])->name('fyp.index');
-Route::get('/fyp/out-of-vacancies', [\App\Http\Controllers\ForYouPageController::class, 'empty'])->name('fyp.out-of-vacancies');
-Route::get('/fyp/confirm', [\App\Http\Controllers\ForYouPageController::class, 'confirm'])->name('fyp.confirm');
-Route::post('/fyp/accept', [\App\Http\Controllers\ForYouPageController::class, 'acceptVacancy'])->name('fyp.acceptVacancy');
-Route::post('/fyp/deny', [\App\Http\Controllers\ForYouPageController::class, 'denyVacancy'])->name('fyp.denyVacancy');
-
-Route::get('/fyp/reset', [\App\Http\Controllers\ForYouPageController::class, 'resetStorage'])->name('fyp.reset');
+Route::get('/fyp/reset', [ForYouPageController::class, 'resetStorage'])->name('fyp.reset');
 
 
 // login routes and web
@@ -44,10 +41,7 @@ Route::get('/register/choice', function () {
 Route::get('/register/success', function () {
     return view('login.registration-confirmed');
 })->name('register.success');
-// JUNO CSS TEST PAGE
-Route::get('/junotest', function () {
-    return view('user-vacancy-overview.application-details');
-});
+
 
 // Settings routes
 Route::get('/settings/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.index');
