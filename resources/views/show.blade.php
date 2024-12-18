@@ -55,6 +55,9 @@
         @foreach($vacancy->certificates as $certificate)
             <p class="certificate">{{$certificate->name}}</p>
         @endforeach
+        @if($vacancy->certificates->count() < 1)
+                <p>Deze vacature heeft geen vereisten</p>
+            @endif
         </div>
     </div>
 
@@ -172,6 +175,9 @@
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
+    }
+    .certificates-container p {
+        margin-top: 0;
     }
     .certificate {
         font-weight: bold;
