@@ -68,7 +68,7 @@ use Carbon\Carbon;
                             </div>
                         </div>
                         <div class="vacancy-links">
-                            <a class="more-info green" href="{{route('business.edit', $business->id)}}">Accepteer
+                            <a class="more-info green" href="{{route('vacancy.applications', ['business' => $business->id, 'vacancy' => $vacancy->id])}}">Accepteer
                                 Sollicitaties
                                 <x-icon-info-svg width="20" height="20"></x-icon-info-svg>
                             </a>

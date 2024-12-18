@@ -12,6 +12,7 @@ use function Laravel\Prompts\error;
 
 class VacancyController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -129,8 +130,10 @@ class VacancyController extends Controller
     {
         $userId = Auth::id();
 
-        $vacancies = UserVacancy::where('user_id', $userId)->orderBy('created_at', 'desc')->take(1)->get();
-        return view('dashboard', compact('vacancies'));
+        $pending = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('created_at', 'desc')->first();
+        $invited = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('created_at', 'desc')->first();
+        $denied = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('created_at', 'desc')->first();
+        return view('dashboard', compact('pending', 'invited', 'denied'));
     }
 
     public function registrationData()
@@ -143,36 +146,43 @@ class VacancyController extends Controller
         return view('registrations_data', compact('vacancyAccepted', 'vacancyPending', 'vacancyDenied'));
     }
 
-    public function pendingRegistrations(){
+    public function pendingRegistrations()
+    {
         $userId = Auth::id();
         $application = 0;
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 0)->orderBy('updated_at', 'desc')->get();
-        foreach ($vacancies as $vacancy){
+        foreach ($vacancies as $vacancy) {
             $vacancy->placement = $this->showPlaceInQueue($vacancy);;
         }
         return view('status', compact('vacancies', 'application'));
     }
-    public function deniedRegistrations(){
+
+    public function deniedRegistrations()
+    {
         $userId = Auth::id();
         $application = 2;
 
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 2)->orderBy('updated_at', 'desc')->get();
         return view('status', compact('vacancies', 'application'));
     }
-    public function acceptedRegistrations(){
+
+    public function acceptedRegistrations()
+    {
         $userId = Auth::id();
         $application = 1;
         $vacancies = UserVacancy::where('user_id', $userId)->where('application_stage', 1)->orderBy('updated_at', 'desc')->get();
         return view('status', compact('vacancies', 'application'));
     }
 
-    public function showApplication($id){
+    public function showApplication($id)
+    {
         $application = Uservacancy::findOrFail($id);
         return view('user-vacancy-overview.application-details', compact('application'));
     }
 
-    public function showPlaceInQueue($vacancy){
+    public function showPlaceInQueue($vacancy)
+    {
         $dateS = $vacancy->created_at;
         $queue = UserVacancy::where('vacancy_id', $vacancy->vacancy_id)->whereDate('created_at', '<', $vacancy->created_at)->count();
         return $queue;
@@ -180,7 +190,7 @@ class VacancyController extends Controller
 
     public function checkUserAlreadyApplied(vacancy $vacancy)
     {
-        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+        $userAlreadyApplied = UserVacancy::where('vacancy_id', $vacancy->id)->where('user_id', Auth::id())->get();
         if (!empty($userAlreadyApplied->all())) {
             return $userApplyStatus = "Aanmelding annuleren";
         } else {
@@ -202,7 +212,7 @@ class VacancyController extends Controller
 
 
         $userApplyStatus = $this->checkUserAlreadyApplied($vacancy);
-        $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
+        $userAlreadyApplied = UserVacancy::where('vacancy_id', $vacancy->id)->where('user_id', Auth::id())->get();
         //Check of je op de 1e knop klikt die je krijgt op de details pagina
         //Als je nog op details pagina bent redirect je naar de confirm pagina
         if (isset($_POST['redirect'])) {
@@ -217,7 +227,6 @@ class VacancyController extends Controller
 
             //Check of er door de gebruiker die nu is ingelogd al een keer aangemeld is voor de specifieke vacature
             if (Auth::check()) {
-//            $userAlreadyApplied = UserVacancy::all()->where('vacancy_id', $vacancy->id)->where('user_id', Auth::id());
                 if (empty($userAlreadyApplied->all())) {
                     //Maak nieuwe aanmelding als er geen aanmeldingen van deze gebruiker voor deze specifieke vacature is
                     $application = new userVacancy();
@@ -247,5 +256,52 @@ class VacancyController extends Controller
             return redirect()->route('open_vacancies.succes', ['position' => $vacancyName]);
 
         }
+    }
+
+    public function viewApplications(string $id, vacancy $vacancy)
+    {
+
+        $business = Business::where('id', $id)->first();
+        $applications = UserVacancy::where('vacancy_id', $vacancy->id)->get();
+
+        $waitListCounter = 0;
+        foreach ($applications as $application) {
+            $application->application_stage_formatted = match ($application->application_stage) {
+                0 => "Wachtend",
+                1 => "Uitgenodigd",
+                2 => "Geweigerd",
+                default => "Onbekend", // Future-proofing
+            };
+            if ($application->application_stage == 0) {
+                $waitListCounter++;
+                $application->wait_list = $waitListCounter;
+            }
+        }
+        session(['waitListCounter' => $waitListCounter]);
+
+        return view('business/vacancies/applications', compact('business', 'applications', 'vacancy', 'waitListCounter'));
+    }
+
+    public function acceptHandler(Request $request)
+    {
+
+        $request->validate(
+            [
+                'amountOfPeople' => 'required|integer|min:1|max:' . session('waitListCounter'),
+            ],
+            [
+                'amountOfPeople.min' => 'U moet minimaal 1 sollicitant aannemen',
+                'amountOfPeople.max' => 'U kunt op dit moment niet meer dan ' . session('waitListCounter') . ' sollicitanten accepteren.',
+            ]
+        );
+
+        $applications = UserVacancy::where('vacancy_id', $request->vacancy)->where('application_stage', 0)->take($request->amountOfPeople)->get();
+
+        foreach ($applications as $application) {
+            $application->application_stage = 1;
+            $application->save();
+        }
+        session(['waitListCounter' => 0]);
+        return redirect()->route('vacancy.applications', ['business' => $request->business, 'vacancy' => $request->vacancy]);
     }
 }

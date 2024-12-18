@@ -141,47 +141,46 @@
     <h1 class="header-text">Account<br></h1>
 </div>
 
-<div class="wrapper m-bottom">
-    <form method="POST" action="{{ route('settings.account') }}" class="form">
+<div class="wrapper">
+    <form method="POST" action="{{ route('settings.storesettings') }}" class="form">
         @csrf <!-- Include CSRF token for security -->
 
         <div>
             <h2>E-mail</h2>
             <x-form-format>
-                <input type="text" name="email" placeholder="{{$email}}" class="form-input">
+                <input type="text" name="email" placeholder="E-mail" value="{{$email}}" class="form-input">
             </x-form-format>
         </div>
 
         <div>
             <h2>Voornaam</h2>
             <x-form-format-key>
-                <input type="text" name="Firstname" placeholder="{{$firstname}}" class="form-input">
+                <input type="text" name="Firstname" placeholder="First Name" value="{{$firstname}}" class="form-input">
             </x-form-format-key>
         </div>
 
         <div>
             <h2>Achternaam</h2>
             <x-form-format-key>
-                <input type="text" name="Lastname" placeholder="{{$lastname}}" class="form-input">
+                <input type="text" name="Lastname" placeholder="Last Name" value="{{$lastname}}" class="form-input">
             </x-form-format-key>
         </div>
 
-        @if(session('incorrect'))
+        @if(session('error'))
             <div>
-                <h2 style="color: red;">{{session('incorrect')}}</h2>
+                <h2 style="color: red;">{{session('error')}}</h2>
             </div>
         @endif
 
         <div class="wachtwoord">
             <h2 class="titel">wachtwoord</h2>
             <div class="input">
-                <x-form-format-key>
-                    <input type="password" name="password" placeholder="Wachtwoord" class="form-input">
-                </x-form-format-key>
+            <x-form-format-key >
+                <input type="password" name="password" placeholder="Wachtwoord" class="form-input" >
+            </x-form-format-key>
             </div>
             <div class="infoContainer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "45"}}" height="{{$height ?? "45"}}"
-                     viewBox="0 0 24.773 24.773" class="info1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "45"}}" height="{{$height ?? "45"}}" viewBox="0 0 24.773 24.773" class="info1">
                     <defs>
                         <style>
                             .cls-11 {
@@ -189,13 +188,13 @@
                             }
                         </style>
                     </defs>
-                    <path id="Icon_fa-solid-circle-info" data-name="Icon fa-solid-circle-info" class="cls-11"
-                          d="M12.386,24.773A12.386,12.386,0,1,0,0,12.386,12.386,12.386,0,0,0,12.386,24.773Zm-1.935-8.516h1.161v-3.1H10.451a1.161,1.161,0,1,1,0-2.322h2.322A1.158,1.158,0,0,1,13.935,12v4.258h.387a1.161,1.161,0,1,1,0,2.322H10.451a1.161,1.161,0,1,1,0-2.322ZM12.386,6.193a1.548,1.548,0,1,1-1.548,1.548A1.548,1.548,0,0,1,12.386,6.193Z"/>
+                    <path id="Icon_fa-solid-circle-info" data-name="Icon fa-solid-circle-info" class="cls-11" d="M12.386,24.773A12.386,12.386,0,1,0,0,12.386,12.386,12.386,0,0,0,12.386,24.773Zm-1.935-8.516h1.161v-3.1H10.451a1.161,1.161,0,1,1,0-2.322h2.322A1.158,1.158,0,0,1,13.935,12v4.258h.387a1.161,1.161,0,1,1,0,2.322H10.451a1.161,1.161,0,1,1,0-2.322ZM12.386,6.193a1.548,1.548,0,1,1-1.548,1.548A1.548,1.548,0,0,1,12.386,6.193Z"/>
                 </svg>
 
                 <p class="info2">Om uw wijzingen op te slaan moet u uw wachtwoord invoeren</p>
             </div>
         </div>
+
 
 
         <div class="buttonContainer">

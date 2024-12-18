@@ -3,6 +3,7 @@
 </x-template>
 
 <body>
+@vite('resources/js/tutorial.js')
 
 <div class="wrapper">
     <!-- section 1 -->
@@ -61,7 +62,7 @@
         <div class="step-container">
             <h1>3</h1>
             <p>
-                Je ontvangt een bericht als je bent aangenomen met instructies om het proces af te ronden!
+                Je ontvangt een bericht als je bent uitgenodigd met instructies om het proces af te ronden!
             </p>
         </div>
 

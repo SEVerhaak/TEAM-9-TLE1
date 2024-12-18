@@ -9,17 +9,17 @@
 <div class="wrapper">
 
     <div class="aangenomentitel">
-        <h2>Aangenomen</h2><a href="{{route('accepted_registrations')}}" class="more-info">Toon meer</a>
+        <h2>Uitgenodigd</h2><a href="{{route('accepted_registrations')}}" class="more-info">Toon meer</a>
     </div>
     <section class="Aangenomen">
-        @if(count($vacancies) !== 0)
-            @foreach($vacancies as $vacancy)
-                @if($vacancy->application_stage == 1)
+        @if(!empty($invited))
+{{--            @foreach($vacancies as $vacancy)--}}
+{{--                @if($vacancy->application_stage == 1)--}}
                     <div class="name">
-                        <h2> {{$vacancy->vacancy->name}}</h2>
+                        <h2> {{$invited->vacancy->name}}</h2>
                     </div>
                     <div class="business">
-                        <p> {{$vacancy->vacancy->business->name}}</p>
+                        <p> {{$invited->vacancy->business->name}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "14.666"}}"
                              height="{{$height ?? "19.555"}}" viewBox="0 0 14.666 19.555">
                             <path id="Icon_fa-solid-building" data-name="Icon fa-solid-building"
@@ -27,7 +27,7 @@
                         </svg>
                     </div>
                     <div class="location">
-                        <p> {{$vacancy->vacancy->business->hq_location}}</p>
+                        <p> {{$invited->vacancy->business->hq_location}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "16.5"}}"
                              height="{{$height ?? "14.45"}}"
                              viewBox="0 0 16.5 14.45">
@@ -36,7 +36,7 @@
                         </svg>
                     </div>
                     <div class="geld">
-                        <p> {{$vacancy->vacancy->salary}}</p>
+                        <p> {{$invited->vacancy->salary}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="tijd">
-                        <p> {{$vacancy->vacancy->time_hours}}</p>
+                        <p> {{$invited->vacancy->time_hours}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -57,7 +57,7 @@
                     </div>
                     <!-- Green icon section -->
                     <div class="aangenomenicon">
-                        <h2>Aangenomen</h2>
+                        <h2>Uitgenodigd</h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="8%" height="8%" viewBox="0 0 28.5 28.5">
                             <defs>
                                 <style>
@@ -70,10 +70,10 @@
                                   d="M14.25,28.5A14.25,14.25,0,1,0,0,14.25,14.25,14.25,0,0,0,14.25,28.5Zm6.29-16.866-7.125,7.125a1.33,1.33,0,0,1-1.887,0L7.966,15.2a1.334,1.334,0,0,1,1.887-1.887l2.616,2.616,6.179-6.184a1.334,1.334,0,1,1,1.887,1.887Z"/>
                         </svg>
                     </div>
-                @else
-                    <h1 style="text-align: center">Geen resultaten</h1>
-                @endif
-            @endforeach
+{{--                @else--}}
+{{--                    <h1 style="text-align: center">Geen resultaten</h1>--}}
+{{--                @endif--}}
+{{--            @endforeach--}}
         @else
             <h1 style="text-align: center">Geen resultaten</h1>
         @endif
@@ -83,14 +83,14 @@
         <h2>In Afwachting</h2><a href="{{route('pending_registrations')}}" class="more-info">Toon meer</a>
     </div>
     <section class="InAfwachting">
-        @if(count($vacancies) !== 0)
-            @foreach($vacancies as $vacancy)
-                @if($vacancy->application_stage == 0)
+        @if(!empty($pending))
+{{--            @foreach($vacancies as $vacancy)--}}
+{{--                @if($vacancy->application_stage == 0)--}}
                     <div class="name">
-                        <h2> {{$vacancy->vacancy->name}}</h2>
+                        <h2> {{$pending->vacancy->name}}</h2>
                     </div>
                     <div class="business">
-                        <p> {{$vacancy->vacancy->business->name}}</p>
+                        <p> {{$pending->vacancy->business->name}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "14.666"}}"
                              height="{{$height ?? "19.555"}}" viewBox="0 0 14.666 19.555">
                             <path id="Icon_fa-solid-building" data-name="Icon fa-solid-building"
@@ -98,7 +98,7 @@
                         </svg>
                     </div>
                     <div class="location">
-                        <p> {{$vacancy->vacancy->business->hq_location}}</p>
+                        <p> {{$pending->vacancy->business->hq_location}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "16.5"}}"
                              height="{{$height ?? "14.45"}}"
                              viewBox="0 0 16.5 14.45">
@@ -107,7 +107,7 @@
                         </svg>
                     </div>
                     <div class="geld">
-                        <p> {{$vacancy->vacancy->salary}}</p>
+                        <p> {{$pending->vacancy->salary}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -117,7 +117,7 @@
 
                     </div>
                     <div class="tijd">
-                        <p> {{$vacancy->vacancy->time_hours}}</p>
+                        <p> {{$pending->vacancy->time_hours}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -141,10 +141,10 @@
                         </svg>
 
                     </div>
-                @else
-                    <h1 style="text-align: center">Geen resultaten</h1>
-                @endif
-            @endforeach
+{{--                @else--}}
+{{--                    <h1 style="text-align: center">Geen resultaten</h1>--}}
+{{--                @endif--}}
+{{--            @endforeach--}}
 
         @else
             <h1 style="text-align: center">Geen resultaten</h1>
@@ -156,15 +156,14 @@
         <h2>Afgewezen</h2><a href="{{route('denied_registrations')}}" class="more-info">Toon meer</a>
     </div>
     <section class="denied">
-        @if(count($vacancies) !== 0)
-            @foreach($vacancies as $vacancy)
-                @if($vacancy->application_stage == 2)
-                    <
+        @if(!empty($denied))
+{{--            @foreach($vacancies as $vacancy)--}}
+{{--                @if($vacancy->application_stage == 2)--}}
                     <div class="name">
-                        <h2> {{$vacancy->vacancy->name}}</h2>
+                        <h2> {{$denied->vacancy->name}}</h2>
                     </div>
                     <div class="business">
-                        <p> {{$vacancy->vacancy->business->name}}</p>
+                        <p> {{$denied->vacancy->business->name}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "14.666"}}"
                              height="{{$height ?? "19.555"}}" viewBox="0 0 14.666 19.555">
                             <path id="Icon_fa-solid-building" data-name="Icon fa-solid-building"
@@ -173,7 +172,7 @@
                     </div>
 
                     <div class="location">
-                        <p> {{$vacancy->vacancy->business->hq_location}}</p>
+                        <p> {{$denied->vacancy->business->hq_location}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "16.5"}}"
                              height="{{$height ?? "14.45"}}"
                              viewBox="0 0 16.5 14.45">
@@ -182,7 +181,7 @@
                         </svg>
                     </div>
                     <div class="geld">
-                        <p> {{$vacancy->vacancy->salary}}</p>
+                        <p> {{$denied->vacancy->salary}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -192,7 +191,7 @@
 
                     </div>
                     <div class="tijd">
-                        <p> {{$vacancy->vacancy->time_hours}}</p>
+                        <p> {{$denied->vacancy->time_hours}}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="{{$width ?? "17.5"}}"
                              height="{{$height ?? "17.5"}}"
                              viewBox="0 0 17.5 17.5">
@@ -216,10 +215,10 @@
                                   d="M15.25,30.5A15.25,15.25,0,1,0,0,15.25,15.25,15.25,0,0,0,15.25,30.5Zm0-22.875a1.426,1.426,0,0,1,1.43,1.43v6.672a1.43,1.43,0,0,1-2.859,0V9.055A1.426,1.426,0,0,1,15.25,7.625ZM13.344,20.969a1.906,1.906,0,1,1,1.906,1.906A1.906,1.906,0,0,1,13.344,20.969Z"/>
                         </svg>
                     </div>
-                @else
-                    <h1 style="text-align: center">Geen resultaten</h1>
-                @endif
-            @endforeach
+{{--                @else--}}
+{{--                    <h1 style="text-align: center">Geen resultaten</h1>--}}
+{{--                @endif--}}
+{{--            @endforeach--}}
 
         @else
             <h1 style="text-align: center">Geen resultaten</h1>

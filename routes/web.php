@@ -50,19 +50,21 @@ Route::get('/junotest', function () {
 });
 
 // Settings routes
-Route::get('/settings/settings', [SettingsController::class, 'index'])->name('settings.index');
-Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->name('preferences');
+Route::get('/settings/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.index');
+Route::get('/settings/preferences', [SettingsController::class, 'preferences'])->middleware(['auth', 'verified'])->name('preferences');
 
-Route::get('settings/account', [\App\Http\Controllers\SettingsController::class, 'account'])->name('settings.account');
-Route::post('settings/account', [\App\Http\Controllers\SettingsController::class, 'storesettings'])->name('settings.account');
+Route::get('settings/account', [SettingsController::class, 'account'])->middleware(['auth', 'verified'])->name('settings.account');
+Route::post('settings/account', [SettingsController::class, 'storesettings'])->middleware(['auth', 'verified'])->name('settings.storesettings');
 
-Route::get('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'preferences'])->name('settings.preferences');
-Route::post('settings/preferences', [\App\Http\Controllers\SettingsController::class, 'storepreferences'])->name('settings.preferences');
+Route::get('settings/preferences', [SettingsController::class, 'preferences'])->middleware(['auth', 'verified'])->name('settings.preferences');
+Route::post('settings/preferences', [SettingsController::class, 'storepreferences'])->middleware(['auth', 'verified'])->name('settings.preferences');
 
-Route::get('settings/password', [\App\Http\Controllers\SettingsController::class, 'password'])->name('settings.password');
-Route::post('settings/password', [\App\Http\Controllers\SettingsController::class, 'storepassword'])->name('settings.password');
+Route::get('settings/password', [SettingsController::class, 'password'])->middleware(['auth', 'verified'])->name('settings.password');
+Route::post('settings/password', [SettingsController::class, 'storepassword'])->middleware(['auth', 'verified'])->name('settings.password');
 
-
+Route::get('settings/navigation', function () {
+    return view('settings/my-links');
+})->middleware(['auth', 'verified'])->name('settings.my-links');
 
 Route::get('/vacature-selectie', function () {
     return view('vacancy-selection-page');
@@ -95,20 +97,30 @@ Route::post('/open_vacancies/{vacancy}/apply', [VacancyController::class, 'vacan
 Route::get('my-businesses', [BusinessController::class, 'index'])->name('business.index');
 Route::get('business/{business}', [BusinessController::class, 'show'])->name('business.show');
 
+
+
+//Middleware that checks if you're a CEO or Admin for a specific business
 Route::middleware(BusinessPermissionMiddleware::class)->group(function () {
+
+    //CRUD functions for dashboard
     Route::get('business/create', [BusinessController::class, 'create'])->name('business.create');
     Route::post('business', [BusinessController::class, 'store'])->name('business.store');
     Route::get('business/{business}/edit', [BusinessController::class, 'edit'])->name('business.edit');
     Route::put('business/{business}', [BusinessController::class, 'update'])->name('business.update');
     Route::delete('business/{business}', [BusinessController::class, 'destroy'])->name('business.destroy');
-
     Route::get('business/{business}/dashboard', [BusinessController::class, 'dashboard'])->name('business.dashboard');
+
+    //Crud Routes for vacancy management
     Route::get('business/{business}/vacancies', [BusinessController::class, 'vacancies'])->name('business.vacancies');
     Route::get('business/{business}/vacancy/create', [VacancyController::class, 'create'])->name('vacancy.create');
     Route::post('business/{business}/vacancy/store', [VacancyController::class, 'store'])->name('vacancy.store');
     Route::get('business/{business}/vacancy/{vacancy}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
     Route::put('business/{business}/vacancy/{vacancy}/store', [VacancyController::class, 'update'])->name('vacancy.update');
     Route::delete('business/{business}/vacancy/{vacancy}/delete', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
+
+    //Manage applications for specific vacancies
+    Route::get('business/{business}/vacancy/{vacancy}/applications', [VacancyController::class, 'viewApplications'])->name('vacancy.applications');
+    Route::post('business/{business}/vacancy/{vacancy}/accept', [VacancyController::class, 'acceptHandler'])->name('vacancy.accept');
 });
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
