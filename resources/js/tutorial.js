@@ -55,7 +55,6 @@ function startTutorial() {
     tutorial.style.backgroundColor = 'white';
     tutorial.style.padding = '0.6rem';
     tutorial.style.borderRadius = '10px';
-    tutorial.style.fontFamily = 'Radikal-trial';
     // tutorial.style.fontWeight = 'bold';
     tutorial.style.fontSize = '1rem';
     document.getElementById('stepOne').style.fontWeight = 'bolder';
@@ -97,7 +96,6 @@ function stepOne() {
     firstStep.style.backgroundColor = 'white';
     firstStep.style.padding = '0.3rem';
     firstStep.style.borderRadius = '10px';
-    firstStep.style.fontFamily = 'Radikal-trial';
     // tutorial.style.fontWeight = 'bold';
     firstStep.style.fontSize = '1rem';
 
@@ -158,7 +156,6 @@ function stepTwo() {
     secondStep.style.backgroundColor = 'white';
     secondStep.style.padding = '0.3rem';
     secondStep.style.borderRadius = '10px';
-    secondStep.style.fontFamily = 'Radikal-trial';
     // tutorial.style.fontWeight = 'bold';
     secondStep.style.fontSize = '1rem';
 
@@ -217,7 +214,6 @@ function stepThree() {
     thirdStep.style.backgroundColor = 'white';
     thirdStep.style.padding = '0.3rem';
     thirdStep.style.borderRadius = '10px';
-    thirdStep.style.fontFamily = 'Radikal-trial';
     // tutorial.style.fontWeight = 'bold';
     thirdStep.style.fontSize = '1rem';
 
@@ -281,7 +277,6 @@ function stepFour() {
     thirdStep.style.backgroundColor = 'white';
     thirdStep.style.padding = '0.3rem';
     thirdStep.style.borderRadius = '10px';
-    thirdStep.style.fontFamily = 'Radikal-trial';
     // tutorial.style.fontWeight = 'bold';
     thirdStep.style.fontSize = '1rem';
     thirdStep.style.border = 'solid black 1px';
