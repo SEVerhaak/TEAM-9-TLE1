@@ -6,7 +6,7 @@
             :colour="$selected === 0 ? '#B20060' : 'black'"
             class="icon">
         </x-home-menu-icon-svg>
-        <h4 class="menu-text">Thuis</h4>
+        <h4 class="menu-text">Home</h4>
     </div>
     <div class="search button-container" id="search">
         <x-icon-receipt-svg
@@ -20,7 +20,7 @@
             :colour="$selected === 2 ? '#B20060' : 'black'"
             class="icon">
         </x-icon-gear-svg>
-        <h4 class="menu-text-smaller">Instellingen</h4>
+        <h4 class="menu-text-smaller">Settings</h4>
     </div>
 </div>
 <script>
