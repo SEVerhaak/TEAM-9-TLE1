@@ -226,7 +226,7 @@
                             @elseif ($application->application_stage == 1)
                                 <button class="more-info" onclick="">
                             @elseif ($application->application_stage == 2)
-                                <button class="more-info-red" onclick="">
+                                <button class="more-info-red" onclick="" style="display: none">
                             @endif
                                     @if ($application->application_stage == 1)
                                         <div class="bericht">
