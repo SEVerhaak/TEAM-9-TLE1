@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+//routes for job seeker dashboard
 Route::get('/dashboard', [VacancyController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/registrations_data', [VacancyController::class, 'registrationData'])->middleware(['auth', 'verified'])->name('registrations_data');
 Route::get('/accepted_registrations',[VacancyController::class, 'acceptedRegistrations'] )->middleware(['auth', 'verified'])->name('accepted_registrations');
