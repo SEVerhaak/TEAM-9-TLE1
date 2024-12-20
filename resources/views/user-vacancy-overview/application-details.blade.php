@@ -189,24 +189,24 @@
                                 <x-icon-clock-svg>
 
                                 </x-icon-clock-svg>
-                                <p>{{$application->vacancy->time_hours}} Hours per week</p>
+                                <p>{{$application->vacancy->time_hours}} uren per week</p>
                             </div>
                             <div class="text-icon-content-container">
                                 <x-icon-money-svg>
 
                                 </x-icon-money-svg>
-                                <p>{{$application->vacancy->salary}} per month</p>
+                                <p>{{$application->vacancy->salary}} per maand</p>
                             </div>
 
                             @if ($application->application_stage == 1)
-                            <h2>Employers message</h2>
+                            <h2>bericht van werkgever</h2>
                             <div class="bericht-werkgever">
                                 <p>Eerste werkdag 12 december 10:00. We verwachten je op de Juliakade 29b. Voor vragen
                                     kunt u contact opnemen via Open Hiring! Tot dan!</p>
                             </div>
 
                                 <div class="aangenomen">
-                                    <h2>Invited</h2>
+                                    <h2>Uitgenodigd</h2>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28.5" height="28.5"
                                          viewBox="0 0 28.5 28.5">
                                         <path id="Icon_fa-solid-circle-check" data-name="Icon fa-solid-circle-check"
@@ -220,13 +220,13 @@
                                 <form class="confirm-submission" action="{{ route('open_vacancies.vacancyApplicationHandler', $application->vacancy->id) }}" method="POST">
                                     @csrf
                                     <button class="more-info-yellow" type="submit" name="redirect">
-                                        Remove me from list
+                                        Afmelden van vacature
                                     </button>
                                 </form>
                             @elseif ($application->application_stage == 1)
                                 <button class="more-info" onclick="">
                             @elseif ($application->application_stage == 2)
-                                <button class="more-info-red" onclick="">
+                                <button class="more-info-red" onclick="" style="display: none">
                             @endif
                                     @if ($application->application_stage == 1)
                                         <div class="bericht">
