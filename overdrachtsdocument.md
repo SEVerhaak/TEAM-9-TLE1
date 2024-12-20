@@ -3,7 +3,7 @@
 ## voor doorontwikkeling:
 
 <img src="screenshots/ERD.png">
-de huidige readme is van laravel zelf deze hebben we laten staan ondat er veel relevante informatie in staat.
+de huidige readme is van laravel zelf deze hebben we laten staan omdat er veel relevante informatie in staat.
 
 Bij de namen conventie zijn een aantal dingen in de soep gelopen. De login steps zijn eigenlijk de registratie steps. Ook wordt er op sommige plekken gesproken over “aangenomen”. Dit betekent “uitgenodigd”. Alle models uit het ERD (hierboven) zijn al aangemaakt en klaar voor gebruik.
 
